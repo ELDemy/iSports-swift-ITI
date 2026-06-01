@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1EE275E92FCD950900EE7193 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1EE275E82FCD94FF00EE7193 /* .gitignore */; };
+		D6133E862FCDB04300A4C520 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D6133E852FCDB04300A4C520 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,28 +40,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				model/services/network/.gitkeep,
 			);
 			target = 1EE275B02FCD94F700EE7193 /* iSports */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		1EE275FC2FCD991C00EE7193 /* Exceptions for "iSports" folder in "Compile Sources" phase from "iSports" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 1EE275AD2FCD94F700EE7193 /* Sources */;
-			membershipExceptions = (
-				model/services/network/.gitkeep,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1EE275B32FCD94F700EE7193 /* iSports */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				1EE275DC2FCD94F900EE7193 /* Exceptions for "iSports" folder in "iSports" target */,
-				1EE275FC2FCD991C00EE7193 /* Exceptions for "iSports" folder in "Compile Sources" phase from "iSports" target */,
 			);
 			path = iSports;
 			sourceTree = "<group>";
@@ -82,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6133E862FCDB04300A4C520 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,8 +95,8 @@
 		1EE275A82FCD94F700EE7193 = {
 			isa = PBXGroup;
 			children = (
-				1EE275B32FCD94F700EE7193 /* iSports */,
 				1EE275E82FCD94FF00EE7193 /* .gitignore */,
+				1EE275B32FCD94F700EE7193 /* iSports */,
 				1EE275CD2FCD94F900EE7193 /* iSportsTests */,
 				1EE275D72FCD94F900EE7193 /* iSportsUITests */,
 				1EE275B22FCD94F700EE7193 /* Products */,
@@ -143,6 +133,7 @@
 			);
 			name = iSports;
 			packageProductDependencies = (
+				D6133E852FCDB04300A4C520 /* Alamofire */,
 			);
 			productName = iSports;
 			productReference = 1EE275B12FCD94F700EE7193 /* iSports.app */;
@@ -226,6 +217,9 @@
 			);
 			mainGroup = 1EE275A82FCD94F700EE7193;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D6133E842FCDB04300A4C520 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1EE275B22FCD94F700EE7193 /* Products */;
 			projectDirPath = "";
@@ -582,6 +576,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D6133E842FCDB04300A4C520 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D6133E852FCDB04300A4C520 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6133E842FCDB04300A4C520 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1EE275A92FCD94F700EE7193 /* Project object */;
 }
