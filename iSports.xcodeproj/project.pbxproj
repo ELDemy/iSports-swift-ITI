@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E205DE92FCDB1BA00DCD785 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1E205DE82FCDB1BA00DCD785 /* Lottie */; };
 		1EE275E92FCD950900EE7193 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1EE275E82FCD94FF00EE7193 /* .gitignore */; };
 /* End PBXBuildFile section */
 
@@ -39,28 +40,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				model/services/network/.gitkeep,
 			);
 			target = 1EE275B02FCD94F700EE7193 /* iSports */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		1EE275FC2FCD991C00EE7193 /* Exceptions for "iSports" folder in "Compile Sources" phase from "iSports" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 1EE275AD2FCD94F700EE7193 /* Sources */;
-			membershipExceptions = (
-				model/services/network/.gitkeep,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1EE275B32FCD94F700EE7193 /* iSports */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				1EE275DC2FCD94F900EE7193 /* Exceptions for "iSports" folder in "iSports" target */,
-				1EE275FC2FCD991C00EE7193 /* Exceptions for "iSports" folder in "Compile Sources" phase from "iSports" target */,
 			);
 			path = iSports;
 			sourceTree = "<group>";
@@ -82,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E205DE92FCDB1BA00DCD785 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +133,7 @@
 			);
 			name = iSports;
 			packageProductDependencies = (
+				1E205DE82FCDB1BA00DCD785 /* Lottie */,
 			);
 			productName = iSports;
 			productReference = 1EE275B12FCD94F700EE7193 /* iSports.app */;
@@ -226,6 +217,9 @@
 			);
 			mainGroup = 1EE275A82FCD94F700EE7193;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1E205DE72FCDB1BA00DCD785 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1EE275B22FCD94F700EE7193 /* Products */;
 			projectDirPath = "";
@@ -582,6 +576,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1E205DE72FCDB1BA00DCD785 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1E205DE82FCDB1BA00DCD785 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E205DE72FCDB1BA00DCD785 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1EE275A92FCD94F700EE7193 /* Project object */;
 }
