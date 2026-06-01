@@ -39,16 +39,28 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				model/services/network/.gitkeep,
 			);
 			target = 1EE275B02FCD94F700EE7193 /* iSports */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		1EE275FC2FCD991C00EE7193 /* Exceptions for "iSports" folder in "Compile Sources" phase from "iSports" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 1EE275AD2FCD94F700EE7193 /* Sources */;
+			membershipExceptions = (
+				model/services/network/.gitkeep,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1EE275B32FCD94F700EE7193 /* iSports */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				1EE275DC2FCD94F900EE7193 /* Exceptions for "iSports" folder in "iSports" target */,
+				1EE275FC2FCD991C00EE7193 /* Exceptions for "iSports" folder in "Compile Sources" phase from "iSports" target */,
 			);
 			path = iSports;
 			sourceTree = "<group>";
@@ -93,8 +105,8 @@
 		1EE275A82FCD94F700EE7193 = {
 			isa = PBXGroup;
 			children = (
-				1EE275E82FCD94FF00EE7193 /* .gitignore */,
 				1EE275B32FCD94F700EE7193 /* iSports */,
+				1EE275E82FCD94FF00EE7193 /* .gitignore */,
 				1EE275CD2FCD94F900EE7193 /* iSportsTests */,
 				1EE275D72FCD94F900EE7193 /* iSportsUITests */,
 				1EE275B22FCD94F700EE7193 /* Products */,
