@@ -118,10 +118,10 @@ extension OnBoardingVC: UIPageViewControllerDataSource {
     }
 }
 
+
 extension OnBoardingVC: OnBoardingPageDelegate {
 
     func nextPage() {
-
         guard let currentVC = pageViewController.viewControllers?.first as? OnBoardingPageVC,
               let currentIndex = pages.firstIndex(of: currentVC)
         else { return }
@@ -129,23 +129,28 @@ extension OnBoardingVC: OnBoardingPageDelegate {
         let nextIndex = currentIndex + 1
 
         if nextIndex < pages.count {
-
             pageViewController.setViewControllers(
                 [pages[nextIndex]],
                 direction: .forward,
                 animated: true
             )
-
             pageControl.currentPage = nextIndex
-
         } else {
-
-            print("Navigate to Home Screen")
+            // Triggered when "Get Started" is pressed on the last page
+            navigateToMainScreen()
         }
     }
 
     func skipOnboarding() {
-
-        print("Navigate to Home Screen")
+       
+        navigateToMainScreen()
+    }
+    
+    private func navigateToMainScreen() {
+        let mainVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "MainViewController")
+        mainVC.modalPresentationStyle = .fullScreen
+        
+        self.present(mainVC, animated: true, completion: nil)
     }
 }
