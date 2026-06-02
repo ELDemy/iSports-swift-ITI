@@ -49,7 +49,7 @@ class SplashViewController: UIViewController {
 
     private func transitionToMainScreen() {
         let mainVC = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "MainViewController")
+            .instantiateViewController(withIdentifier: "LeagueDetailsViewController")
         mainVC.modalPresentationStyle = .fullScreen
 
         self.present(mainVC, animated: true, completion: nil)
