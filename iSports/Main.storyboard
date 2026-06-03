@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sez-CN-98W">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="BYZ-38-t0r" customClass="SplashViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lEQ-A6-pfy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947" y="-2"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Tab-Bar-Scene">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tab-Bar-Ctrl" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tab-Bar-Id">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="t6k-Ou-ysl" kind="relationship" relationship="viewControllers" id="Seg-Home"/>
+                        <segue destination="Fav-VC-Id" kind="relationship" relationship="viewControllers" id="Seg-Fav"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-Bar-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1837.4045801526718" y="-2.1126760563380285"/>
+        </scene>
+        <!--Favorite Leagues-->
+        <scene sceneID="Fav-Scene-Id">
+            <objects>
+                <viewController id="Fav-VC-Id" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fav-View-Id">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite Leagues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fav-Lbl-Id">
+                                <rect key="frame" x="97.333333333333329" y="352.66666666666669" width="198.33333333333337" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fav-Safe-Id"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Fav-Lbl-Id" firstAttribute="centerX" secondItem="Fav-View-Id" secondAttribute="centerX" id="Fav-CenterX"/>
+                            <constraint firstItem="Fav-Lbl-Id" firstAttribute="centerY" secondItem="Fav-View-Id" secondAttribute="centerY" id="Fav-CenterY"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorite Leagues" image="star" catalog="system" id="Fav-Tab-Id"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fav-Resp-Id" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2747.3282442748091" y="379.57746478873241"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Wm5-Uz-UKe">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="t6k-Ou-ysl" customClass="HomeViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u70-m0-4cF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Grid-Stack-1">
+                                <rect key="frame" x="16" y="328.66666666666669" width="361" height="300.00000000000006"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Row-1-Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="142"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Football">
+                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Foot">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" secondItem="BgImg-Foot" secondAttribute="height" id="BgH-Foot"/>
+                                                            <constraint firstAttribute="width" secondItem="BgImg-Foot" secondAttribute="width" id="BgW-Foot"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Foot">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Football" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Foot">
+                                                        <rect key="frame" x="8" y="105.66666666666663" width="156.66666666666666" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="bottom" secondItem="Card-Football" secondAttribute="bottom" id="BgBot-Foot"/>
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" id="BgLead-Foot"/>
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="top" secondItem="Card-Football" secondAttribute="top" id="BgTop-Foot"/>
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="trailing" secondItem="Card-Football" secondAttribute="trailing" id="BgTrail-Foot"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Foot" secondAttribute="bottom" constant="16" id="EiV-LC-Ko7"/>
+                                                    <constraint firstItem="Lbl-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" constant="8" id="Lead-Foot"/>
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="bottom" secondItem="Card-Football" secondAttribute="bottom" id="OvBot-Foot"/>
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" id="OvLead-Foot"/>
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="top" secondItem="Card-Football" secondAttribute="top" id="OvTop-Foot"/>
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="trailing" secondItem="Card-Football" secondAttribute="trailing" id="OvTrail-Foot"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Foot" secondAttribute="trailing" constant="8" id="Trail-Foot"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Basketball">
+                                                <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="142"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Basket">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
+                                                    </imageView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Basket">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basketball" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Basket">
+                                                        <rect key="frame" x="8" y="105.66666666666663" width="156.33333333333334" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="bottom" secondItem="Card-Basketball" secondAttribute="bottom" id="BgBot-Basket"/>
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" id="BgLead-Basket"/>
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="top" secondItem="Card-Basketball" secondAttribute="top" id="BgTop-Basket"/>
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="trailing" secondItem="Card-Basketball" secondAttribute="trailing" id="BgTrail-Basket"/>
+                                                    <constraint firstItem="Lbl-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" constant="8" id="Lead-Basket"/>
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="bottom" secondItem="Card-Basketball" secondAttribute="bottom" id="OvBot-Basket"/>
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" id="OvLead-Basket"/>
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="top" secondItem="Card-Basketball" secondAttribute="top" id="OvTop-Basket"/>
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="trailing" secondItem="Card-Basketball" secondAttribute="trailing" id="OvTrail-Basket"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Basket" secondAttribute="trailing" constant="8" id="Trail-Basket"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Basket" secondAttribute="bottom" constant="16" id="xUh-1r-hc6"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Row-2-Stack">
+                                        <rect key="frame" x="0.0" y="158" width="361" height="142"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Tennis">
+                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Tennis">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                    </imageView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Tennis">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tennis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Tennis">
+                                                        <rect key="frame" x="8" y="105.66666666666669" width="156.66666666666666" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="bottom" secondItem="Card-Tennis" secondAttribute="bottom" id="BgBot-Tennis"/>
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" id="BgLead-Tennis"/>
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="top" secondItem="Card-Tennis" secondAttribute="top" id="BgTop-Tennis"/>
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="trailing" secondItem="Card-Tennis" secondAttribute="trailing" id="BgTrail-Tennis"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Tennis" secondAttribute="bottom" constant="16" id="Fsm-fE-mQY"/>
+                                                    <constraint firstItem="Lbl-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" constant="8" id="Lead-Tennis"/>
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="bottom" secondItem="Card-Tennis" secondAttribute="bottom" id="OvBot-Tennis"/>
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" id="OvLead-Tennis"/>
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="top" secondItem="Card-Tennis" secondAttribute="top" id="OvTop-Tennis"/>
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="trailing" secondItem="Card-Tennis" secondAttribute="trailing" id="OvTrail-Tennis"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Tennis" secondAttribute="trailing" constant="8" id="Trail-Tennis"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Cricket">
+                                                <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="142"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Cricket">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
+                                                    </imageView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Cricket">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cricket" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Cricket">
+                                                        <rect key="frame" x="8" y="105.66666666666669" width="156.33333333333334" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Cricket" secondAttribute="bottom" constant="16" id="8Tt-tW-lfS"/>
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="bottom" secondItem="Card-Cricket" secondAttribute="bottom" id="BgBot-Cricket"/>
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" id="BgLead-Cricket"/>
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="top" secondItem="Card-Cricket" secondAttribute="top" id="BgTop-Cricket"/>
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="trailing" secondItem="Card-Cricket" secondAttribute="trailing" id="BgTrail-Cricket"/>
+                                                    <constraint firstItem="Lbl-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" constant="8" id="Lead-Cricket"/>
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="bottom" secondItem="Card-Cricket" secondAttribute="bottom" id="OvBot-Cricket"/>
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" id="OvLead-Cricket"/>
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="top" secondItem="Card-Cricket" secondAttribute="top" id="OvTop-Cricket"/>
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="trailing" secondItem="Card-Cricket" secondAttribute="trailing" id="OvTrail-Cricket"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Cricket" secondAttribute="trailing" constant="8" id="Trail-Cricket"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Grid-Hgt-1"/>
+                                </constraints>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FHx-BR-3fk">
+                                <rect key="frame" x="16" y="117.99999999999999" width="361" height="183.66666666666663"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="acp-nP-o9e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Grid-Stack-1" firstAttribute="top" secondItem="FHx-BR-3fk" secondAttribute="bottom" constant="27" id="0bN-vi-qD8"/>
+                            <constraint firstItem="FHx-BR-3fk" firstAttribute="top" secondItem="acp-nP-o9e" secondAttribute="top" id="6oL-Z3-IqR"/>
+                            <constraint firstItem="Grid-Stack-1" firstAttribute="leading" secondItem="acp-nP-o9e" secondAttribute="leading" constant="16" id="Ld5-Grid"/>
+                            <constraint firstItem="acp-nP-o9e" firstAttribute="trailing" secondItem="FHx-BR-3fk" secondAttribute="trailing" constant="16" id="Pif-Vm-Ngx"/>
+                            <constraint firstItem="acp-nP-o9e" firstAttribute="trailing" secondItem="Grid-Stack-1" secondAttribute="trailing" constant="16" id="Tr5-Grid"/>
+                            <constraint firstItem="FHx-BR-3fk" firstAttribute="leading" secondItem="acp-nP-o9e" secondAttribute="leading" constant="16" id="du0-YG-PzD"/>
+                            <constraint firstItem="FHx-BR-3fk" firstAttribute="height" secondItem="u70-m0-4cF" secondAttribute="height" multiplier="0.25" id="zFe-Tc-cOw"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="Tab-Item-Home"/>
+                    <connections>
+                        <outlet property="bannerImageView" destination="FHx-BR-3fk" id="outlet-banner"/>
+                        <outlet property="basketballBgImageView" destination="BgImg-Basket" id="outlet-bg-basket"/>
+                        <outlet property="basketballView" destination="Card-Basketball" id="EVU-m7-HXx"/>
+                        <outlet property="cricketBgImageView" destination="BgImg-Cricket" id="outlet-bg-cricket"/>
+                        <outlet property="cricketView" destination="Card-Cricket" id="sfQ-a7-nRh"/>
+                        <outlet property="footballBgImageView" destination="BgImg-Foot" id="outlet-bg-foot"/>
+                        <outlet property="footballView" destination="Card-Football" id="FiF-gS-5WV"/>
+                        <outlet property="tennisBgImageView" destination="BgImg-Tennis" id="outlet-bg-tennis"/>
+                        <outlet property="tennisView" destination="Card-Tennis" id="uc6-JD-IqK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C1P-RV-MvZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2747.3282442748091" y="-306.33802816901408"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CaD-ir-8h2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sez-CN-98W" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nXI-Os-X9x">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VbC-Kd-7My"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4wd-iy-Qts" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-59" y="-2"/>
+        </scene>
+        <!--On Boarding PageVC-->
+        <scene sceneID="tbn-af-gCc">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingPageVC" id="hBf-UA-glN" customClass="OnBoardingPageVC" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yjq-1u-IOm">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TIF-lQ-aKg">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnH-LB-Bl3">
+                                <rect key="frame" x="30" y="770" width="333" height="50"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Next"/>
+                                <connections>
+                                    <action selector="nextTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="dPb-Pe-bWe"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxz-Ma-6pG">
+                                <rect key="frame" x="32" y="594" width="329" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsW-xn-mQd">
+                                <rect key="frame" x="320" y="118" width="57" height="39"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Skip"/>
+                                <connections>
+                                    <action selector="skipTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="snY-fh-bVo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="desc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dy-JB-cmZ">
+                                <rect key="frame" x="32" y="660" width="329" height="25.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bf3-6j-VHH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TIF-lQ-aKg" firstAttribute="top" secondItem="yjq-1u-IOm" secondAttribute="top" id="2b1-tL-glX"/>
+                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="top" secondItem="Sxz-Ma-6pG" secondAttribute="bottom" constant="32" id="4Ug-6z-i0j"/>
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="leading" secondItem="0Dy-JB-cmZ" secondAttribute="leading" id="4gS-Nv-Kg7"/>
+                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="GsW-xn-mQd" secondAttribute="trailing" constant="16" id="8H1-qI-22Y"/>
+                            <constraint firstAttribute="trailing" secondItem="TIF-lQ-aKg" secondAttribute="trailing" id="9nh-s5-I7h"/>
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="centerY" secondItem="bf3-6j-VHH" secondAttribute="centerY" constant="160" id="B1P-cm-ahy"/>
+                            <constraint firstAttribute="leading" secondItem="TIF-lQ-aKg" secondAttribute="leading" id="BKi-1J-qRN"/>
+                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="leading" secondItem="bf3-6j-VHH" secondAttribute="leading" constant="32" id="Bm4-Ji-ddK"/>
+                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="0Dy-JB-cmZ" secondAttribute="trailing" constant="32" id="Lfg-me-14Z"/>
+                            <constraint firstItem="GsW-xn-mQd" firstAttribute="top" secondItem="bf3-6j-VHH" secondAttribute="top" id="Ms7-rz-Mfu"/>
+                            <constraint firstItem="tnH-LB-Bl3" firstAttribute="bottom" secondItem="yjq-1u-IOm" secondAttribute="bottom" constant="-32" id="Thw-to-s3Y"/>
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="centerX" secondItem="TIF-lQ-aKg" secondAttribute="centerX" id="Xej-Cs-bML"/>
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="trailing" secondItem="0Dy-JB-cmZ" secondAttribute="trailing" id="fza-7P-cpP"/>
+                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="tnH-LB-Bl3" secondAttribute="trailing" constant="30" id="htS-e9-j5K"/>
+                            <constraint firstItem="tnH-LB-Bl3" firstAttribute="leading" secondItem="bf3-6j-VHH" secondAttribute="leading" constant="30" id="ksF-JP-pwk"/>
+                            <constraint firstAttribute="bottom" secondItem="TIF-lQ-aKg" secondAttribute="bottom" id="spU-sW-NJh"/>
+                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="centerX" secondItem="TIF-lQ-aKg" secondAttribute="centerX" id="zT0-wZ-Sgq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="tnH-LB-Bl3" id="FLk-2r-hz5"/>
+                        <outlet property="descLabel" destination="0Dy-JB-cmZ" id="ERA-Fd-qg7"/>
+                        <outlet property="imageView" destination="TIF-lQ-aKg" id="c7w-Jf-cx5"/>
+                        <outlet property="skipButton" destination="GsW-xn-mQd" id="Qo8-xx-Ig2"/>
+                        <outlet property="titleLabel" destination="Sxz-Ma-6pG" id="aPb-7a-uhH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZb-4J-w53" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="787"/>
+        </scene>
+        <!--On BoardingVC-->
+        <scene sceneID="SOq-7S-24g">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingVC" id="qqN-cl-04J" customClass="OnBoardingVC" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aBv-fy-Id0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DqV-0t-buF">
+                                <rect key="frame" x="160" y="652" width="73" height="26"/>
+                                <color key="pageIndicatorTintColor" name="AccentColor"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Zqo-y8-RJB"/>
+                        <color key="backgroundColor" systemColor="systemCyanColor"/>
+                        <constraints>
+                            <constraint firstItem="DqV-0t-buF" firstAttribute="centerX" secondItem="Zqo-y8-RJB" secondAttribute="centerX" id="D0a-9C-ZO9"/>
+                            <constraint firstItem="Zqo-y8-RJB" firstAttribute="bottom" secondItem="DqV-0t-buF" secondAttribute="bottom" constant="55" id="Zwh-AB-uiX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="DqV-0t-buF" id="0kr-1M-wU1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="idM-Ue-eMf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1659" y="823"/>
+        </scene>
+        <!--League Details View Controller-->
+        <scene sceneID="Qj3-pQ-uUq">
+            <objects>
+                <viewController storyboardIdentifier="LeagueDetailsViewController" id="Gmd-9I-4qM" customClass="LeagueDetailsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6tS-wp-qa4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N9Z-Wp-R4d">
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <color key="backgroundColor" name="background"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pI3-AW-3nw">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RZY-od-vRf"/>
+                        <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="N9Z-Wp-R4d" firstAttribute="top" secondItem="RZY-od-vRf" secondAttribute="top" id="8EO-rU-UIR"/>
+                            <constraint firstItem="RZY-od-vRf" firstAttribute="bottom" secondItem="N9Z-Wp-R4d" secondAttribute="bottom" id="ROK-7b-FSQ"/>
+                            <constraint firstItem="N9Z-Wp-R4d" firstAttribute="leading" secondItem="RZY-od-vRf" secondAttribute="leading" id="ab6-xX-xOg"/>
+                            <constraint firstItem="RZY-od-vRf" firstAttribute="trailing" secondItem="N9Z-Wp-R4d" secondAttribute="trailing" id="fet-eK-ILB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="s5y-C1-e9C"/>
+                    <connections>
+                        <outlet property="collectionView" destination="N9Z-Wp-R4d" id="aDY-ZG-Aua"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p0i-Vg-1go" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2795" y="1089"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="background">
+            <color red="0.95686274509803926" green="0.96862745098039216" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

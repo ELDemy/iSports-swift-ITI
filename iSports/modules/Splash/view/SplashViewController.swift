@@ -50,12 +50,8 @@ class SplashViewController: UIViewController {
     private func transitionToOnboardingScreen() {
         let onboardingVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "OnBoardingVC")
-        onboardingVC.modalPresentationStyle = .fullScreen
 
-        self.present(onboardingVC, animated: true, completion: nil)
+        navigationController?.setViewControllers([onboardingVC], animated: true)
     }
-    
-
-
 }
 
