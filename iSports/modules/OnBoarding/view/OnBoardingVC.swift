@@ -147,10 +147,18 @@ extension OnBoardingVC: OnBoardingPageDelegate {
     }
     
     private func navigateToMainScreen() {
-        let mainVC = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "MainViewController")
-        mainVC.modalPresentationStyle = .fullScreen
-        
-        self.present(mainVC, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {
+            print("Error: Could not find MainTabBarController in Storyboard")
+            return
+        }
+
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = .reveal
+        transition.subtype = .fromRight
+        navigationController?.view.layer.add(transition, forKey: kCATransition)
+
+        navigationController?.setViewControllers([tabBarVC], animated: false)
     }
 }
