@@ -50,9 +50,16 @@ class SplashViewController: UIViewController {
     private func transitionToOnboardingScreen() {
         let onboardingVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "OnBoardingVC")
-        onboardingVC.modalPresentationStyle = .fullScreen
 
+        onboardingVC.modalPresentationStyle = .fullScreen
         self.present(onboardingVC, animated: true, completion: nil)
+    }
+
+    private func transitionToMainScreen() {
+        let homeVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "MainTabBarController")
+
+        navigationController?.setViewControllers([homeVC], animated: true)
     }
     
 

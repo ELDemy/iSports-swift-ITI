@@ -11,25 +11,22 @@ class HomeViewController: UIViewController {
 
     // MARK: - Outlets
 
-    /// Banner imageView (id: FHx-BR-3fk in storyboard)
+    @IBOutlet weak var basketballView: UIView!
+    @IBOutlet weak var footballView: UIView!
+    
+    @IBOutlet weak var cricketView: UIView!
+    @IBOutlet weak var tennisView: UIView!
     @IBOutlet private weak var bannerImageView: UIImageView!
 
-    /// Sport card background imageViews
     @IBOutlet private weak var footballBgImageView: UIImageView!
     @IBOutlet private weak var basketballBgImageView: UIImageView!
     @IBOutlet private weak var tennisBgImageView: UIImageView!
     @IBOutlet private weak var cricketBgImageView: UIImageView!
 
-    // MARK: - Unsplash image URLs
-    // Using Unsplash Source API — free, no key required, returns a redirect to a photo.
-    // Each URL targets a fixed photo ID for reproducible results.
-
+   
     private let bannerURLs: [String] = [
-        // Stadium crowd cheering at night
         "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
-        // Soccer match aerial view
         "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
-        // Basketball arena lights
         "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80"
     ]
 
@@ -50,6 +47,15 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupBanner()
         loadSportCardImages()
+        gestures()
+        
+        
+    }
+    private func gestures(){
+        setupTapGesture(for: footballView, action: #selector(footballTapped))
+            setupTapGesture(for: basketballView, action: #selector(basketballTapped))
+           setupTapGesture(for: tennisView, action: #selector(tennisTapped))
+            setupTapGesture(for: cricketView, action: #selector(cricketTapped))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,15 +76,20 @@ class HomeViewController: UIViewController {
         banner.contentMode = .scaleAspectFill
         banner.clipsToBounds = true
         banner.layer.cornerRadius = 16
-        banner.backgroundColor = UIColor(red: 0.20, green: 0.68, blue: 0.90, alpha: 1)
+        
+        banner.image = UIImage(named: "placeholder")
 
-        // Load first banner image
+        guard !bannerURLs.isEmpty else { return }
+
         loadImage(from: bannerURLs[0]) { [weak self] image in
             guard let self = self, let image = image else { return }
+            
             UIView.transition(with: banner,
                               duration: 0.4,
                               options: .transitionCrossDissolve,
-                              animations: { banner.image = image },
+                              animations: {
+                                  banner.image = image
+                              },
                               completion: nil)
         }
     }
@@ -106,7 +117,7 @@ class HomeViewController: UIViewController {
             nextImageView.transform = CGAffineTransform(translationX: banner.bounds.width * 0.3, y: 0)
             banner.addSubview(nextImageView)
 
-            UIView.animate(withDuration: 0.6,
+            UIView.animate(withDuration: 0.3,
                            delay: 0,
                            usingSpringWithDamping: 0.85,
                            initialSpringVelocity: 0.3,
@@ -172,5 +183,42 @@ class HomeViewController: UIViewController {
             }
             DispatchQueue.main.async { completion(image) }
         }.resume()
+    }
+    
+    private func setupTapGesture(for view: UIView, action: Selector) {
+        view.isUserInteractionEnabled = true // ضروري جداً
+        let tap = UITapGestureRecognizer(target: self, action: action)
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc private func footballTapped() {
+        animateTap(footballBgImageView)
+        print("Football tapped!")
+    }
+
+    @objc private func basketballTapped() {
+        animateTap(basketballBgImageView)
+        print("Basketball tapped!")
+    }
+
+    @objc private func tennisTapped() {
+        animateTap(tennisBgImageView)
+        //navigate to tennis screen
+        print("Tennis tapped!")
+    }
+
+    @objc private func cricketTapped() {
+        animateTap(cricketBgImageView)
+        print("Cricket tapped!")
+    }
+    
+    private func animateTap(_ view: UIView) {
+        UIView.animate(withDuration: 0.1, animations: {
+            view.alpha = 0.7
+        }) { _ in
+            UIView.animate(withDuration: 0.1) {
+                view.alpha = 1.0
+            }
+        }
     }
 }
