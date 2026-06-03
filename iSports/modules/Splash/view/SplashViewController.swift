@@ -42,18 +42,20 @@ class SplashViewController: UIViewController {
 
         animationView.play { [weak self] (finished) in
             if finished {
-                self?.transitionToMainScreen()
+              //  self?.transitionToMainScreen()
+                self?.transitionToOnboardingScreen()
             }
         }
     }
+    private func transitionToOnboardingScreen() {
+        let onboardingVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "OnBoardingVC")
+        onboardingVC.modalPresentationStyle = .fullScreen
 
-    private func transitionToMainScreen() {
-        let mainVC = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "LeagueDetailsViewController")
-        mainVC.modalPresentationStyle = .fullScreen
-
-        self.present(mainVC, animated: true, completion: nil)
-
+        self.present(onboardingVC, animated: true, completion: nil)
     }
+    
+
 
 }
+
