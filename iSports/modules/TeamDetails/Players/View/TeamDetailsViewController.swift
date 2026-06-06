@@ -1,9 +1,6 @@
 import UIKit
 
-struct PositionSection {
-    let title: String
-    let players: [PlayerModel]
-}
+// Removed PositionSection as it's now in Presenter
 
 class TeamDetailsViewController: UIViewController {
 
@@ -12,20 +9,17 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var team: Team?
-    private var sections: [PositionSection] = []
+    private var presenter: TeamDetailsPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = TeamDetailsPresenter(view: self, team: team)
         setupUI()
         setupTableView()
-        loadData()
+        presenter.viewDidLoad()
     }
     
     private func setupUI() {
-        title = team?.teamName ?? "Team Details"
-        teamNameLabel.text = team?.teamName
-        logoImageView.loadImage(from: team?.teamLogo)
-        
         let backButton = UIButton(type: .system)
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         backButton.setTitle("Back", for: .normal)
@@ -49,39 +43,24 @@ class TeamDetailsViewController: UIViewController {
         tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: "PlayerTableViewCell")
     }
     
-    private func loadData() {
-        let allPlayers = team != nil ? (team?.players ?? []) : PlayerMockData.getAllPlayers()
-        
-        let goalkeepers = allPlayers.filter { $0.playerType == "Goalkeepers" }
-        let defenders = allPlayers.filter { $0.playerType == "Defenders" }
-        let midfielders = allPlayers.filter { $0.playerType == "Midfielders" }
-        let forwards = allPlayers.filter { $0.playerType == "Forwards" }
-        
-        sections = []
-        if !goalkeepers.isEmpty { sections.append(PositionSection(title: "GOALKEEPERS", players: goalkeepers)) }
-        if !defenders.isEmpty { sections.append(PositionSection(title: "DEFENDERS", players: defenders)) }
-        if !midfielders.isEmpty { sections.append(PositionSection(title: "MIDFIELDERS", players: midfielders)) }
-        if !forwards.isEmpty { sections.append(PositionSection(title: "FORWARDS", players: forwards)) }
-        
-        tableView.reloadData()
-    }
+    // Removed loadData as it's now handled by Presenter
 }
 
 extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return presenter.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].players.count
+        return presenter.numberOfRows(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerTableViewCell", for: indexPath) as? PlayerTableViewCell else {
             return UITableViewCell()
         }
-        let player = sections[indexPath.section].players[indexPath.row]
+        let player = presenter.player(at: indexPath)
         cell.configure(with: player)
         return cell
     }
@@ -101,7 +80,7 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         iconImageView.setContentHuggingPriority(.required, for: .horizontal)
         
         let titleLabel = UILabel()
-        titleLabel.text = sections[section].title
+        titleLabel.text = presenter.titleForSection(section)
         titleLabel.font = .boldSystemFont(ofSize: 16)
         titleLabel.textColor = .black
         
@@ -152,7 +131,7 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource 
 //    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 1. Fetch your model instance
-        let selectedPlayer = sections[indexPath.section].players[indexPath.row]
+        let selectedPlayer = presenter.player(at: indexPath)
         
         // 2. Initialize your controller programmatically directly
         let detailsVC = PlayerDetailsViewController()
@@ -168,5 +147,17 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         
         // 4. Deselect gray highlight line row selection visual effect
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension TeamDetailsViewController: TeamDetailsViewProtocol {
+    func displayTeamInfo(teamName: String?, logoUrl: String?) {
+        title = teamName ?? "Team Details"
+        teamNameLabel.text = teamName
+        logoImageView.loadImage(from: logoUrl)
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
     }
 }

@@ -16,7 +16,7 @@ struct OnBoardingModel{
 
 let onboardingData: [OnBoardingModel] = [
     OnBoardingModel(
-        title: "Your Ultimate Sports Hub",
+        title: "Your Ultimate Sports",
         desc: "Everything you need to follow matches, scores, and sports news in one place.",
         image: "onboarding1"
     ),

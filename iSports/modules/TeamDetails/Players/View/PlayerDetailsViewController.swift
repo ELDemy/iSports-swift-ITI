@@ -123,12 +123,14 @@ class PlayerDetailsViewController: UIViewController {
 
     // MARK: - Data Properties
     var player: PlayerModel?
+    private var presenter: PlayerDetailsPresenter!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = PlayerDetailsPresenter(view: self, player: player)
         setupUI()
-        populateData()
+        presenter.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
@@ -231,27 +233,24 @@ class PlayerDetailsViewController: UIViewController {
         return container
     }
     
-    // MARK: - Data Ingestion
-    private func populateData() {
-        guard let player = player else { return }
-        
-        nameLabel.text = player.playerName ?? "Unknown"
-        positionLabel.text = player.playerType?.uppercased() ?? "UNKNOWN POSITION"
-        
-        let age = player.playerAge ?? "N/A"
-        let number = player.playerNumber ?? "-"
-        let matches = player.playerMatchPlayed ?? "0"
-        let goals = (player.playerGoals == nil || player.playerGoals == "") ? "0" : player.playerGoals!
-        let rating = player.playerRating ?? "N/A"
-        
-        statsStackView.addArrangedSubview(createStatRow(iconName: "person.text.rectangle", title: "Age", value: age))
-        statsStackView.addArrangedSubview(createStatRow(iconName: "number.circle", title: "Squad Number", value: number))
-        statsStackView.addArrangedSubview(createStatRow(iconName: "sportscourt", title: "Matches Played", value: matches))
-        statsStackView.addArrangedSubview(createStatRow(iconName: "soccerball", title: "Goals", value: goals))
-        statsStackView.addArrangedSubview(createStatRow(iconName: "star.circle", title: "Rating", value: rating))
+    // Removed populateData as data formatting is now handled by Presenter
+}
+
+extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
+    func displayPlayerDetails(name: String, position: String, imageUrl: String?) {
+        nameLabel.text = name
+        positionLabel.text = position
         
         let placeholder = UIImage(systemName: "person.crop.circle.fill")
         playerImageView.tintColor = .lightGray
-        playerImageView.loadImage(from: player.playerImage, placeholder: placeholder)
+        playerImageView.loadImage(from: imageUrl, placeholder: placeholder)
+    }
+    
+    func displayPlayerStats(stats: [(iconName: String, title: String, value: String)]) {
+        statsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        for stat in stats {
+            statsStackView.addArrangedSubview(createStatRow(iconName: stat.iconName, title: stat.title, value: stat.value))
+        }
     }
 }

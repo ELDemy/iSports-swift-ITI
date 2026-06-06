@@ -317,7 +317,10 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnH-LB-Bl3">
                                 <rect key="frame" x="30" y="770" width="333" height="50"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Next"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Next">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                    <color key="baseBackgroundColor" name="accentColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="nextTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="dPb-Pe-bWe"/>
                                 </connections>
@@ -331,14 +334,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsW-xn-mQd">
                                 <rect key="frame" x="320" y="118" width="57" height="39"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Skip"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Skip">
+                                    <color key="baseBackgroundColor" name="accentColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="skipTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="snY-fh-bVo"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="desc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dy-JB-cmZ">
-                                <rect key="frame" x="32" y="660" width="329" height="25.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <rect key="frame" x="32" y="660" width="329" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -387,7 +392,7 @@
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DqV-0t-buF">
                                 <rect key="frame" x="160" y="652" width="73" height="26"/>
-                                <color key="pageIndicatorTintColor" name="AccentColor"/>
+                                <color key="pageIndicatorTintColor" name="accentColor"/>
                             </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zqo-y8-RJB"/>
@@ -500,6 +505,9 @@
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="accentColor">
+            <color red="0.0039215686274509803" green="0.27843137254901962" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="background">
             <color red="0.95686274509803926" green="0.96862745098039216" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
