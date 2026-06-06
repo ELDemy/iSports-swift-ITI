@@ -1,7 +1,8 @@
 import Foundation
 
 protocol PlayerDetailsViewProtocol: AnyObject {
-    func displayPlayerDetails(name: String, position: String, imageUrl: String?)
+   // func displayPlayerDetails(name: String, position: String, imageUrl: String?)
+    func displayPlayerDetails(player:PlayerModel?, imageUrl: String?)
     func displayPlayerStats(stats: [(iconName: String, title: String, value: String)])
 }
 
@@ -21,7 +22,8 @@ class PlayerDetailsPresenter {
         let position = player.playerType?.uppercased() ?? "UNKNOWN POSITION"
         let imageUrl = player.playerImage
         
-        view?.displayPlayerDetails(name: name, position: position, imageUrl: imageUrl)
+       // view?.displayPlayerDetails(name: name, position: position, imageUrl: imageUrl)
+        view?.displayPlayerDetails(player:player, imageUrl: imageUrl)
         
         let age = player.playerAge ?? "N/A"
         let number = player.playerNumber ?? "-"

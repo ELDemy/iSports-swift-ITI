@@ -8,17 +8,21 @@ struct PositionSection {
 protocol TeamDetailsViewProtocol: AnyObject {
     func displayTeamInfo(teamName: String?, logoUrl: String?)
     func reloadData()
+    func showLoading()
+    func hideLoading()
 }
 
 class TeamDetailsPresenter {
     private weak var view: TeamDetailsViewProtocol?
     private var team: Team?
+    private var sportName: String?
     
     private(set) var sections: [PositionSection] = []
     
-    init(view: TeamDetailsViewProtocol, team: Team?) {
+    init(view: TeamDetailsViewProtocol, team: Team?, sportName: String?) {
         self.view = view
         self.team = team
+        self.sportName = sportName
     }
     
     func viewDidLoad() {
@@ -27,19 +31,41 @@ class TeamDetailsPresenter {
     }
     
     private func loadPlayers() {
-        let allPlayers = team != nil ? (team?.players ?? []) : PlayerMockData.getAllPlayers()
+        guard let sportName = sportName, let teamId = team?.teamKey else {
+            // Fallback if no sport or team id
+            self.processPlayers(self.team?.players ?? PlayerMockData.getAllPlayers())
+            return
+        }
         
+        view?.showLoading()
+        AlamofireManager.shared.getRoster(sportName: sportName, teamId: teamId) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.view?.hideLoading()
+                switch result {
+                case .success(let players):
+                    self?.processPlayers(players)
+                case .failure(let error):
+                    print("Error fetching roster: \(error)")
+                    // Optionally process empty or mock data on failure
+                    self?.processPlayers([])
+                }
+            }
+        }
+    }
+    
+    private func processPlayers(_ allPlayers: [PlayerModel]) {
         let goalkeepers = allPlayers.filter { $0.playerType == "Goalkeepers" }
         let defenders = allPlayers.filter { $0.playerType == "Defenders" }
         let midfielders = allPlayers.filter { $0.playerType == "Midfielders" }
         let forwards = allPlayers.filter { $0.playerType == "Forwards" }
         
-        sections = []
-        if !goalkeepers.isEmpty { sections.append(PositionSection(title: "GOALKEEPERS", players: goalkeepers)) }
-        if !defenders.isEmpty { sections.append(PositionSection(title: "DEFENDERS", players: defenders)) }
-        if !midfielders.isEmpty { sections.append(PositionSection(title: "MIDFIELDERS", players: midfielders)) }
-        if !forwards.isEmpty { sections.append(PositionSection(title: "FORWARDS", players: forwards)) }
+        var newSections: [PositionSection] = []
+        if !goalkeepers.isEmpty { newSections.append(PositionSection(title: "GOALKEEPERS", players: goalkeepers)) }
+        if !defenders.isEmpty { newSections.append(PositionSection(title: "DEFENDERS", players: defenders)) }
+        if !midfielders.isEmpty { newSections.append(PositionSection(title: "MIDFIELDERS", players: midfielders)) }
+        if !forwards.isEmpty { newSections.append(PositionSection(title: "FORWARDS", players: forwards)) }
         
+        self.sections = newSections
         view?.reloadData()
     }
     
