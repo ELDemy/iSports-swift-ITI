@@ -65,6 +65,20 @@ class AlamofireManager: NetworkService {
         }
     }
     
+    func getTeams(sportName: String, leagueId: Int, completion: @escaping (Result<[Team], Error>) -> Void) {
+        let url = "\(Constants.API.baseURL)/\(sportName)?met=Teams&APIkey=\(apiKey)&leagueId=\(leagueId)"
+        
+        AF.request(url).responseDecodable(of: TeamResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data.result ?? []))
+            case .failure(let error):
+                print("getTeams error: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func getRoster(sportName: String, teamId: Int, completion: @escaping (Result<[PlayerModel], Error>) -> Void) {
         let url = "\(Constants.API.baseURL)/\(sportName)?met=Players&APIkey=\(apiKey)&teamId=\(teamId)"
         

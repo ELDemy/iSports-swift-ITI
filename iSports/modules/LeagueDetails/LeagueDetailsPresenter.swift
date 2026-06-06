@@ -94,21 +94,21 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
         
         teams = [
             Team(teamKey: 1, teamName: "Real Madrid",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/7925_real-madrid.png"),
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/7925_real-madrid.png", players: []),
             Team(teamKey: 2, teamName: "Barcelona",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/7926_barcelona.png"),
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/7926_barcelona.png", players: []),
             Team(teamKey: 3, teamName: "Arsenal",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/96_arsenal.png"),
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/96_arsenal.png", players: []),
             Team(teamKey: 4, teamName: "Chelsea",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/94_chelsea.png"),
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/94_chelsea.png", players: []),
             Team(teamKey: 5, teamName: "Liverpool",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/80_liverpool.png"),
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/80_liverpool.png", players: []),
             Team(teamKey: 6, teamName: "Man City",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/82_manchester-city.png"),
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/82_manchester-city.png", players: []),
             Team(teamKey: 7, teamName: "Bayern",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/2672_bayern-munich.png"),
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/2672_bayern-munich.png", players: []),
             Team(teamKey: 8, teamName: "Juventus",
-                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/4187_juventus.png")
+                 teamLogo: "https://apiv2.allsportsapi.com/logo/logo_teams/4187_juventus.png", players: [])
         ]
         
         // Simulate network delay

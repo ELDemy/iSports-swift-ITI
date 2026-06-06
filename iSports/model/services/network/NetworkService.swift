@@ -15,5 +15,7 @@ protocol NetworkService {
     
     func getParticipants(sportName: String, method: String, leagueId: Int?, completion: @escaping (Result<[Participant], Error>) -> Void)
     
+    func getTeams(sportName: String, leagueId: Int, completion: @escaping (Result<[Team], Error>) -> Void)
+    
     func getRoster(sportName: String, teamId: Int, completion: @escaping (Result<[PlayerModel], Error>) -> Void)
 }

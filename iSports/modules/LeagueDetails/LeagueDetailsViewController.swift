@@ -270,6 +270,8 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController;
+             self.navigationController?.pushViewController(vc, animated: true)
             presenter.didSelectTeam(at: indexPath.row)
         }
     }

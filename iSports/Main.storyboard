@@ -443,9 +443,60 @@
             </objects>
             <point key="canvasLocation" x="2795" y="1089"/>
         </scene>
+        <!--Team Details View Controller-->
+        <scene sceneID="c03-lY-Z0P">
+            <objects>
+                <viewController storyboardIdentifier="TeamDetailsViewController" id="e0R-uU-EQj" customClass="TeamDetailsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xHX-qY-Pob">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shield.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="g64-Cc-ogQ">
+                                <rect key="frame" x="156.66666666666666" y="139" width="80" height="78.333333333333314"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="1EN-TJ-kqb"/>
+                                    <constraint firstAttribute="width" constant="80" id="lw0-Kv-GPt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bayern München" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nif-8X-U3Q">
+                                <rect key="frame" x="102.33333333333333" y="234" width="188.33333333333337" height="28.666666666666686"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JsQ-O7-vGQ">
+                                <rect key="frame" x="0.0" y="294.66666666666674" width="393" height="489.33333333333326"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ygW-kh-ap1"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="g64-Cc-ogQ" firstAttribute="top" secondItem="ygW-kh-ap1" secondAttribute="top" constant="20" id="2m3-mA-zg6"/>
+                            <constraint firstItem="g64-Cc-ogQ" firstAttribute="centerX" secondItem="xHX-qY-Pob" secondAttribute="centerX" id="8RR-c3-yoH"/>
+                            <constraint firstItem="nif-8X-U3Q" firstAttribute="centerX" secondItem="xHX-qY-Pob" secondAttribute="centerX" id="AiK-QV-Kju"/>
+                            <constraint firstItem="ygW-kh-ap1" firstAttribute="bottom" secondItem="JsQ-O7-vGQ" secondAttribute="bottom" id="Cb1-s9-rHK"/>
+                            <constraint firstItem="ygW-kh-ap1" firstAttribute="trailing" secondItem="JsQ-O7-vGQ" secondAttribute="trailing" id="Ipl-4z-NhP"/>
+                            <constraint firstItem="JsQ-O7-vGQ" firstAttribute="leading" secondItem="ygW-kh-ap1" secondAttribute="leading" id="Seu-Xo-ilT"/>
+                            <constraint firstItem="nif-8X-U3Q" firstAttribute="top" secondItem="g64-Cc-ogQ" secondAttribute="bottom" constant="16" id="btg-4i-hl1"/>
+                            <constraint firstItem="JsQ-O7-vGQ" firstAttribute="top" secondItem="nif-8X-U3Q" secondAttribute="bottom" constant="32" id="cA9-7P-g1F"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logoImageView" destination="g64-Cc-ogQ" id="KcT-8h-ih4"/>
+                        <outlet property="tableView" destination="JsQ-O7-vGQ" id="zME-Hg-tbh"/>
+                        <outlet property="teamNameLabel" destination="nif-8X-U3Q" id="F2P-WZ-scB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iMO-iY-5dg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3822" y="1089"/>
+        </scene>
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
+        <image name="shield.fill" catalog="system" width="121" height="128"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -454,13 +505,16 @@
             <color red="0.95686274509803926" green="0.96862745098039216" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
