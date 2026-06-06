@@ -378,7 +378,7 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             guard !teams.isEmpty else { return }
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController")
                     as? TeamDetailsViewController else { return }
-            navigationController?.pushViewController(vc, animated: true)
+            let selectedTeam = teams[indexPath.row]
             vc.team = selectedTeam
             vc.sportName = self.sportName
             navigationController?.pushViewController(vc, animated: true)
