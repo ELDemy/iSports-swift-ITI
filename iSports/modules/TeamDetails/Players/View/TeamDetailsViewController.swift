@@ -1,6 +1,5 @@
 import UIKit
 
-
 class TeamDetailsViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView!
@@ -11,17 +10,82 @@ class TeamDetailsViewController: UIViewController {
     var sportName: String!
     private var presenter: TeamDetailsPresenter!
     private let activityIndicator = UIActivityIndicatorView(style: .large)
+    
+
+    private let backgroundGradientLayer = CAGradientLayer()
+    private let fieldPatternLayer = CAShapeLayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = TeamDetailsPresenter(view: self, team: team, sportName: sportName)
-        setupUI()
+        setupBackground()
+        setupNavigationBar()
+        setupHeaderUI()
         setupTableView()
+        setupActivityIndicator()
         presenter.viewDidLoad()
     }
     
-    private func setupUI() {
-        activityIndicator.color = .systemGreen
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        backgroundGradientLayer.frame = view.bounds
+    }
+    
+
+    private func setupBackground() {
+    
+        backgroundGradientLayer.colors = [
+            UIColor(red: 0.02, green: 0.20, blue: 0.10, alpha: 1.0).cgColor,
+            UIColor(red: 0.02, green: 0.07, blue: 0.05, alpha: 1.0).cgColor
+        ]
+        backgroundGradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        backgroundGradientLayer.endPoint   = CGPoint(x: 1, y: 1)
+        view.layer.insertSublayer(backgroundGradientLayer, at: 0)
+        
+      
+        tableView?.backgroundColor = .clear
+    }
+    
+  
+    private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(red: 0.02, green: 0.20, blue: 0.10, alpha: 1.0)
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
+        ]
+        
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.backButtonAppearance = backItemAppearance
+        
+        let backImage = UIImage(systemName: "chevron.backward")?
+            .withTintColor(.white, renderingMode: .alwaysOriginal)
+        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+        
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    
+    private func setupHeaderUI() {
+       
+        logoImageView?.layer.cornerRadius = (logoImageView?.frame.width ?? 80) / 2
+        logoImageView?.clipsToBounds = true
+        logoImageView?.layer.borderWidth = 3
+        logoImageView?.layer.borderColor = UIColor(named: "accentColor")?.cgColor ?? UIColor.systemGreen.cgColor
+        
+        
+        teamNameLabel?.textColor = .white
+        teamNameLabel?.font = .systemFont(ofSize: 22, weight: .bold)
+    }
+    
+    
+    private func setupActivityIndicator() {
+        activityIndicator.color = UIColor(named: "accentColor") ?? .systemGreen
         activityIndicator.hidesWhenStopped = true
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(activityIndicator)
@@ -29,31 +93,17 @@ class TeamDetailsViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
-        let backButton = UIButton(type: .system)
-        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        backButton.setTitle("Back", for: .normal)
-        backButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
-        backButton.tintColor = .systemGreen
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-    }
-    
-    @objc private func backButtonTapped() {
-        if let navigationController = navigationController {
-            navigationController.popViewController(animated: true)
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: "PlayerTableViewCell")
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
     }
-    
 }
+
 
 extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -71,49 +121,67 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         }
         let player = presenter.player(at: indexPath)
         cell.configure(with: player)
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = .clear
+        headerView.backgroundColor = UIColor(white: 1.0, alpha: 0.05)
+        headerView.layer.cornerRadius = 10
+        headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = 10
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        let iconImageView = UIImageView(image: UIImage(systemName: "hand.raised.fill"))
-        iconImageView.tintColor = .systemGreen
+        let iconImageView = UIImageView(image: UIImage(systemName: "person.3.fill"))
+        iconImageView.tintColor = UIColor(named: "accentColor") ?? .systemGreen
         iconImageView.setContentHuggingPriority(.required, for: .horizontal)
         
         let titleLabel = UILabel()
         titleLabel.text = presenter.titleForSection(section)
-        titleLabel.font = .boldSystemFont(ofSize: 16)
-        titleLabel.textColor = .black
+        titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        titleLabel.textColor = UIColor(named: "accentColor") ?? .systemGreen
+        
+       
+        let accentLine = UIView()
+        accentLine.translatesAutoresizingMaskIntoConstraints = false
+        accentLine.backgroundColor = UIColor(named: "accentColor") ?? .systemGreen
+        accentLine.layer.cornerRadius = 1.5
         
         stackView.addArrangedSubview(iconImageView)
         stackView.addArrangedSubview(titleLabel)
-        
         headerView.addSubview(stackView)
+        headerView.addSubview(accentLine)
         
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20),
-            stackView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8),
-            stackView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8)
+            stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+            stackView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10),
+            stackView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -10),
+            
+            accentLine.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
+            accentLine.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 6),
+            accentLine.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -6),
+            accentLine.widthAnchor.constraint(equalToConstant: 3)
         ])
         
         return headerView
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 48
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 105
+        return 100
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
         let selectedPlayer = presenter.player(at: indexPath)
         let detailsVC = PlayerDetailsViewController()
         detailsVC.player = selectedPlayer
@@ -129,15 +197,24 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
+
 extension TeamDetailsViewController: TeamDetailsViewProtocol {
     func displayTeamInfo(teamName: String?, logoUrl: String?) {
         title = teamName ?? "Team Details"
-        teamNameLabel.text = teamName
-        logoImageView.loadImage(from: logoUrl)
+        teamNameLabel?.text = teamName
+        teamNameLabel?.textColor = .white
+        logoImageView?.loadImage(from: logoUrl)
+        
+        DispatchQueue.main.async {
+            self.logoImageView?.layer.cornerRadius = (self.logoImageView?.frame.width ?? 80) / 2
+            self.logoImageView?.clipsToBounds = true
+        }
     }
     
     func reloadData() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func showLoading() {
@@ -147,7 +224,7 @@ extension TeamDetailsViewController: TeamDetailsViewProtocol {
     
     func hideLoading() {
         activityIndicator.stopAnimating()
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.4) {
             self.tableView.alpha = 1
         }
     }
