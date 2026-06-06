@@ -1,4 +1,6 @@
 import UIKit
+
+// MARK: - View Protocol
 protocol LeagueDetailsViewProtocol: AnyObject {
     func showLoading()
     func hideLoading()
@@ -6,63 +8,102 @@ protocol LeagueDetailsViewProtocol: AnyObject {
     func reloadData()
     func toggleFavoriteState(isFavorite: Bool)
     func displayError(_ message: String)
+    func setLeagueName(_ name: String, sportName: String)
 }
 
+// MARK: - Section Enum
+private enum LeagueSection: Int, CaseIterable {
+    case upcoming = 0, latest, teams
 
+    func title(for sportName: String) -> String {
+        switch self {
+        case .upcoming: return "Upcoming Events"
+        case .latest:   return "Latest Results"
+        case .teams:    return sportName.lowercased() == "tennis" ? "Players" : "Teams"
+        }
+    }
+
+    var emptyIcon: String {
+        switch self {
+        case .upcoming: return "calendar.badge.clock"
+        case .latest:   return "flag.checkered"
+        case .teams:    return "person.3.fill"
+        }
+    }
+
+    var emptyMessage: String {
+        switch self {
+        case .upcoming: return "No upcoming events"
+        case .latest:   return "No results yet"
+        case .teams:    return "No teams available"
+        }
+    }
+}
+
+// MARK: - LeagueDetailsViewController
 class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
-    
+
+    // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var presenter: LeagueDetailsPresenterProtocol!
-    
-    /// Set by the previous screen before pushing this VC
-    var leagueId: Int!;
-    var sportName: String!;
-    
+
+    // MARK: - Public (set by previous screen)
+    var presenter:   LeagueDetailsPresenterProtocol!
+    var leagueId:    Int    = 766
+    var sportName:   String = "basketball"
+    var leagueName:  String = "League Details"
+
+    // MARK: - Private Data
     private var upcomingEvents: [Event] = []
-    private var latestEvents: [Event] = []
-    private var teams: [Team] = []
-    
+    private var latestEvents:   [Event] = []
+    private var teams:          [Team]  = []
+    private var currentSportName: String = "basketball"
+
+    // MARK: - UI
     private let activityIndicator = UIActivityIndicatorView(style: .large)
-    
-    private let sectionTitles = ["Upcoming Events", "Latest Results", "Teams"]
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupCollectionView()
         setupActivityIndicator()
-        
-        if presenter == nil {
-            presenter = LeagueDetailsPresenter(
-                view: self,
-                leagueId: leagueId,
-                sportName: sportName
-            )
-        }
-        
+        initPresenterIfNeeded()
         presenter.viewDidLoad()
     }
-    
+
+    // MARK: - Setup
+    private func initPresenterIfNeeded() {
+        guard presenter == nil else { return }
+        presenter = LeagueDetailsPresenter(
+            view:       self,
+            leagueId:   leagueId,
+            sportName:  sportName,
+            leagueName: leagueName
+        )
+    }
+
     private func setupNavigationBar() {
-        title = "League Details"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = .accent
-        
+        title = leagueName
+        navigationController?.navigationBar.prefersLargeTitles = false
+
+        let accent = UIColor(named: "accentColor") ?? UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1)
+
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(resource: .accent)]
-        appearance.titleTextAttributes = [.foregroundColor: UIColor(resource: .accent)]
-        navigationController?.navigationBar.standardAppearance = appearance
+        appearance.backgroundColor           = UIColor(named: "background") ?? .systemBackground
+        appearance.titleTextAttributes       = [.foregroundColor: accent, .font: UIFont.systemFont(ofSize: 18, weight: .bold)]
+        appearance.largeTitleTextAttributes  = [.foregroundColor: accent]
+        navigationController?.navigationBar.standardAppearance  = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        
-        let heartIcon = UIImage(systemName: "heart")
+        navigationController?.navigationBar.tintColor           = accent
+
+        let heartIcon      = UIImage(systemName: "heart")
         let favoriteButton = UIBarButtonItem(image: heartIcon, style: .plain, target: self, action: #selector(favoriteTapped))
         navigationItem.rightBarButtonItem = favoriteButton
     }
-    
+
     private func setupActivityIndicator() {
-        activityIndicator.color = .accent
+        activityIndicator.color = UIColor(named: "accentColor")
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
@@ -70,240 +111,393 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
-    
-    @objc private func favoriteTapped() {
-        presenter.didTapFavorite()
-    }
-    
+
     private func setupCollectionView() {
-        collectionView.register(UINib(nibName: "UpcomingEventCell", bundle: nil), forCellWithReuseIdentifier: "UpcomingEventCell")
+        // Cells
+        collectionView.register(UINib(nibName: "UpcomingEventCell", bundle: nil),
+                                forCellWithReuseIdentifier: "UpcomingEventCell")
         collectionView.register(LatestEventsContainerCell.self,
                                 forCellWithReuseIdentifier: LatestEventsContainerCell.reuseIdentifier)
-        collectionView.register(UINib(nibName: "TeamCircularCell", bundle: nil), forCellWithReuseIdentifier: "TeamCircularCell")
+        collectionView.register(UINib(nibName: "TeamCircularCell", bundle: nil),
+                                forCellWithReuseIdentifier: "TeamCircularCell")
+        collectionView.register(EmptySectionCell.self,
+                                forCellWithReuseIdentifier: EmptySectionCell.reuseIdentifier)
 
-        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        // Header
+        collectionView.register(SectionHeaderView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
-        collectionView.collectionViewLayout = createCompositionalLayout()
+        collectionView.collectionViewLayout = makeCompositionalLayout()
         collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.delegate   = self
+        collectionView.backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
     }
-    
-    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            guard let self = self else { return nil }
-            switch sectionIndex {
-            case 0:
-                return self.createUpcomingEventsSection()
-            case 1:
-                return self.createLatestEventsSection()
-            case 2:
-                return self.createTeamsSection()
-            default:
-                return nil
+
+    // MARK: - Compositional Layout
+    private func makeCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        UICollectionViewCompositionalLayout { [weak self] index, _ in
+            guard let self, let section = LeagueSection(rawValue: index) else { return nil }
+            switch section {
+            case .upcoming: return self.upcomingSection()
+            case .latest:   return self.latestSection()
+            case .teams:    return self.teamsSection()
             }
         }
     }
-    
-    private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44))
-        return NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+
+    private func sectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(52))
+        return NSCollectionLayoutBoundarySupplementaryItem(layoutSize: size,
+                                                          elementKind: UICollectionView.elementKindSectionHeader,
+                                                          alignment: .top)
     }
-    
-    private func createUpcomingEventsSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.82), heightDimension: .absolute(120))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
+
+    private func upcomingSection() -> NSCollectionLayoutSection {
+        let isEmpty = upcomingEvents.isEmpty
+        let height: CGFloat = isEmpty ? 140 : 130
+        let widthDim: NSCollectionLayoutDimension = isEmpty ? .fractionalWidth(1) : .fractionalWidth(0.82)
+
+        let item  = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                             heightDimension: .fractionalHeight(1)))
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(widthDimension: widthDim, heightDimension: .absolute(height)),
+            subitems: [item])
+
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPagingCentered
-        section.interGroupSpacing = 16
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 24, trailing: 0)
-        section.boundarySupplementaryItems = [createSectionHeader()]
-        
-        section.visibleItemsInvalidationHandler = { items, offset, environment in
-            items.forEach { item in
-                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                let minScale: CGFloat = 0.92
-                let maxScale: CGFloat = 1.0
-                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width) * 0.15, minScale)
-                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+        section.orthogonalScrollingBehavior = isEmpty ? .none : .groupPagingCentered
+        section.interGroupSpacing  = 16
+        section.contentInsets      = .init(top: 8, leading: isEmpty ? 16 : 0, bottom: 24, trailing: isEmpty ? 16 : 0)
+        section.boundarySupplementaryItems = [sectionHeader()]
+
+        if !isEmpty {
+            section.visibleItemsInvalidationHandler = { items, offset, env in
+                items.forEach { item in
+                    let dist  = abs((item.frame.midX - offset.x) - env.container.contentSize.width / 2)
+                    let scale = max(1.0 - (dist / env.container.contentSize.width) * 0.15, 0.92)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                }
             }
         }
-        
         return section
     }
-    
-    private func createLatestEventsSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .absolute(300))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+    private func latestSection() -> NSCollectionLayoutSection {
+        let isEmpty = latestEvents.isEmpty
+        let height: CGFloat = isEmpty ? 140 : 320
+
+        let item  = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                             heightDimension: .fractionalHeight(1)))
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(height)),
+            subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 24, trailing: 16)
-        section.boundarySupplementaryItems = [createSectionHeader()]
+        section.contentInsets = .init(top: 8, leading: 16, bottom: 24, trailing: 16)
+        section.boundarySupplementaryItems = [sectionHeader()]
         return section
     }
-    
-    private func createTeamsSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(90), heightDimension: .absolute(110))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
+
+    private func teamsSection() -> NSCollectionLayoutSection {
+        let isEmpty = teams.isEmpty
+        let width:  CGFloat = isEmpty ? UIScreen.main.bounds.width - 32 : 90
+        let height: CGFloat = isEmpty ? 140 : 110
+        let widthDim: NSCollectionLayoutDimension = isEmpty ? .fractionalWidth(1) : .absolute(width)
+
+        let item  = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                             heightDimension: .fractionalHeight(1)))
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(widthDimension: widthDim, heightDimension: .absolute(height)),
+            subitems: [item])
+
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        section.interGroupSpacing = 12
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 24, trailing: 16)
-        section.boundarySupplementaryItems = [createSectionHeader()]
-        
+        section.orthogonalScrollingBehavior = isEmpty ? .none : .continuous
+        section.interGroupSpacing  = 12
+        section.contentInsets      = .init(top: 8, leading: 16, bottom: 24, trailing: 16)
+        section.boundarySupplementaryItems = [sectionHeader()]
         return section
     }
-    
+
     // MARK: - LeagueDetailsViewProtocol
     func showLoading() {
         activityIndicator.startAnimating()
         collectionView.alpha = 0
     }
-    
+
     func hideLoading() {
         activityIndicator.stopAnimating()
-        UIView.animate(withDuration: 0.4) {
-            self.collectionView.alpha = 1
+        UIView.animate(withDuration: 0.4) { self.collectionView.alpha = 1 }
+    }
+
+    func setLeagueName(_ name: String, sportName: String) {
+        self.currentSportName = sportName
+        DispatchQueue.main.async {
+            self.title = name
         }
     }
-    
+
     func displayData(upcoming: [Event], latest: [Event], teams: [Team]) {
         self.upcomingEvents = upcoming
-        self.latestEvents = latest
-        self.teams = teams
-        self.reloadData()
+        self.latestEvents   = latest
+        self.teams          = teams
+        reloadData()
     }
-    
+
     func reloadData() {
         DispatchQueue.main.async {
+            self.collectionView.collectionViewLayout.invalidateLayout()
             self.collectionView.reloadData()
         }
     }
-    
+
     func toggleFavoriteState(isFavorite: Bool) {
-        let iconName = isFavorite ? "heart.fill" : "heart"
-        let image = UIImage(systemName: iconName)
-        navigationItem.rightBarButtonItem?.image = image
-        
-        // Animate the heart button
-        if let barButtonView = navigationItem.rightBarButtonItem?.value(forKey: "view") as? UIView {
-            UIView.animate(withDuration: 0.15, animations: {
-                barButtonView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            }) { _ in
-                UIView.animate(withDuration: 0.15) {
-                    barButtonView.transform = .identity
-                }
-            }
+        let name  = isFavorite ? "heart.fill" : "heart"
+        DispatchQueue.main.async {
+            self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: name)
         }
+        animateHeartButton()
     }
-    
+
     func displayError(_ message: String) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(
-                title: "Error",
-                message: message,
-                preferredStyle: .alert
-            )
+            let alert = UIAlertController(title: "Something went wrong", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true)
         }
     }
-}
 
-// MARK: - Section Header View
-class SectionHeaderView: UICollectionReusableView {
-    static let reuseIdentifier = "SectionHeaderView"
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 22, weight: .bold)
-        label.textColor = UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(titleLabel)
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
-        ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(title: String) {
-        titleLabel.text = title
+    // MARK: - Actions
+    @objc private func favoriteTapped() { presenter.didTapFavorite() }
+
+    private func animateHeartButton() {
+        guard let barView = navigationItem.rightBarButtonItem?.value(forKey: "view") as? UIView else { return }
+        UIView.animate(withDuration: 0.15, animations: {
+            barView.transform = CGAffineTransform(scaleX: 1.35, y: 1.35)
+        }) { _ in
+            UIView.animate(withDuration: 0.15) { barView.transform = .identity }
+        }
     }
 }
 
 // MARK: - UICollectionViewDataSource & Delegate
 extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        LeagueSection.allCases.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0: return upcomingEvents.count
-        case 1: return latestEvents.isEmpty ? 0 : 1
-        case 2: return teams.count
-        default: return 0
+        guard let sec = LeagueSection(rawValue: section) else { return 0 }
+        switch sec {
+        case .upcoming: return max(upcomingEvents.count, 1)   // 1 = empty state cell
+        case .latest:   return 1                              // container cell (handles empty internally)
+        case .teams:    return max(teams.count, 1)
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEventCell", for: indexPath) as! UpcomingEventCell
-            cell.configure(with: upcomingEvents[indexPath.row])
-            return cell
-        case 1:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: LatestEventsContainerCell.reuseIdentifier,
-                for: indexPath
-            ) as! LatestEventsContainerCell
-            cell.configure(with: latestEvents)
-            return cell
-        case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCircularCell", for: indexPath) as! TeamCircularCell
-            cell.configure(with: teams[indexPath.row])
-            return cell
-        default:
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let section = LeagueSection(rawValue: indexPath.section) else {
             return UICollectionViewCell()
         }
+        switch section {
+
+        case .upcoming:
+            if upcomingEvents.isEmpty {
+                return emptyCell(for: collectionView, at: indexPath, section: .upcoming)
+            }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEventCell",
+                                                          for: indexPath) as! UpcomingEventCell
+            cell.configure(with: upcomingEvents[indexPath.row])
+            return cell
+
+        case .latest:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: LatestEventsContainerCell.reuseIdentifier,
+                for: indexPath) as! LatestEventsContainerCell
+            cell.configure(with: latestEvents)
+            return cell
+
+        case .teams:
+            if teams.isEmpty {
+                return emptyCell(for: collectionView, at: indexPath, section: .teams)
+            }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCircularCell",
+                                                          for: indexPath) as! TeamCircularCell
+            cell.configure(with: teams[indexPath.row])
+            return cell
+        }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as! SectionHeaderView
-        header.configure(title: sectionTitles[indexPath.section])
+
+    private func emptyCell(for cv: UICollectionView,
+                           at indexPath: IndexPath,
+                           section: LeagueSection) -> EmptySectionCell {
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: EmptySectionCell.reuseIdentifier,
+                                          for: indexPath) as! EmptySectionCell
+        cell.configure(icon: section.emptyIcon, message: section.emptyMessage)
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: SectionHeaderView.reuseIdentifier,
+            for: indexPath) as! SectionHeaderView
+
+        if let section = LeagueSection(rawValue: indexPath.section) {
+            let title = section.title(for: currentSportName)
+            let count: Int? = {
+                switch section {
+                case .upcoming: return upcomingEvents.isEmpty ? nil : upcomingEvents.count
+                case .latest:   return latestEvents.isEmpty   ? nil : latestEvents.count
+                case .teams:    return teams.isEmpty           ? nil : teams.count
+                }
+            }()
+            header.configure(title: title, count: count)
+        }
         return header
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController;
-            
-            let selectedTeam = teams[indexPath.row]
-             self.navigationController?.pushViewController(vc, animated: true)
-            presenter.didSelectTeam(at: indexPath.row)
+        guard indexPath.section == LeagueSection.teams.rawValue, !teams.isEmpty else { return }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController")
+                as? TeamDetailsViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
+        presenter.didSelectTeam(at: indexPath.row)
+    }
+}
+
+// MARK: - SectionHeaderView
+class SectionHeaderView: UICollectionReusableView {
+    static let reuseIdentifier = "SectionHeaderView"
+
+    private let titleLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 20, weight: .bold)
+        l.textColor = UIColor(named: "accentColor")
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let countBadge: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 11, weight: .semibold)
+        l.textColor = .white
+        l.textAlignment = .center
+        l.backgroundColor = UIColor(named: "accentColor")
+        l.layer.cornerRadius = 10
+        l.layer.masksToBounds = true
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.isHidden = true
+        return l
+    }()
+
+    private let separator: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor(named: "accentColor")?.withAlphaComponent(0.25)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
+
+        addSubview(titleLabel)
+        addSubview(countBadge)
+        addSubview(separator)
+
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleLabel.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -6),
+
+            countBadge.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8),
+            countBadge.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            countBadge.widthAnchor.constraint(greaterThanOrEqualToConstant: 22),
+            countBadge.heightAnchor.constraint(equalToConstant: 20),
+
+            separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            separator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
+            separator.heightAnchor.constraint(equalToConstant: 1.5)
+        ])
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    func configure(title: String, count: Int?) {
+        titleLabel.text = title
+        if let count {
+            countBadge.text  = " \(count) "
+            countBadge.isHidden = false
+        } else {
+            countBadge.isHidden = true
         }
+    }
+}
+
+// MARK: - EmptySectionCell
+class EmptySectionCell: UICollectionViewCell {
+    static let reuseIdentifier = "EmptySectionCell"
+
+    private let iconView: UIImageView = {
+        let iv = UIImageView()
+        iv.tintColor       = UIColor(named: "accentColor")?.withAlphaComponent(0.45)
+        iv.contentMode     = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+
+    private let messageLabel: UILabel = {
+        let l = UILabel()
+        l.font          = .systemFont(ofSize: 14, weight: .medium)
+        l.textColor     = UIColor(named: "SecondaryText") ?? .secondaryLabel
+        l.textAlignment = .center
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let containerStack: UIStackView = {
+        let sv = UIStackView()
+        sv.axis      = .vertical
+        sv.alignment = .center
+        sv.spacing   = 10
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.backgroundColor   = UIColor(named: "CardBackground")?.withAlphaComponent(0.55)
+            ?? UIColor.secondarySystemGroupedBackground
+        contentView.layer.cornerRadius = 16
+        contentView.layer.masksToBounds = true
+
+        // Subtle border
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor(named: "accentColor")?.withAlphaComponent(0.15).cgColor
+
+        containerStack.addArrangedSubview(iconView)
+        containerStack.addArrangedSubview(messageLabel)
+        contentView.addSubview(containerStack)
+
+        NSLayoutConstraint.activate([
+            iconView.widthAnchor.constraint(equalToConstant: 46),
+            iconView.heightAnchor.constraint(equalToConstant: 46),
+            containerStack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            containerStack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            containerStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            containerStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    required init?(coder: NSCoder) { fatalError() }
+
+    func configure(icon: String, message: String) {
+        iconView.image    = UIImage(systemName: icon,
+                                   withConfiguration: UIImage.SymbolConfiguration(pointSize: 36, weight: .thin))
+        messageLabel.text = message
     }
 }

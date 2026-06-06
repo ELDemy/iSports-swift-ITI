@@ -10,7 +10,7 @@ class LatestEventCell: UICollectionViewCell {
     @IBOutlet weak var homeTeamImageView: UIImageView!
     @IBOutlet weak var awayTeamImageView: UIImageView!
     
-    private let primaryTeal = UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1.0)
+    private let accentColor = UIColor(resource: .accent)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +23,8 @@ class LatestEventCell: UICollectionViewCell {
             iv.layer.cornerRadius = 20
             iv.layer.masksToBounds = true
             iv.layer.borderWidth = 1.5
-            iv.layer.borderColor = primaryTeal.withAlphaComponent(0.2).cgColor
-            iv.backgroundColor = UIColor.systemGray6
+            iv.layer.borderColor = accentColor.withAlphaComponent(0.2).cgColor
+            iv.backgroundColor = UIColor(named: "CardBackground")?.withAlphaComponent(0.4) ?? UIColor.systemGray6
         }
     }
     
@@ -43,7 +43,6 @@ class LatestEventCell: UICollectionViewCell {
         dateLabel?.text = event.eventDate
         timeLabel?.text = event.eventTime
         
-        // Load team images
         let placeholder = UIImage(systemName: "shield.lefthalf.filled")
         if let homeIV = homeTeamImageView {
             ImageLoader.shared.loadImage(from: event.homeTeamLogo, into: homeIV, placeholder: placeholder)
@@ -53,7 +52,6 @@ class LatestEventCell: UICollectionViewCell {
         }
     }
     
-    // Interactive touch feedback
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         animatePress(pressed: true)

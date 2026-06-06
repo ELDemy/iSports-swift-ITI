@@ -1,45 +1,64 @@
 import Foundation
 
+// MARK: - Sport Category Helper
+private enum SportCategory {
+    case teamBased
+    case playerBased
 
+    init(sportName: String) {
+        switch sportName.lowercased() {
+        case "tennis":
+            self = .playerBased
+        default:
+            self = .teamBased
+        }
+    }
+}
+
+// MARK: - Presenter Protocol
 protocol LeagueDetailsPresenterProtocol: AnyObject {
     var leagueId: Int { get set }
     var sportName: String { get set }
+    var leagueName: String { get set }
     func viewDidLoad()
     func didTapFavorite()
     func didSelectTeam(at index: Int)
 }
 
-
+// MARK: - LeagueDetailsPresenter
 class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
 
     // MARK: - Protocol Properties
-    var leagueId: Int
-    var sportName: String
+    var leagueId:   Int
+    var sportName:  String
+    var leagueName: String
 
     // MARK: - Private
-    private weak var view: LeagueDetailsViewProtocol?
-    private let network: NetworkService
-
-    private var isFavorite: Bool = false
+    private weak var view:     LeagueDetailsViewProtocol?
+    private let      network:  NetworkService
+    private var      isFavorite: Bool = false
 
     private var upcomingEvents: [Event] = []
-    private var latestEvents: [Event] = []
-    private var teams: [Team] = []
+    private var latestEvents:   [Event] = []
+    private var teams:          [Team]  = []
 
     // MARK: - Init
-    init(view: LeagueDetailsViewProtocol,
-         leagueId: Int = 766,
-         sportName: String = "basketball",
-         network: NetworkService = AlamofireManager.shared) {
-        self.view = view
-        self.leagueId = leagueId
-        self.sportName = sportName
-        self.network = network
+    init(view:        LeagueDetailsViewProtocol,
+         leagueId:   Int           = 766,
+         sportName:  String        = "basketball",
+         leagueName: String        = "League Details",
+         network:    NetworkService = AlamofireManager.shared) {
+        self.view       = view
+        self.leagueId   = leagueId
+        self.sportName  = sportName
+        self.leagueName = leagueName
+        self.network    = network
     }
 
     // MARK: - LeagueDetailsPresenterProtocol
     func viewDidLoad() {
         view?.showLoading()
+        view?.setLeagueName(leagueName, sportName: sportName)
         fetchLeagueData()
     }
 
@@ -50,110 +69,123 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
 
     func didSelectTeam(at index: Int) {
         guard index < teams.count else { return }
-        print("Selected team: \(teams[index].teamName ?? "Unknown")")
+        print("Selected: \(teams[index].teamName ?? "Unknown")")
     }
 
-    // MARK: - Networking
+    // MARK: - Private – Networking
     private func fetchLeagueData() {
         let group = DispatchGroup()
-
         var fetchedEvents: [Event] = []
-        var fetchedTeams: [Team] = []
-        var fetchError: Error?
+        var fetchedTeams:  [Team]  = []
+        var fetchError:    Error?
 
-        // --- Date range: past 30 days → next 60 days ---
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let today = Date()
-        let fromDate = formatter.string(from: Calendar.current.date(byAdding: .day, value: -30, to: today)!)
-        let toDate   = formatter.string(from: Calendar.current.date(byAdding: .day, value: 60,  to: today)!)
+        let (fromDate, toDate) = makeDateRange(pastDays: 30, futureDays: 60)
 
-        // 1. Fetch fixtures (used for both upcoming & latest)
         group.enter()
         network.getEvents(sportName: sportName,
                           from: fromDate,
                           to: toDate,
                           leagueId: leagueId) { result in
             switch result {
-            case .success(let events):
-                fetchedEvents = events
+            case .success(let events): fetchedEvents = events
             case .failure(let error):
                 fetchError = error
-                print("getEvents error: \(error)")
+                print("getEvents error:", error)
             }
             group.leave()
         }
 
-        // 2. Fetch teams / participants
+        // 2. Teams / Participants
         group.enter()
-        if sportName.lowercased() != "tennis" {
-            network.getTeams(sportName: sportName, leagueId: leagueId) { result in
-                switch result {
-                case .success(let teams):
-                    fetchedTeams = teams
-                case .failure(let error):
-                    fetchError = error
-                    print("getTeams error: \(error)")
-                }
-                group.leave()
+        fetchParticipants { result in
+            switch result {
+            case .success(let t): fetchedTeams = t
+            case .failure(let e):
+                fetchError = e
+                print("fetchParticipants error:", e)
             }
-        } else {
-            // Tennis / Basketball — participants are players
+            group.leave()
+        }
+
+        group.notify(queue: .main) { [weak self] in
+            guard let self else { return }
+            self.view?.hideLoading()
+
+            if let error = fetchError, fetchedEvents.isEmpty, fetchedTeams.isEmpty {
+                self.view?.displayError(error.localizedDescription)
+                return
+            }
+
+            self.processAndDisplay(events: fetchedEvents, teams: fetchedTeams)
+        }
+    }
+
+    private func makeDateRange(pastDays: Int, futureDays: Int) -> (from: String, to: String) {
+        let fmt   = DateFormatter()
+        fmt.dateFormat = "yyyy-MM-dd"
+        let today = Date()
+        let from  = fmt.string(from: Calendar.current.date(byAdding: .day, value: -pastDays, to: today)!)
+        let to    = fmt.string(from: Calendar.current.date(byAdding: .day, value:  futureDays, to: today)!)
+        return (from, to)
+    }
+
+    /// Chooses the correct participant endpoint based on sport category
+    private func fetchParticipants(completion: @escaping (Result<[Team], Error>) -> Void) {
+        switch SportCategory(sportName: sportName) {
+        case .teamBased:
+            network.getTeams(sportName: sportName, leagueId: leagueId, completion: completion)
+        case .playerBased:
             network.getParticipants(sportName: sportName,
                                     method: "Players",
                                     leagueId: leagueId) { result in
                 switch result {
                 case .success(let participants):
-                    // Map Participant → Team (reuse Team model as a generic "participant" card)
-                    fetchedTeams = participants.map {
+                    let teams = participants.map {
                         Team(teamKey: $0.key, teamName: $0.name, teamLogo: $0.logo, players: nil)
                     }
-                case .failure(let error):
-                    fetchError = error
-                    print("getParticipants error: \(error)")
+                    completion(.success(teams))
+                case .failure(let e):
+                    completion(.failure(e))
                 }
-                group.leave()
             }
         }
+    }
 
-        // When both requests finish, update the view
-        group.notify(queue: .main) { [weak self] in
-            guard let self = self else { return }
+    private func processAndDisplay(events: [Event], teams: [Team]) {
+        let dateParser = makeDateParser()
 
-            self.view?.hideLoading()
-
-            if let error = fetchError, fetchedEvents.isEmpty && fetchedTeams.isEmpty {
-                self.view?.displayError(error.localizedDescription)
-                return
+        upcomingEvents = events
+            .filter { isUpcoming($0) }
+            .sorted { lhs, rhs in
+                let l = dateParser(lhs.displayDate ?? ""), r = dateParser(rhs.displayDate ?? "")
+                return (l ?? .distantFuture) < (r ?? .distantFuture)
             }
 
-            // Split fixtures by whether they have a final result
-            let upcoming = fetchedEvents.filter { event in
-                let result = event.eventFinalResult ?? ""
-                return result.isEmpty || result == "-"
+        latestEvents = events
+            .filter { !isUpcoming($0) }
+            .sorted { lhs, rhs in
+                let l = dateParser(lhs.displayDate ?? ""), r = dateParser(rhs.displayDate ?? "")
+                return (l ?? .distantPast) > (r ?? .distantPast)
             }
 
-            
-            let latest: [Event] = fetchedEvents
-                .filter { event in
-                    print("event.eventFinalResult \(event.eventFinalResult)")
-                    print("event.eventHomeFinalResult \(event.eventHomeFinalResult)")
-                    print("event.eventAwayFinalResult \(event.eventAwayFinalResult)")
+        self.teams = teams
 
-                    let result = event.eventFinalResult ?? ""
-                    return !result.isEmpty && result != "-"
-                }
+        view?.displayData(
+            upcoming: upcomingEvents,
+            latest:   latestEvents,
+            teams:    self.teams
+        )
+        view?.toggleFavoriteState(isFavorite: isFavorite)
+    }
 
-            self.upcomingEvents = upcoming
-            self.latestEvents   = latest
-            self.teams          = fetchedTeams
+    private func isUpcoming(_ event: Event) -> Bool {
+        let result = event.eventFinalResult ?? ""
+        return result.isEmpty || result == "-"
+    }
 
-            self.view?.displayData(
-                upcoming: self.upcomingEvents,
-                latest:   self.latestEvents,
-                teams:    self.teams
-            )
-            self.view?.toggleFavoriteState(isFavorite: self.isFavorite)
-        }
+    private func makeDateParser() -> (String) -> Date? {
+        let fmt = DateFormatter()
+        fmt.dateFormat = "yyyy-MM-dd"
+        return { fmt.date(from: $0) }
     }
 }

@@ -5,7 +5,7 @@ class TeamCircularCell: UICollectionViewCell {
     @IBOutlet weak var teamImageView: UIImageView!
     @IBOutlet weak var teamNameLabel: UILabel!
     
-    private let primaryTeal = UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1.0)
+    private let accentColor = UIColor(named: "accentColor") ?? UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1.0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -14,8 +14,11 @@ class TeamCircularCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         guard let iv = teamImageView else { return }
-        iv.layer.cornerRadius = iv.bounds.width / 2
+        iv.layer.cornerRadius  = iv.bounds.width / 2
         iv.layer.masksToBounds = true
+        iv.layer.borderWidth   = 2
+        iv.layer.borderColor   = accentColor.withAlphaComponent(0.35).cgColor
+        iv.backgroundColor     = UIColor(named: "CardBackground") ?? .systemGray6
     }
     
     func configure(with team: Team) {
@@ -26,7 +29,6 @@ class TeamCircularCell: UICollectionViewCell {
         teamNameLabel?.text = team.teamName
     }
     
-    // Interactive touch feedback
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         animatePress(pressed: true)

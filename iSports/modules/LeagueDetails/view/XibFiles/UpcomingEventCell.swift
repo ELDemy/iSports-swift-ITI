@@ -11,7 +11,7 @@ class UpcomingEventCell: UICollectionViewCell {
     @IBOutlet weak var vsLabel: UILabel!
     @IBOutlet weak var cardBackgroundView: UIView!
     
-    private let primaryTeal = UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1.0)
+    private let accentColor = UIColor(named: "accentColor") ?? UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1.0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,14 +25,13 @@ class UpcomingEventCell: UICollectionViewCell {
             iv.layer.cornerRadius = 30
             iv.layer.masksToBounds = true
             iv.layer.borderWidth = 2
-            iv.layer.borderColor = primaryTeal.withAlphaComponent(0.3).cgColor
-            iv.backgroundColor = UIColor.systemGray6
+            iv.layer.borderColor = accentColor.withAlphaComponent(0.3).cgColor
+            iv.backgroundColor = UIColor(named: "CardBackground")?.withAlphaComponent(0.4) ?? UIColor.systemGray6
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        // Re-enforce circle on layout
         for imageView in [homeTeamImageView, awayTeamImageView] {
             guard let iv = imageView else { continue }
             iv.layer.cornerRadius = iv.bounds.width / 2
@@ -45,13 +44,11 @@ class UpcomingEventCell: UICollectionViewCell {
         dateLabel.text = event.displayDate
         timeLabel.text = event.eventTime
         
-        // Load team images from URL with placeholder
         let placeholder = UIImage(systemName: "shield.lefthalf.filled")
         ImageLoader.shared.loadImage(from: event.displayHomeLogo, into: homeTeamImageView, placeholder: placeholder)
         ImageLoader.shared.loadImage(from: event.displayAwayLogo, into: awayTeamImageView, placeholder: placeholder)
     }
     
-    // Interactive touch feedback
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         animatePress(pressed: true)

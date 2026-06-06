@@ -7,14 +7,69 @@ class LatestEventsContainerCell: UICollectionViewCell {
     private var innerCollectionView: UICollectionView!
     private var events: [Event] = []
     
+    private let emptyView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.isHidden = true
+        return v
+    }()
+    private let emptyIconView: UIImageView = {
+        let iv = UIImageView()
+        iv.tintColor = UIColor(named: "accentColor")?.withAlphaComponent(0.4) ?? .systemGray3
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(systemName: "flag.checkered",
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 36, weight: .thin))
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+    private let emptyLabel: UILabel = {
+        let l = UILabel()
+        l.text = "No results yet"
+        l.font = .systemFont(ofSize: 14, weight: .medium)
+        l.textColor = UIColor(named: "SecondaryText") ?? .secondaryLabel
+        l.textAlignment = .center
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupInnerCollectionView()
+        setupEmptyView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func setupEmptyView() {
+        contentView.backgroundColor    = UIColor(named: "CardBackground")?.withAlphaComponent(0.55)
+            ?? UIColor.secondarySystemGroupedBackground
+        contentView.layer.cornerRadius = 16
+        contentView.layer.masksToBounds = true
+        contentView.layer.borderWidth  = 1
+        contentView.layer.borderColor  = UIColor(named: "accentColor")?.withAlphaComponent(0.15).cgColor
+
+        contentView.addSubview(emptyView)
+        emptyView.addSubview(emptyIconView)
+        emptyView.addSubview(emptyLabel)
+
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+            emptyIconView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
+            emptyIconView.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor, constant: -14),
+            emptyIconView.widthAnchor.constraint(equalToConstant: 46),
+            emptyIconView.heightAnchor.constraint(equalToConstant: 46),
+
+            emptyLabel.topAnchor.constraint(equalTo: emptyIconView.bottomAnchor, constant: 10),
+            emptyLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor)
+        ])
+    }
+
     
     private func setupInnerCollectionView() {
         let layout = UICollectionViewFlowLayout()
@@ -28,7 +83,6 @@ class LatestEventsContainerCell: UICollectionViewCell {
         innerCollectionView.backgroundColor = .clear
         innerCollectionView.showsVerticalScrollIndicator = true
         
-        // Register your existing xib
         innerCollectionView.register(
             UINib(nibName: "LatestEventCell", bundle: nil),
             forCellWithReuseIdentifier: "LatestEventCell"
@@ -47,6 +101,8 @@ class LatestEventsContainerCell: UICollectionViewCell {
     
     func configure(with events: [Event]) {
         self.events = events
+        emptyView.isHidden      = !events.isEmpty
+        innerCollectionView.isHidden = events.isEmpty
         innerCollectionView.reloadData()
     }
 }
