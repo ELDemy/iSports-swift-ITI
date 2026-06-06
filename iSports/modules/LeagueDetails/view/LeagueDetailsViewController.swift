@@ -1,4 +1,13 @@
 import UIKit
+protocol LeagueDetailsViewProtocol: AnyObject {
+    func showLoading()
+    func hideLoading()
+    func displayData(upcoming: [Event], latest: [Event], teams: [Team])
+    func reloadData()
+    func toggleFavoriteState(isFavorite: Bool)
+    func displayError(_ message: String)
+}
+
 
 class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     
@@ -6,8 +15,12 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     
     var presenter: LeagueDetailsPresenterProtocol!
     
+    /// Set by the previous screen before pushing this VC
+    var leagueId: Int!;
+    var sportName: String!;
+    
     private var upcomingEvents: [Event] = []
-    private var latestEvents: [LatestEvent] = []
+    private var latestEvents: [Event] = []
     private var teams: [Team] = []
     
     private let activityIndicator = UIActivityIndicatorView(style: .large)
@@ -21,7 +34,11 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         setupActivityIndicator()
         
         if presenter == nil {
-            presenter = LeagueDetailsPresenter(view: self)
+            presenter = LeagueDetailsPresenter(
+                view: self,
+                leagueId: leagueId,
+                sportName: sportName
+            )
         }
         
         presenter.viewDidLoad()
@@ -163,7 +180,7 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         }
     }
     
-    func displayData(upcoming: [Event], latest: [LatestEvent], teams: [Team]) {
+    func displayData(upcoming: [Event], latest: [Event], teams: [Team]) {
         self.upcomingEvents = upcoming
         self.latestEvents = latest
         self.teams = teams
@@ -190,6 +207,18 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
                     barButtonView.transform = .identity
                 }
             }
+        }
+    }
+    
+    func displayError(_ message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "Error",
+                message: message,
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
         }
     }
 }
@@ -271,6 +300,8 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController;
+            
+            let selectedTeam = teams[indexPath.row]
              self.navigationController?.pushViewController(vc, animated: true)
             presenter.didSelectTeam(at: indexPath.row)
         }

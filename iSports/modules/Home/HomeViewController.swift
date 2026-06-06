@@ -195,23 +195,43 @@ class HomeViewController: UIViewController {
         animateTap(footballBgImageView)
         print("Football tapped!")
        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
+        
+        vc.sportName = "football"
+        vc.leagueId = 152
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc private func basketballTapped() {
         animateTap(basketballBgImageView)
         print("Basketball tapped!")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
+         
+         vc.sportName = "basketball"
+         vc.leagueId = 766
+         self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc private func tennisTapped() {
         animateTap(tennisBgImageView)
         //navigate to tennis screen
         print("Tennis tapped!")
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
+         
+         vc.sportName = "tennis"
+         vc.leagueId = 3866
+         self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc private func cricketTapped() {
         animateTap(cricketBgImageView)
         print("Cricket tapped!")
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
+         
+         vc.sportName = "cricket"
+         vc.leagueId = 733
+         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func animateTap(_ view: UIView) {

@@ -36,7 +36,7 @@ class AlamofireManager: NetworkService {
             url += "&leagueId=\(id)"
         }
         
-        AF.request(url).responseDecodable(of: EventResponse.self) { response in
+        AF.request(url).responseDecodable(of: EventResponse.self) { response in          
            switch response.result {
            case .success(let data):
                completion(.success(data.result ?? []))

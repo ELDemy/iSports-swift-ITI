@@ -5,7 +5,7 @@ class LatestEventsContainerCell: UICollectionViewCell {
     static let reuseIdentifier = "LatestEventsContainerCell"
     
     private var innerCollectionView: UICollectionView!
-    private var events: [LatestEvent] = []
+    private var events: [Event] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,7 +45,7 @@ class LatestEventsContainerCell: UICollectionViewCell {
         ])
     }
     
-    func configure(with events: [LatestEvent]) {
+    func configure(with events: [Event]) {
         self.events = events
         innerCollectionView.reloadData()
     }
