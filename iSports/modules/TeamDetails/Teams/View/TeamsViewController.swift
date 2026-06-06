@@ -8,7 +8,7 @@ class TeamsViewController: UIViewController {
     var leagueId: Int = 0
     var sportName: String = "football"
     
-    private var teams: [Team] = []
+    private var presenter: TeamsPresenter!
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -33,8 +33,9 @@ class TeamsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = TeamsPresenter(view: self)
         setupUI()
-        fetchTeams()
+        presenter.fetchTeams(sportName: sportName, leagueId: leagueId)
     }
     
     private func setupUI() {
@@ -52,7 +53,7 @@ class TeamsViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            // Height constrained to support horizontal scrolling comfortably
+    
             collectionView.heightAnchor.constraint(equalToConstant: 180),
             
             activityIndicator.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
@@ -60,45 +61,26 @@ class TeamsViewController: UIViewController {
         ])
     }
     
-    private func fetchTeams() {
-        activityIndicator.startAnimating()
-        AlamofireManager.shared.getTeams(sportName: sportName, leagueId: leagueId) { [weak self] result in
-            DispatchQueue.main.async {
-                self?.activityIndicator.stopAnimating()
-                switch result {
-                case .success(let fetchedTeams):
-                    // got teams list here
-                    self?.teams = fetchedTeams
-                    self?.collectionView.reloadData()
-                case .failure(let error):
-                    print("Error fetching teams: \(error)")
-                    
-                }
-            }
-        }
-    }
+   
 }
 
 extension TeamsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // # of cells
-        return teams.count
+        return presenter.teams.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamCollectionViewCell.identifier, for: indexPath) as? TeamCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let team = teams[indexPath.row]
+        let team = presenter.teams[indexPath.row]
         cell.configure(with: team)
         return cell
     }
     
     
-    // handle tapping on any item
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let team = teams[indexPath.row]
+        let team = presenter.teams[indexPath.row]
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let detailsVC = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController else {
@@ -112,5 +94,23 @@ extension TeamsViewController: UICollectionViewDelegate, UICollectionViewDataSou
             detailsVC.modalPresentationStyle = .fullScreen
             present(detailsVC, animated: true, completion: nil)
         }
+    }
+}
+
+extension TeamsViewController: TeamsViewProtocol {
+    func showLoading() {
+        activityIndicator.startAnimating()
+    }
+    
+    func hideLoading() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func reloadData() {
+        collectionView.reloadData()
+    }
+    
+    func showError(message: String) {
+        print("Error fetching teams: \(message)")
     }
 }

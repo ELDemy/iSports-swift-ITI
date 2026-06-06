@@ -15,34 +15,13 @@ class OnBoardingVC: UIViewController {
     private var pageViewController: UIPageViewController!
 
     private var pages: [OnBoardingPageVC] = []
+    private var presenter: OnBoardingPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pageControl.numberOfPages = onboardingData.count
-        pageControl.currentPage = 0
-
-        setupPages()
-        setupPageViewController()
-    }
-
-    private func setupPages() {
-
-        pages = onboardingData.enumerated().map { index, item in
-
-            let vc = UIStoryboard(
-                name: "Main",
-                bundle: nil
-            ).instantiateViewController(
-                withIdentifier: "OnBoardingPageVC"
-            ) as! OnBoardingPageVC
-
-            vc.model = item
-            vc.isLastPage = index == onboardingData.count - 1
-            vc.delegate = self
-
-            return vc
-        }
+        presenter = OnBoardingPresenter(view: self)
+        presenter.viewDidLoad()
     }
 
     private func setupPageViewController() {
@@ -121,32 +100,40 @@ extension OnBoardingVC: UIPageViewControllerDataSource {
 
 extension OnBoardingVC: OnBoardingPageDelegate {
 
-    func nextPage() {
-        guard let currentVC = pageViewController.viewControllers?.first as? OnBoardingPageVC,
-              let currentIndex = pages.firstIndex(of: currentVC)
-        else { return }
-
-        let nextIndex = currentIndex + 1
-
-        if nextIndex < pages.count {
-            pageViewController.setViewControllers(
-                [pages[nextIndex]],
-                direction: .forward,
-                animated: true
-            )
-            pageControl.currentPage = nextIndex
-        } else {
-            // Triggered when "Get Started" is pressed on the last page
-            navigateToMainScreen()
-        }
+    func nextPage(from index: Int) {
+        presenter.didTapNext(from: index)
     }
 
     func skipOnboarding() {
-       
-        navigateToMainScreen()
+        presenter.didTapSkip()
     }
     
-    private func navigateToMainScreen() {
+    
+}
+
+extension OnBoardingVC: OnBoardingViewProtocol {
+    func setupPages(count: Int) {
+        pageControl.numberOfPages = count
+        pageControl.currentPage = 0
+        
+        pages = (0..<count).map { index in
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnBoardingPageVC") as! OnBoardingPageVC
+            vc.model = presenter.modelForPage(at: index)
+            vc.isLastPage = index == count - 1
+            vc.pageIndex = index
+            vc.delegate = self
+            return vc
+        }
+        
+        setupPageViewController()
+    }
+    
+    func navigateToPage(at index: Int) {
+        pageViewController.setViewControllers([pages[index]], direction: .forward, animated: true)
+        pageControl.currentPage = index
+    }
+    
+    func navigateToMainScreen() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {
             print("Error: Could not find MainTabBarController in Storyboard")
