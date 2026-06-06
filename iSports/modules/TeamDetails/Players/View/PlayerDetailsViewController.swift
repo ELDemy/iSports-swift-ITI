@@ -1,57 +1,3 @@
-//import UIKit
-//
-//class PlayerDetailsViewController: UIViewController {
-//
-//    @IBOutlet weak var playerImageView: UIImageView!
-//    @IBOutlet weak var nameLabel: UILabel!
-//    @IBOutlet weak var positionLabel: UILabel!
-//    @IBOutlet weak var ageLabel: UILabel!
-//    @IBOutlet weak var numberLabel: UILabel!
-//    @IBOutlet weak var matchesLabel: UILabel!
-//    @IBOutlet weak var goalsLabel: UILabel!
-//    @IBOutlet weak var ratingLabel: UILabel!
-//    
-//    var player: Player?
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setupUI()
-//        populateData()
-//    }
-//    
-//    private func setupUI() {
-//        title = "Player Details"
-//        view.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 1.0)
-//        playerImageView.layer.cornerRadius = 60
-//        playerImageView.clipsToBounds = true
-//        playerImageView.layer.borderWidth = 3
-//        playerImageView.layer.borderColor = UIColor.systemGreen.cgColor
-//    }
-//    
-//    private func populateData() {
-//        guard let player = player else { return }
-//        
-//        nameLabel.text = player.playerName ?? "Unknown"
-//        positionLabel.text = player.playerType ?? "Unknown Position"
-//        ageLabel.text = "Age: \(player.playerAge ?? "N/A")"
-//        numberLabel.text = "No. \(player.playerNumber ?? "-")"
-//        
-//        matchesLabel.text = "Matches: \(player.playerMatchPlayed ?? "0")"
-//        
-//        let goals = (player.playerGoals == nil || player.playerGoals == "") ? "0" : player.playerGoals!
-//        goalsLabel.text = "Goals: \(goals)"
-//        
-//        ratingLabel.text = "Rating: \(player.playerRating ?? "N/A")"
-//        
-//        if let imageName = player.playerImage, let img = UIImage(named: imageName) {
-//            playerImageView.image = img
-//            playerImageView.tintColor = nil
-//        } else {
-//            playerImageView.image = UIImage(systemName: "person.circle.fill")
-//            playerImageView.tintColor = .gray
-//        }
-//    }
-//}
 import UIKit
 
 class PlayerDetailsViewController: UIViewController {
@@ -233,15 +179,28 @@ class PlayerDetailsViewController: UIViewController {
         return container
     }
     
-    // Removed populateData as data formatting is now handled by Presenter
 }
 
 extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
-    func displayPlayerDetails(name: String, position: String, imageUrl: String?) {
-        nameLabel.text = name
-        positionLabel.text = position
+//    func displayPlayerDetails(name: String, position: String, imageUrl: String?) {
+//        nameLabel.text = name
+//        positionLabel.text = position
+//        
+//        let placeholder = UIImage(named: "player")
+//        playerImageView.tintColor = .lightGray
+//        playerImageView.loadImage(from: imageUrl, placeholder: placeholder)
+//    }
+    
+    func displayPlayerDetails(player:PlayerModel?, imageUrl: String?) {
+        nameLabel.text = player?.playerName
+        positionLabel.text = player?.playerType
         
-        let placeholder = UIImage(systemName: "person.crop.circle.fill")
+       // let placeholder = UIImage(named: "player")
+        let placeholder = if player!.playerType == "Goalkeepers" {
+            UIImage(named: "goalkeeper")
+        } else {
+            UIImage(named: "player")
+        }
         playerImageView.tintColor = .lightGray
         playerImageView.loadImage(from: imageUrl, placeholder: placeholder)
     }

@@ -302,6 +302,8 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController;
             
             let selectedTeam = teams[indexPath.row]
+            vc.team = selectedTeam
+            vc.sportName = self.sportName
              self.navigationController?.pushViewController(vc, animated: true)
             presenter.didSelectTeam(at: indexPath.row)
         }

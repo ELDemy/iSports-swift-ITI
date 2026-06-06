@@ -1,6 +1,5 @@
 import UIKit
 
-// Removed PositionSection as it's now in Presenter
 
 class TeamDetailsViewController: UIViewController {
 
@@ -9,17 +8,28 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var team: Team?
+    var sportName: String!
     private var presenter: TeamDetailsPresenter!
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = TeamDetailsPresenter(view: self, team: team)
+        presenter = TeamDetailsPresenter(view: self, team: team, sportName: sportName)
         setupUI()
         setupTableView()
         presenter.viewDidLoad()
     }
     
     private func setupUI() {
+        activityIndicator.color = .systemGreen
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
         let backButton = UIButton(type: .system)
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         backButton.setTitle("Back", for: .normal)
@@ -43,7 +53,6 @@ class TeamDetailsViewController: UIViewController {
         tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: "PlayerTableViewCell")
     }
     
-    // Removed loadData as it's now handled by Presenter
 }
 
 extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -102,42 +111,13 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 105
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        // 1. Get the selected player from your sections array
-//        let selectedPlayer = sections[indexPath.section].players[indexPath.row]
-//        
-//        // 2. Instantiate PlayerDetailsViewController from the Main storyboard
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let detailsVC = storyboard.instantiateViewController(withIdentifier: "PlayerDetailsViewController") as? PlayerDetailsViewController else {
-//            print("Error: Could not find PlayerDetailsViewController with that Storyboard ID.")
-//            return
-//        }
-//        
-//        // 3. Pass the selected player data to the details view controller
-//        detailsVC.player = selectedPlayer
-//        
-//        // 4. Navigate to the next screen
-//        if let navigationController = navigationController {
-//            // Push onto the navigation stack if you are inside a Navigation Controller
-//            navigationController.pushViewController(detailsVC, animated: true)
-//        } else {
-//            // Fallback: Present it modally if there's no navigation controller
-//            detailsVC.modalPresentationStyle = .fullScreen
-//            present(detailsVC, animated: true, completion: nil)
-//        }
-//        
-//        // 5. Deselect the row so it doesn't stay highlighted gray
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 1. Fetch your model instance
+       
         let selectedPlayer = presenter.player(at: indexPath)
-        
-        // 2. Initialize your controller programmatically directly
         let detailsVC = PlayerDetailsViewController()
         detailsVC.player = selectedPlayer
         
-        // 3. Navigate cleanly via Navigation Stack or fallback to modal
         if let navigationController = navigationController {
             navigationController.pushViewController(detailsVC, animated: true)
         } else {
@@ -145,7 +125,6 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             present(detailsVC, animated: true, completion: nil)
         }
         
-        // 4. Deselect gray highlight line row selection visual effect
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -159,5 +138,17 @@ extension TeamDetailsViewController: TeamDetailsViewProtocol {
     
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func showLoading() {
+        activityIndicator.startAnimating()
+        tableView.alpha = 0
+    }
+    
+    func hideLoading() {
+        activityIndicator.stopAnimating()
+        UIView.animate(withDuration: 0.3) {
+            self.tableView.alpha = 1
+        }
     }
 }

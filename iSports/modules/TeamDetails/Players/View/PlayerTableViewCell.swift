@@ -190,7 +190,11 @@ class PlayerTableViewCell: UITableViewCell {
         statsStackView.addArrangedSubview(createStatView(icon: "sportscourt.fill", text: matches, tintColor: .systemGreen))
         statsStackView.addArrangedSubview(createStatView(icon: "soccerball", text: goals, tintColor: .darkGray))
         
-        let placeholder = UIImage(systemName: "person.circle.fill")
+        let placeholder = if player.playerType == "Goalkeepers" {
+            UIImage(named: "goalkeeper")
+        } else {
+            UIImage(named: "player")
+        }
         playerImageView.tintColor = .gray
         playerImageView.loadImage(from: player.playerImage, placeholder: placeholder)
     }
