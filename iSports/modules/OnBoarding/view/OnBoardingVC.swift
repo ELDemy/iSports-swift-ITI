@@ -134,6 +134,7 @@ extension OnBoardingVC: OnBoardingViewProtocol {
     }
     
     func navigateToMainScreen() {
+        UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {
             print("Error: Could not find MainTabBarController in Storyboard")

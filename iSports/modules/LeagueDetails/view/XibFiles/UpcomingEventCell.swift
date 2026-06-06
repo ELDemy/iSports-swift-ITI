@@ -22,10 +22,6 @@ class UpcomingEventCell: UICollectionViewCell {
         // Make team images circular
         for imageView in [homeTeamImageView, awayTeamImageView] {
             guard let iv = imageView else { continue }
-            iv.layer.cornerRadius = 30
-            iv.layer.masksToBounds = true
-            iv.layer.borderWidth = 2
-            iv.layer.borderColor = accentColor.withAlphaComponent(0.3).cgColor
             iv.backgroundColor = UIColor(named: "CardBackground")?.withAlphaComponent(0.4) ?? UIColor.systemGray6
         }
     }

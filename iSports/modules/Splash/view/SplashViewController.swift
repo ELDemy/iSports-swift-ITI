@@ -42,8 +42,12 @@ class SplashViewController: UIViewController {
 
         animationView.play { [weak self] (finished) in
             if finished {
-              //  self?.transitionToMainScreen()
-                self?.transitionToOnboardingScreen()
+                let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+                if hasSeenOnboarding {
+                    self?.transitionToMainScreen()
+                } else {
+                    self?.transitionToOnboardingScreen()
+                }
             }
         }
     }
@@ -52,6 +56,13 @@ class SplashViewController: UIViewController {
             .instantiateViewController(withIdentifier: "OnBoardingVC")
 
         navigationController?.setViewControllers([onboardingVC], animated: true)
+    }
+    private func transitionToMainScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {
+            return
+        }
+        navigationController?.setViewControllers([tabBarVC], animated: true)
     }
 }
 
