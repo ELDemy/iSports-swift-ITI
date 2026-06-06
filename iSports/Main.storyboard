@@ -498,6 +498,36 @@
             </objects>
             <point key="canvasLocation" x="3822" y="1089"/>
         </scene>
+        <!--Match Details View Controller-->
+        <scene sceneID="match-details-scene">
+            <objects>
+                <viewController storyboardIdentifier="MatchDetailsViewController" id="MatchDetailsVC-ID" customClass="MatchDetailsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="match-view-id">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="match-table-view">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="match-safe-area"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="match-table-view" firstAttribute="leading" secondItem="match-safe-area" secondAttribute="leading" id="match-tv-leading"/>
+                            <constraint firstItem="match-table-view" firstAttribute="top" secondItem="match-safe-area" secondAttribute="top" id="match-tv-top"/>
+                            <constraint firstItem="match-safe-area" firstAttribute="trailing" secondItem="match-table-view" secondAttribute="trailing" id="match-tv-trailing"/>
+                            <constraint firstItem="match-safe-area" firstAttribute="bottom" secondItem="match-table-view" secondAttribute="bottom" id="match-tv-bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="match-table-view" id="match-table-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Match-Responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6500" y="-35"/>
+        </scene>
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>

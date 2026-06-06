@@ -7,6 +7,8 @@ class LatestEventsContainerCell: UICollectionViewCell {
     private var innerCollectionView: UICollectionView!
     private var events: [Event] = []
     
+    var onEventTapped: ((Event) -> Void)?
+    
     private let emptyView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +91,7 @@ class LatestEventsContainerCell: UICollectionViewCell {
         )
         
         innerCollectionView.dataSource = self
+        innerCollectionView.delegate = self
         contentView.addSubview(innerCollectionView)
         
         NSLayoutConstraint.activate([
@@ -119,5 +122,12 @@ extension LatestEventsContainerCell: UICollectionViewDataSource {
         ) as! LatestEventCell
         cell.configure(with: events[indexPath.row])
         return cell
+    }
+}
+
+extension LatestEventsContainerCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let event = events[indexPath.row]
+        onEventTapped?(event)
     }
 }

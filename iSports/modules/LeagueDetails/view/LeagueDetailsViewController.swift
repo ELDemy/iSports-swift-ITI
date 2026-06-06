@@ -316,6 +316,9 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
                 withReuseIdentifier: LatestEventsContainerCell.reuseIdentifier,
                 for: indexPath) as! LatestEventsContainerCell
             cell.configure(with: latestEvents)
+            cell.onEventTapped = { [weak self] event in
+                self?.navigateToMatchDetails(with: event)
+            }
             return cell
 
         case .teams:
@@ -361,11 +364,32 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.section == LeagueSection.teams.rawValue, !teams.isEmpty else { return }
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController")
-                as? TeamDetailsViewController else { return }
+        guard let section = LeagueSection(rawValue: indexPath.section) else { return }
+        switch section {
+        case .upcoming:
+            guard !upcomingEvents.isEmpty else { return }
+            navigateToMatchDetails(with: upcomingEvents[indexPath.row])
+            
+        case .latest:
+            // Taps are handled inside LatestEventsContainerCell via onEventTapped
+            break
+            
+        case .teams:
+            guard !teams.isEmpty else { return }
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController")
+                    as? TeamDetailsViewController else { return }
+            navigationController?.pushViewController(vc, animated: true)
+            presenter.didSelectTeam(at: indexPath.row)
+        }
+    }
+    
+    private func navigateToMatchDetails(with event: Event) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "MatchDetailsViewController")
+                as? MatchDetailsViewController else { return }
+        
+        let presenter = MatchDetailsPresenter(view: vc, event: event)
+        vc.presenter = presenter
         navigationController?.pushViewController(vc, animated: true)
-        presenter.didSelectTeam(at: indexPath.row)
     }
 }
 
