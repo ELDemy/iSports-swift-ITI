@@ -10,9 +10,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     private var latestEvents: [LatestEvent] = []
     private var teams: [Team] = []
     
-    // Primary Accent Color: Deep Teal (#014751)
-    private let primaryTeal = UIColor(red: 1/255, green: 71/255, blue: 81/255, alpha: 1.0)
-    
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     
     private let sectionTitles = ["Upcoming Events", "Latest Results", "Teams"]
@@ -33,13 +30,12 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     private func setupNavigationBar() {
         title = "League Details"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = primaryTeal
+        navigationController?.navigationBar.tintColor = .accent
         
-        // Style the navigation bar
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor: primaryTeal]
-        appearance.titleTextAttributes = [.foregroundColor: primaryTeal]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(resource: .accent)]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(resource: .accent)]
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
@@ -49,7 +45,7 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     }
     
     private func setupActivityIndicator() {
-        activityIndicator.color = primaryTeal
+        activityIndicator.color = .accent
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
@@ -64,12 +60,12 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     
     private func setupCollectionView() {
         collectionView.register(UINib(nibName: "UpcomingEventCell", bundle: nil), forCellWithReuseIdentifier: "UpcomingEventCell")
-        collectionView.register(UINib(nibName: "LatestEventCell", bundle: nil), forCellWithReuseIdentifier: "LatestEventCell")
+        collectionView.register(LatestEventsContainerCell.self,
+                                forCellWithReuseIdentifier: LatestEventsContainerCell.reuseIdentifier)
         collectionView.register(UINib(nibName: "TeamCircularCell", bundle: nil), forCellWithReuseIdentifier: "TeamCircularCell")
-        
-        // Register section header
+
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
-        
+
         collectionView.collectionViewLayout = createCompositionalLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -101,7 +97,7 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.82), heightDimension: .absolute(165))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.82), heightDimension: .absolute(120))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -110,7 +106,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 24, trailing: 0)
         section.boundarySupplementaryItems = [createSectionHeader()]
         
-        // Add visible scroll indicator decorations
         section.visibleItemsInvalidationHandler = { items, offset, environment in
             items.forEach { item in
                 let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
@@ -125,17 +120,17 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     }
     
     private func createLatestEventsSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(120))
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(300))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
+
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 14
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 24, trailing: 16)
         section.boundarySupplementaryItems = [createSectionHeader()]
-        
         return section
     }
     
@@ -239,7 +234,7 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0: return upcomingEvents.count
-        case 1: return latestEvents.count
+        case 1: return latestEvents.isEmpty ? 0 : 1
         case 2: return teams.count
         default: return 0
         }
@@ -252,8 +247,11 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             cell.configure(with: upcomingEvents[indexPath.row])
             return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCell", for: indexPath) as! LatestEventCell
-            cell.configure(with: latestEvents[indexPath.row])
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: LatestEventsContainerCell.reuseIdentifier,
+                for: indexPath
+            ) as! LatestEventsContainerCell
+            cell.configure(with: latestEvents)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCircularCell", for: indexPath) as! TeamCircularCell
