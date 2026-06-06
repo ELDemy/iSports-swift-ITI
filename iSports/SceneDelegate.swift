@@ -19,7 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
             
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = SplashViewController()
+       // window.rootViewController = SplashViewController()
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let teamDetailsVC = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
+//        let navVC = UINavigationController(rootViewController: teamDetailsVC)
+      //  window.rootViewController = navVC
+        let vc = TeamsViewController()
+        vc.leagueId = 205 // UEFA Champions League ID for testing
+        let navVC = UINavigationController(rootViewController: vc)
+        window.rootViewController = navVC
         self.window = window
         window.makeKeyAndVisible()
     }
