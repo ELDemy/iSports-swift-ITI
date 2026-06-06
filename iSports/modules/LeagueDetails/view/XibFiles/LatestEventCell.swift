@@ -20,10 +20,6 @@ class LatestEventCell: UICollectionViewCell {
     private func setupImageViews() {
         for imageView in [homeTeamImageView, awayTeamImageView] {
             guard let iv = imageView else { continue }
-            iv.layer.cornerRadius = 20
-            iv.layer.masksToBounds = true
-            iv.layer.borderWidth = 1.5
-            iv.layer.borderColor = accentColor.withAlphaComponent(0.2).cgColor
             iv.backgroundColor = UIColor(named: "CardBackground")?.withAlphaComponent(0.4) ?? UIColor.systemGray6
         }
     }
@@ -43,7 +39,7 @@ class LatestEventCell: UICollectionViewCell {
         dateLabel?.text = event.eventDate
         timeLabel?.text = event.eventTime
         
-        let placeholder = UIImage(systemName: "shield.lefthalf.filled")
+        let placeholder = UIImage(resource:.logoWithBackgorund)
         if let homeIV = homeTeamImageView {
             ImageLoader.shared.loadImage(from: event.homeTeamLogo, into: homeIV, placeholder: placeholder)
         }

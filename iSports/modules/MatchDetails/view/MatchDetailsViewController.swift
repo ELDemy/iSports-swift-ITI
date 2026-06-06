@@ -19,17 +19,21 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
     // Timeline events combined
     private var matchEvents: [MatchEventItem] = []
     
-    private enum Section: Int, CaseIterable {
-        case header = 0, statistics, lineups, events
-        
+    private enum Tab: Int, CaseIterable {
+        case statistics = 0, lineups, events
         var title: String {
             switch self {
-            case .header: return ""
-            case .statistics: return "Match Statistics"
-            case .lineups: return "Starting Lineups"
-            case .events: return "Match Events"
+            case .statistics: return "Statistics"
+            case .lineups: return "Lineups"
+            case .events: return "Events"
             }
         }
+    }
+    
+    private var selectedTab: Tab = .statistics
+    
+    private enum Section: Int, CaseIterable {
+        case header = 0, content
     }
     
     override func viewDidLoad() {
@@ -59,6 +63,12 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         tableView.register(MatchStatCell.self, forCellReuseIdentifier: MatchStatCell.identifier)
         tableView.register(MatchLineupCell.self, forCellReuseIdentifier: MatchLineupCell.identifier)
         tableView.register(MatchEventTimelineCell.self, forCellReuseIdentifier: MatchEventTimelineCell.identifier)
+    }
+    
+    @objc private func tabChanged(_ sender: UISegmentedControl) {
+        guard let tab = Tab(rawValue: sender.selectedSegmentIndex) else { return }
+        selectedTab = tab
+        tableView.reloadSections(IndexSet(integer: Section.content.rawValue), with: .fade)
     }
     
     // MARK: - MatchDetailsViewProtocol
@@ -124,9 +134,12 @@ extension MatchDetailsViewController: UITableViewDataSource, UITableViewDelegate
         guard let sec = Section(rawValue: section) else { return 0 }
         switch sec {
         case .header: return event != nil ? 1 : 0
-        case .statistics: return statistics.count
-        case .lineups: return max(homeLineup.count, awayLineup.count)
-        case .events: return matchEvents.count
+        case .content:
+            switch selectedTab {
+            case .statistics: return statistics.count
+            case .lineups: return max(homeLineup.count, awayLineup.count)
+            case .events: return matchEvents.count
+            }
         }
     }
     
@@ -139,56 +152,59 @@ extension MatchDetailsViewController: UITableViewDataSource, UITableViewDelegate
             if let event = event { cell.configure(with: event) }
             return cell
             
-        case .statistics:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MatchStatCell.identifier, for: indexPath) as! MatchStatCell
-            cell.configure(with: statistics[indexPath.row])
-            return cell
-            
-        case .lineups:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MatchLineupCell.identifier, for: indexPath) as! MatchLineupCell
-            let homeP = indexPath.row < homeLineup.count ? homeLineup[indexPath.row] : nil
-            let awayP = indexPath.row < awayLineup.count ? awayLineup[indexPath.row] : nil
-            cell.configure(homePlayer: homeP, awayPlayer: awayP)
-            return cell
-            
-        case .events:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MatchEventTimelineCell.identifier, for: indexPath) as! MatchEventTimelineCell
-            cell.configure(with: matchEvents[indexPath.row])
-            return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let sec = Section(rawValue: section) else { return nil }
-        
-        switch sec {
-        case .statistics: return statistics.isEmpty ? nil : sec.title
-        case .lineups: return (homeLineup.isEmpty && awayLineup.isEmpty) ? nil : sec.title
-        case .events: return matchEvents.isEmpty ? nil : sec.title
-        default: return nil
+        case .content:
+            switch selectedTab {
+            case .statistics:
+                let cell = tableView.dequeueReusableCell(withIdentifier: MatchStatCell.identifier, for: indexPath) as! MatchStatCell
+                cell.configure(with: statistics[indexPath.row])
+                return cell
+                
+            case .lineups:
+                let cell = tableView.dequeueReusableCell(withIdentifier: MatchLineupCell.identifier, for: indexPath) as! MatchLineupCell
+                let homeP = indexPath.row < homeLineup.count ? homeLineup[indexPath.row] : nil
+                let awayP = indexPath.row < awayLineup.count ? awayLineup[indexPath.row] : nil
+                cell.configure(homePlayer: homeP, awayPlayer: awayP)
+                return cell
+                
+            case .events:
+                let cell = tableView.dequeueReusableCell(withIdentifier: MatchEventTimelineCell.identifier, for: indexPath) as! MatchEventTimelineCell
+                cell.configure(with: matchEvents[indexPath.row])
+                return cell
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let title = self.tableView(tableView, titleForHeaderInSection: section) else { return nil }
-        let header = UIView()
-        let label = UILabel()
-        label.text = title
-        label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.textColor = UIColor(named: "accentColor")
-        label.translatesAutoresizingMaskIntoConstraints = false
-        header.addSubview(label)
+        guard let sec = Section(rawValue: section), sec == .content else { return nil }
+        
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
+        
+        let items = Tab.allCases.map { $0.title }
+        let sc = UISegmentedControl(items: items)
+        sc.selectedSegmentIndex = selectedTab.rawValue
+        sc.addTarget(self, action: #selector(tabChanged(_:)), for: .valueChanged)
+        
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(sc)
+        
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16),
-            label.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -8)
+            sc.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8),
+            sc.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8),
+            sc.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            sc.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16)
         ])
-        return header
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard Section(rawValue: section) != .header else { return 0 }
-        let title = self.tableView(tableView, titleForHeaderInSection: section)
-        return title == nil ? 0 : 40
+        guard let sec = Section(rawValue: section), sec == .content else { return .leastNormalMagnitude }
+        return 48
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
     }
 }
 
