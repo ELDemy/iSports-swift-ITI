@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 class LatestEventsContainerCell: UICollectionViewCell {
     
@@ -36,6 +37,8 @@ class LatestEventsContainerCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        isSkeletonable = true
+        contentView.isSkeletonable = true
         setupInnerCollectionView()
         setupEmptyView()
     }
@@ -92,6 +95,7 @@ class LatestEventsContainerCell: UICollectionViewCell {
         
         innerCollectionView.dataSource = self
         innerCollectionView.delegate = self
+        innerCollectionView.isSkeletonable = true
         contentView.addSubview(innerCollectionView)
         
         NSLayoutConstraint.activate([
@@ -122,6 +126,16 @@ extension LatestEventsContainerCell: UICollectionViewDataSource {
         ) as! LatestEventCell
         cell.configure(with: events[indexPath.row])
         return cell
+    }
+}
+
+extension LatestEventsContainerCell: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "LatestEventCell"
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
     }
 }
 

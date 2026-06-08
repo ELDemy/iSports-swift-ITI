@@ -11,23 +11,30 @@ class MatchDetailsPresenter: MatchDetailsPresenterProtocol {
     }
     
     func viewDidLoad() {
-        view?.displayMatchInfo(event)
+        view?.showLoading()
         
-        if let stats = event.statistics {
-            view?.displayStatistics(stats)
-        }
-        
-        if let homeStarting = event.lineups?.home_team?.starting_lineups,
-           let awayStarting = event.lineups?.away_team?.starting_lineups {
-            view?.displayLineups(home: homeStarting, away: awayStarting)
-        }
-        
-        if let scorers = event.goalscorers {
-            view?.displayGoalscorers(scorers)
-        }
-        
-        if let cards = event.cards {
-            view?.displayCards(cards)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+            guard let self = self else { return }
+            self.view?.displayMatchInfo(self.event)
+            
+            if let stats = self.event.statistics {
+                self.view?.displayStatistics(stats)
+            }
+            
+            if let homeStarting = self.event.lineups?.home_team?.starting_lineups,
+               let awayStarting = self.event.lineups?.away_team?.starting_lineups {
+                self.view?.displayLineups(home: homeStarting, away: awayStarting)
+            }
+            
+            if let scorers = self.event.goalscorers {
+                self.view?.displayGoalscorers(scorers)
+            }
+            
+            if let cards = self.event.cards {
+                self.view?.displayCards(cards)
+            }
+            
+            self.view?.hideLoading()
         }
     }
 }

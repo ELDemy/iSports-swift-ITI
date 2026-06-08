@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 // MARK: - MatchHeaderCell
 class MatchHeaderCell: UITableViewCell {
@@ -22,7 +23,11 @@ class MatchHeaderCell: UITableViewCell {
     required init?(coder: NSCoder) { fatalError() }
     
     private func setupUI() {
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        
         let container = UIView()
+        container.isSkeletonable = true
         container.backgroundColor = UIColor(named: "CardBackground") ?? .secondarySystemBackground
         container.layer.cornerRadius = 16
         container.layer.borderWidth = 1
@@ -31,12 +36,15 @@ class MatchHeaderCell: UITableViewCell {
         contentView.addSubview(container)
         
         [homeLogo, awayLogo].forEach {
+            $0.isSkeletonable = true
+            $0.skeletonCornerRadius = 30
             $0.contentMode = .scaleAspectFit
             $0.translatesAutoresizingMaskIntoConstraints = false
             container.addSubview($0)
         }
         
         [homeLabel, awayLabel].forEach {
+            $0.isSkeletonable = true
             $0.font = .systemFont(ofSize: 14, weight: .semibold)
             $0.textAlignment = .center
             $0.numberOfLines = 2
@@ -44,22 +52,26 @@ class MatchHeaderCell: UITableViewCell {
             container.addSubview($0)
         }
         
+        scoreLabel.isSkeletonable = true
         scoreLabel.font = .systemFont(ofSize: 32, weight: .bold)
         scoreLabel.textColor = UIColor(named: "accentColor")
         scoreLabel.textAlignment = .center
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        statusLabel.isSkeletonable = true
         statusLabel.font = .systemFont(ofSize: 12, weight: .medium)
         statusLabel.textColor = .systemRed
         statusLabel.textAlignment = .center
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        dateLabel.isSkeletonable = true
         dateLabel.font = .systemFont(ofSize: 12, weight: .regular)
         dateLabel.textColor = .secondaryLabel
         dateLabel.textAlignment = .center
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let centerStack = UIStackView(arrangedSubviews: [dateLabel, scoreLabel, statusLabel])
+        centerStack.isSkeletonable = true
         centerStack.axis = .vertical
         centerStack.spacing = 4
         centerStack.alignment = .center
@@ -131,25 +143,33 @@ class MatchStatCell: UITableViewCell {
     required init?(coder: NSCoder) { fatalError() }
     
     private func setupUI() {
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        
         let container = UIView()
+        container.isSkeletonable = true
         container.backgroundColor = UIColor(named: "CardBackground") ?? .secondarySystemBackground
         container.layer.cornerRadius = 8
         container.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(container)
         
+        typeLabel.isSkeletonable = true
         typeLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         typeLabel.textColor = .secondaryLabel
         typeLabel.textAlignment = .center
         
+        homeLabel.isSkeletonable = true
         homeLabel.font = .systemFont(ofSize: 15, weight: .bold)
         homeLabel.textColor = UIColor(named: "accentColor")
         homeLabel.textAlignment = .left
         
+        awayLabel.isSkeletonable = true
         awayLabel.font = .systemFont(ofSize: 15, weight: .bold)
         awayLabel.textColor = UIColor(named: "accentColor")
         awayLabel.textAlignment = .right
         
         let stack = UIStackView(arrangedSubviews: [homeLabel, typeLabel, awayLabel])
+        stack.isSkeletonable = true
         stack.axis = .horizontal
         stack.distribution = .equalCentering
         stack.alignment = .center
@@ -193,16 +213,24 @@ class MatchLineupCell: UITableViewCell {
     required init?(coder: NSCoder) { fatalError() }
     
     private func setupUI() {
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        
         let container = UIView()
+        container.isSkeletonable = true
         container.backgroundColor = UIColor(named: "CardBackground") ?? .secondarySystemBackground
         container.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(container)
         
+        homeLabel.isSkeletonable = true
         homeLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        
+        awayLabel.isSkeletonable = true
         awayLabel.font = .systemFont(ofSize: 14, weight: .medium)
         awayLabel.textAlignment = .right
         
         let stack = UIStackView(arrangedSubviews: [homeLabel, awayLabel])
+        stack.isSkeletonable = true
         stack.axis = .horizontal
         stack.distribution = .fillEqually
         stack.spacing = 16
@@ -256,17 +284,24 @@ class MatchEventTimelineCell: UITableViewCell {
     required init?(coder: NSCoder) { fatalError() }
     
     private func setupUI() {
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        
+        timeLabel.isSkeletonable = true
         timeLabel.font = .systemFont(ofSize: 12, weight: .bold)
         timeLabel.textColor = .secondaryLabel
         timeLabel.textAlignment = .center
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        iconView.isSkeletonable = true
         iconView.contentMode = .scaleAspectFit
         iconView.translatesAutoresizingMaskIntoConstraints = false
         
+        detailLabel.isSkeletonable = true
         detailLabel.font = .systemFont(ofSize: 14, weight: .medium)
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        lineView.isSkeletonable = true
         lineView.backgroundColor = .systemGray4
         lineView.translatesAutoresizingMaskIntoConstraints = false
         

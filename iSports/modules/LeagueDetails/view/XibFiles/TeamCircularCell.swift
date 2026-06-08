@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 class TeamCircularCell: UICollectionViewCell {
     
@@ -9,6 +10,14 @@ class TeamCircularCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupSkeletonable()
+    }
+    
+    private func setupSkeletonable() {
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        teamImageView?.isSkeletonable = true
+        teamNameLabel?.isSkeletonable = true
     }
     
     override func layoutSubviews() {
@@ -19,6 +28,7 @@ class TeamCircularCell: UICollectionViewCell {
         iv.layer.borderWidth   = 2
         iv.layer.borderColor   = accentColor.withAlphaComponent(0.35).cgColor
         iv.backgroundColor     = UIColor(named: "CardBackground") ?? .systemGray6
+        iv.skeletonCornerRadius = Float(iv.bounds.width / 2)
     }
     
     func configure(with team: Team) {

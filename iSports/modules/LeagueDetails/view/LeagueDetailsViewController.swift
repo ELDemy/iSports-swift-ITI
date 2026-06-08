@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 // MARK: - View Protocol
 protocol LeagueDetailsViewProtocol: AnyObject {
@@ -132,6 +133,7 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         collectionView.dataSource = self
         collectionView.delegate   = self
         collectionView.backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
+        collectionView.isSkeletonable = true
     }
 
     // MARK: - Compositional Layout
@@ -220,13 +222,16 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
 
     // MARK: - LeagueDetailsViewProtocol
     func showLoading() {
-        activityIndicator.startAnimating()
-        collectionView.alpha = 0
+        activityIndicator.isHidden = true
+        collectionView.alpha = 1
+        
+        let gradient = getSkeletonGradient()
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+        collectionView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
     }
 
     func hideLoading() {
-        activityIndicator.stopAnimating()
-        UIView.animate(withDuration: 0.4) { self.collectionView.alpha = 1 }
+        collectionView.hideSkeleton(reloadDataAfter: true)
     }
 
     func setLeagueName(_ name: String, sportName: String) {
@@ -260,9 +265,24 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
 
     func displayError(_ message: String) {
         DispatchQueue.main.async {
+            self.collectionView.hideSkeleton()
             let alert = UIAlertController(title: "Something went wrong", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true)
+        }
+    }
+    
+    private func getSkeletonGradient() -> SkeletonGradient {
+        if traitCollection.userInterfaceStyle == .dark {
+            return SkeletonGradient(
+                baseColor: UIColor(red: 0.12, green: 0.12, blue: 0.14, alpha: 1.0),
+                secondaryColor: UIColor(red: 0.20, green: 0.20, blue: 0.22, alpha: 1.0)
+            )
+        } else {
+            return SkeletonGradient(
+                baseColor: UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.0),
+                secondaryColor: UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1.0)
+            )
         }
     }
 
@@ -280,7 +300,34 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
 }
 
 // MARK: - UICollectionViewDataSource & Delegate
-extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension LeagueDetailsViewController: UICollectionViewDelegate, SkeletonCollectionViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        guard let section = LeagueSection(rawValue: indexPath.section) else {
+            return "UpcomingEventCell"
+        }
+        switch section {
+        case .upcoming:
+            return "UpcomingEventCell"
+        case .latest:
+            return LatestEventsContainerCell.reuseIdentifier
+        case .teams:
+            return "TeamCircularCell"
+        }
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let sec = LeagueSection(rawValue: section) else { return 0 }
+        switch sec {
+        case .upcoming: return 3
+        case .latest: return 1
+        case .teams: return 5
+        }
+    }
+    
+    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+        return LeagueSection.allCases.count
+    }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         LeagueSection.allCases.count

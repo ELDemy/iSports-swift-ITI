@@ -6,6 +6,8 @@ protocol MatchDetailsViewProtocol: AnyObject {
     func displayLineups(home: [LineupPlayer], away: [LineupPlayer])
     func displayGoalscorers(_ scorers: [MatchGoalscorer])
     func displayCards(_ cards: [MatchCard])
+    func showLoading()
+    func hideLoading()
 }
 
 protocol MatchDetailsPresenterProtocol: AnyObject {
