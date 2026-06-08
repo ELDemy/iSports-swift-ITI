@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 class PlayerDetailsViewController: UIViewController {
 
@@ -100,6 +101,8 @@ class PlayerDetailsViewController: UIViewController {
         presenter = PlayerDetailsPresenter(view: self, player: player)
         setupNavigationBar()
         setupUI()
+        setupSkeletonable()
+        showLoading()
         presenter.viewDidLoad()
     }
     
@@ -162,6 +165,18 @@ class PlayerDetailsViewController: UIViewController {
         glassCardView.contentView.addSubview(statsStackView)
         
         setupConstraints()
+    }
+    
+    private func setupSkeletonable() {
+        scrollView.isSkeletonable = true
+        contentView.isSkeletonable = true
+        imageShadowView.isSkeletonable = true
+        playerImageView.isSkeletonable = true
+        playerImageView.skeletonCornerRadius = 70
+        nameLabel.isSkeletonable = true
+        positionLabel.isSkeletonable = true
+        glassCardView.isSkeletonable = true
+        statsStackView.isSkeletonable = true
     }
     
     private func setupConstraints() {
@@ -336,16 +351,35 @@ private extension UILabel {
 //    }
 //}
 extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
+
+    func showLoading() {
+        let gradient = SkeletonGradient(
+            baseColor: UIColor(red: 0.10, green: 0.28, blue: 0.18, alpha: 1.0),
+            secondaryColor: UIColor(red: 0.18, green: 0.45, blue: 0.28, alpha: 1.0)
+        )
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+        playerImageView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+        nameLabel.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+        positionLabel.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+        glassCardView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+    }
+
+    func hideLoading() {
+        playerImageView.hideSkeleton()
+        nameLabel.hideSkeleton()
+        positionLabel.hideSkeleton()
+        glassCardView.hideSkeleton()
+    }
+
     func displayPlayerDetails(player: PlayerModel?, imageUrl: String?) {
-       
         if let name = player?.playerName, !name.isEmpty {
             nameLabel.text = name
         } else {
             nameLabel.text = "-"
         }
-        
+
         positionLabel.text = player?.playerType?.uppercased() ?? "-"
-        
+
         let placeholder: UIImage?
         if player?.playerType == "Goalkeepers" {
             placeholder = UIImage(named: "goalkeeper")
@@ -353,25 +387,26 @@ extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
             placeholder = UIImage(named: "player")
         }
         playerImageView.loadImage(from: imageUrl, placeholder: placeholder)
-        
+
         if let teamLogoUrl = player?.playerLogo {
             teamLogoBackgroundImageView.loadImage(from: teamLogoUrl)
         }
     }
-    
+
     func displayPlayerStats(stats: [(iconName: String, title: String, value: String)]) {
         statsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for (index, stat) in stats.enumerated() {
-        
             let cleanedValue = stat.value.trimmingCharacters(in: .whitespacesAndNewlines)
             let displayValue = cleanedValue.isEmpty ? "-" : stat.value
-            
+
             let row = createStatRow(iconName: stat.iconName, title: stat.title, value: displayValue)
-            
+
             if index == 0, let separator = row.subviews.first {
                 separator.isHidden = true
             }
             statsStackView.addArrangedSubview(row)
         }
+        // Hide shimmer once all stats have been populated
+        hideLoading()
     }
 }

@@ -1,9 +1,10 @@
 import Foundation
 
 protocol PlayerDetailsViewProtocol: AnyObject {
-   // func displayPlayerDetails(name: String, position: String, imageUrl: String?)
-    func displayPlayerDetails(player:PlayerModel?, imageUrl: String?)
+    func displayPlayerDetails(player: PlayerModel?, imageUrl: String?)
     func displayPlayerStats(stats: [(iconName: String, title: String, value: String)])
+    func showLoading()
+    func hideLoading()
 }
 
 class PlayerDetailsPresenter {

@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 class PlayerTableViewCell: UITableViewCell {
 
@@ -80,10 +81,25 @@ class PlayerTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        setupSkeletonable()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupSkeletonable() {
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        containerView.isSkeletonable = true
+        numberContainerView.isSkeletonable = true
+        numberLabel.isSkeletonable = true
+        playerImageView.isSkeletonable = true
+        playerImageView.skeletonCornerRadius = 24
+        infoStackView.isSkeletonable = true
+        nameLabel.isSkeletonable = true
+        positionLabel.isSkeletonable = true
+        statsStackView.isSkeletonable = true
     }
 
     private func setupUI() {
