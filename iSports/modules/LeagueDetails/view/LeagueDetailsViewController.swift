@@ -418,18 +418,26 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, SkeletonCollect
             navigateToMatchDetails(with: upcomingEvents[indexPath.row])
             
         case .latest:
-            // Taps are handled inside LatestEventsContainerCell via onEventTapped
             break
             
         case .teams:
             guard !teams.isEmpty else { return }
             let selectedTeam = teams[indexPath.row]
+            let sport = sportName.lowercased()
+        
+            if sport == "basketball" || sport == "cricket" {
+                let alert = UIAlertController(
+                    title: "Coming Soon",
+                    message: "Team details for \(sport.capitalized) will be available soon. Stay tuned!",
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                present(alert, animated: true)
+                return
+            }
             
-            // Tennis "teams" are actually players — navigate to player details
-            if sportName.lowercased() == "tennis" {
+            if sport == "tennis" {
                 let playerVC = PlayerDetailsViewController()
-                // Build a minimal PlayerModel from the Team data so the presenter
-                // can use playerKey to fetch full details from the API
                 let minimalPlayer = PlayerModel(
                     playerKey: selectedTeam.teamKey,
                     playerName: selectedTeam.teamName,
