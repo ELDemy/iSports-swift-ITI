@@ -92,5 +92,24 @@ class AlamofireManager: NetworkService {
             }
         }
     }
+    
+    func getPlayerDetails(sportName: String, playerId: Int, completion: @escaping (Result<PlayerModel, Error>) -> Void) {
+        let url = "\(Constants.API.baseURL)/\(sportName)?met=Players&APIkey=\(apiKey)&playerId=\(playerId)"
+        
+        AF.request(url).responseDecodable(of: PlayerResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                if let player = data.result?.first {
+                    completion(.success(player))
+                } else {
+                    let noPlayerError = NSError(domain: "Network", code: 404, userInfo: [NSLocalizedDescriptionKey: "Player not found"])
+                    completion(.failure(noPlayerError))
+                }
+            case .failure(let error):
+                print("getPlayerDetails error: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
 }
 

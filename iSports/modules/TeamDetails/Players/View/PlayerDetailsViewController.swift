@@ -93,12 +93,13 @@ class PlayerDetailsViewController: UIViewController {
 
     
     var player: PlayerModel?
+    var sportName: String?
     private var presenter: PlayerDetailsPresenter!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = PlayerDetailsPresenter(view: self, player: player)
+        presenter = PlayerDetailsPresenter(view: self, player: player, sportName: sportName)
         setupNavigationBar()
         setupUI()
         setupSkeletonable()
@@ -113,7 +114,11 @@ class PlayerDetailsViewController: UIViewController {
     
     
     private func setupNavigationBar() {
-        title = "Player Profile"
+        if let sport = sportName, sport.lowercased() == "tennis" {
+            title = "Tennis Player"
+        } else {
+            title = "Player Profile"
+        }
     
         
         
@@ -378,18 +383,35 @@ extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
             nameLabel.text = "-"
         }
 
-        positionLabel.text = player?.playerType?.uppercased() ?? "-"
-
-        let placeholder: UIImage?
-        if player?.playerType == "Goalkeepers" {
-            placeholder = UIImage(named: "goalkeeper")
+        if let sport = sportName, sport.lowercased() == "tennis" {
+            // For tennis show country as the subtitle; hide position label if no country
+            let country = player?.playerCountry ?? ""
+            if country.isEmpty {
+                positionLabel.isHidden = true
+            } else {
+                positionLabel.isHidden = false
+                positionLabel.text = country.uppercased()
+            }
+            // Use the player logo as the image
+            playerImageView.loadImage(from: imageUrl)
+            if let logoUrl = imageUrl {
+                teamLogoBackgroundImageView.loadImage(from: logoUrl)
+            }
         } else {
-            placeholder = UIImage(named: "player")
-        }
-        playerImageView.loadImage(from: imageUrl, placeholder: placeholder)
+            positionLabel.isHidden = false
+            positionLabel.text = player?.playerType?.uppercased() ?? "-"
 
-        if let teamLogoUrl = player?.playerLogo {
-            teamLogoBackgroundImageView.loadImage(from: teamLogoUrl)
+            let placeholder: UIImage?
+            if player?.playerType == "Goalkeepers" {
+                placeholder = UIImage(named: "goalkeeper")
+            } else {
+                placeholder = UIImage(named: "player")
+            }
+            playerImageView.loadImage(from: imageUrl, placeholder: placeholder)
+
+            if let teamLogoUrl = player?.playerLogo {
+                teamLogoBackgroundImageView.loadImage(from: teamLogoUrl)
+            }
         }
     }
 

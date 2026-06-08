@@ -188,9 +188,23 @@ extension TeamDetailsViewController: UITableViewDelegate, SkeletonTableViewDataS
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sport = sportName?.lowercased() ?? ""
+        if sport == "basketball" || sport == "cricket" {
+            let alert = UIAlertController(
+                title: "Coming Soon",
+                message: "Player details for this sport will come up soon.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        
         let selectedPlayer = presenter.player(at: indexPath)
         let detailsVC = PlayerDetailsViewController()
         detailsVC.player = selectedPlayer
+        detailsVC.sportName = self.sportName
         
         if let navigationController = navigationController {
             navigationController.pushViewController(detailsVC, animated: true)

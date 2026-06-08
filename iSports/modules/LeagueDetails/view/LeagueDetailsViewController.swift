@@ -423,12 +423,43 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, SkeletonCollect
             
         case .teams:
             guard !teams.isEmpty else { return }
-            guard let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController")
-                    as? TeamDetailsViewController else { return }
             let selectedTeam = teams[indexPath.row]
-            vc.team = selectedTeam
-            vc.sportName = self.sportName
-            navigationController?.pushViewController(vc, animated: true)
+            
+            // Tennis "teams" are actually players — navigate to player details
+            if sportName.lowercased() == "tennis" {
+                let playerVC = PlayerDetailsViewController()
+                // Build a minimal PlayerModel from the Team data so the presenter
+                // can use playerKey to fetch full details from the API
+                let minimalPlayer = PlayerModel(
+                    playerKey: selectedTeam.teamKey,
+                    playerName: selectedTeam.teamName,
+                    playerNumber: nil,
+                    playerCountry: nil,
+                    playerType: nil,
+                    playerAge: nil,
+                    playerImage: selectedTeam.teamLogo,
+                    playerLogo: selectedTeam.teamLogo,
+                    teamName: nil,
+                    teamKey: nil,
+                    playerMinutes: nil,
+                    playerBirthdate: nil,
+                    playerIsCaptain: nil,
+                    playerMatchPlayed: nil,
+                    playerGoals: nil,
+                    playerRating: nil,
+                    playerBday: nil,
+                    stats: nil
+                )
+                playerVC.player = minimalPlayer
+                playerVC.sportName = self.sportName
+                navigationController?.pushViewController(playerVC, animated: true)
+            } else {
+                guard let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController")
+                        as? TeamDetailsViewController else { return }
+                vc.team = selectedTeam
+                vc.sportName = self.sportName
+                navigationController?.pushViewController(vc, animated: true)
+            }
             presenter.didSelectTeam(at: indexPath.row)
         }
     }
