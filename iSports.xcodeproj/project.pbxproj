@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1EAFEFBA2FCDCC9700497568 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1EAFEFB92FCDCC9700497568 /* Lottie */; };
 		1EE275E92FCD950900EE7193 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1EE275E82FCD94FF00EE7193 /* .gitignore */; };
+		5EB1FE4A2FD6D04800742234 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB1FE492FD6D04800742234 /* SDWebImage */; };
+		5EB1FE4D2FD6D0D000742234 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB1FE4C2FD6D0D000742234 /* SkeletonView */; };
+		5EB8FE562FD6E92D005D472E /* Leagues+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8FE552FD6E92D005D472E /* Leagues+CoreDataProperties.swift */; };
+		5EB8FE572FD6E92D005D472E /* Leagues+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8FE542FD6E92D005D472E /* Leagues+CoreDataClass.swift */; };
 		D60FF3F52FD6F51100FB943D /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = D60FF3F42FD6F51100FB943D /* SkeletonView */; };
 		D6133E862FCDB04300A4C520 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D6133E852FCDB04300A4C520 /* Alamofire */; };
 /* End PBXBuildFile section */
@@ -35,6 +39,8 @@
 		1EE275CA2FCD94F900EE7193 /* iSportsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSportsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE275D42FCD94F900EE7193 /* iSportsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSportsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE275E82FCD94FF00EE7193 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5EB8FE542FD6E92D005D472E /* Leagues+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leagues+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5EB8FE552FD6E92D005D472E /* Leagues+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leagues+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -73,6 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB1FE4D2FD6D0D000742234 /* SkeletonView in Frameworks */,
+				5EB1FE4A2FD6D04800742234 /* SDWebImage in Frameworks */,
 				D6133E862FCDB04300A4C520 /* Alamofire in Frameworks */,
 				D60FF3F52FD6F51100FB943D /* SkeletonView in Frameworks */,
 				1EAFEFBA2FCDCC9700497568 /* Lottie in Frameworks */,
@@ -99,6 +107,8 @@
 		1EE275A82FCD94F700EE7193 = {
 			isa = PBXGroup;
 			children = (
+				5EB8FE542FD6E92D005D472E /* Leagues+CoreDataClass.swift */,
+				5EB8FE552FD6E92D005D472E /* Leagues+CoreDataProperties.swift */,
 				1EE275E82FCD94FF00EE7193 /* .gitignore */,
 				1EE275B32FCD94F700EE7193 /* iSports */,
 				1EE275CD2FCD94F900EE7193 /* iSportsTests */,
@@ -139,7 +149,8 @@
 			packageProductDependencies = (
 				D6133E852FCDB04300A4C520 /* Alamofire */,
 				1EAFEFB92FCDCC9700497568 /* Lottie */,
-				D60FF3F42FD6F51100FB943D /* SkeletonView */,
+				5EB1FE492FD6D04800742234 /* SDWebImage */,
+				5EB1FE4C2FD6D0D000742234 /* SkeletonView */,
 			);
 			productName = iSports;
 			productReference = 1EE275B12FCD94F700EE7193 /* iSports.app */;
@@ -226,6 +237,8 @@
 			packageReferences = (
 				D6133E842FCDB04300A4C520 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1EAFEFB82FCDCC9700497568 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				5EB1FE482FD6D04800742234 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				5EB1FE4B2FD6D0D000742234 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				D60FF3F32FD6F51000FB943D /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -270,6 +283,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB8FE562FD6E92D005D472E /* Leagues+CoreDataProperties.swift in Sources */,
+				5EB8FE572FD6E92D005D472E /* Leagues+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,7 +609,15 @@
 				minimumVersion = 4.6.0;
 			};
 		};
-		D60FF3F32FD6F51000FB943D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+		5EB1FE482FD6D04800742234 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.21.7;
+			};
+		};
+		5EB1FE4B2FD6D0D000742234 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
 			requirement = {
@@ -618,9 +641,14 @@
 			package = 1EAFEFB82FCDCC9700497568 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		D60FF3F42FD6F51100FB943D /* SkeletonView */ = {
+		5EB1FE492FD6D04800742234 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D60FF3F32FD6F51000FB943D /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			package = 5EB1FE482FD6D04800742234 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		5EB1FE4C2FD6D0D000742234 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5EB1FE4B2FD6D0D000742234 /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
 		};
 		D6133E852FCDB04300A4C520 /* Alamofire */ = {

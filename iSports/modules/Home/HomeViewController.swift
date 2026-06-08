@@ -108,7 +108,6 @@ class HomeViewController: UIViewController {
         loadImage(from: bannerURLs[currentBannerIndex]) { [weak self] image in
             guard let self = self, let image = image else { return }
 
-            // Slide-in animation: translate new image from right, fade old out
             let nextImageView = UIImageView(frame: banner.bounds)
             nextImageView.contentMode = .scaleAspectFill
             nextImageView.clipsToBounds = true
@@ -159,14 +158,12 @@ class HomeViewController: UIViewController {
 
     // MARK: - Image Loading Helper
 
-    /// Downloads an image from `urlString`, caches it in `URLCache`, and calls `completion` on the main queue.
     private func loadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         guard let url = URL(string: urlString) else {
             DispatchQueue.main.async { completion(nil) }
             return
         }
 
-        // Return cached response immediately if available
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 15)
         if let cached = URLCache.shared.cachedResponse(for: request),
            let image = UIImage(data: cached.data) {
@@ -186,52 +183,38 @@ class HomeViewController: UIViewController {
     }
     
     private func setupTapGesture(for view: UIView, action: Selector) {
-        view.isUserInteractionEnabled = true // ضروري جداً
+        view.isUserInteractionEnabled = true 
         let tap = UITapGestureRecognizer(target: self, action: action)
         view.addGestureRecognizer(tap)
     }
 
     @objc private func footballTapped() {
         animateTap(footballBgImageView)
-        print("Football tapped!")
-       let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
-        
-        vc.sportName = "football"
-        vc.leagueId = 152
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigateToLeagues(sport: "football")
     }
 
     @objc private func basketballTapped() {
         animateTap(basketballBgImageView)
-        print("Basketball tapped!")
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
-         
-         vc.sportName = "basketball"
-         vc.leagueId = 766
-         self.navigationController?.pushViewController(vc, animated: true)
+        navigateToLeagues(sport: "basketball")
     }
 
     @objc private func tennisTapped() {
         animateTap(tennisBgImageView)
-        //navigate to tennis screen
-        print("Tennis tapped!")
-        
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
-         
-         vc.sportName = "tennis"
-         vc.leagueId = 3866
-         self.navigationController?.pushViewController(vc, animated: true)
+        navigateToLeagues(sport: "tennis")
     }
 
     @objc private func cricketTapped() {
         animateTap(cricketBgImageView)
-        print("Cricket tapped!")
+        navigateToLeagues(sport: "cricket")
+    }
+
+    private func navigateToLeagues(sport: String) {
+        guard let nav = self.navigationController,
+              let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesViewController") as? LeaguesViewController else { return }
         
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController;
-         
-         vc.sportName = "cricket"
-         vc.leagueId = 733
-         self.navigationController?.pushViewController(vc, animated: true)
+        let router = AppRouter(navigationController: nav)
+        vc.presenter = LeaguePresenter(view: vc, sportName: sport, router: router)
+        nav.pushViewController(vc, animated: true)
     }
     
     private func animateTap(_ view: UIView) {
