@@ -15,12 +15,14 @@ class LeaguePresenter {
     var isSearching: Bool = false
     
     var sport: String
-    private weak var router: AppRouterProtocol?
+    private let router: AppRouterProtocol
 
     init(view: LeaguesView, sportName: String, router: AppRouterProtocol) {
         self.view = view
         self.sport = sportName
         self.router = router
+        
+        
     }
     func fetchLeague() {
             AlamofireManager.shared.getLeagues(sportName: sport) { [weak self] result in
@@ -65,14 +67,17 @@ class LeaguePresenter {
         return isSearching ? filteredLeagues[index] : leagues[index]
     }
     
+    
     func didSelectLeague(at index: Int) {
+        
         let selectedLeague = getLeague(at: index)
         
         let dynamicSound = Constants.Sounds.getSound(for: self.sport)
         SoundManager.shared.playSound(dynamicSound)
-        
-        router?.navigateToLeagueDetails(sportName: self.sport, league: selectedLeague)
+       
+        router.navigateToLeagueDetails(sportName: self.sport, league: selectedLeague)
     }
+ 
     
     func isFavorite(at index: Int) -> Bool {
         let league = getLeague(at: index)

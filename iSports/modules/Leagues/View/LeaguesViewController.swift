@@ -102,7 +102,14 @@ extension LeaguesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        presenter.didSelectLeague(at: indexPath.row)
+        print("DEBUG: Row \(indexPath.row) was tapped")
+            
+            if presenter != nil {
+                presenter.didSelectLeague(at: indexPath.row)
+            } else {
+                print("DEBUG: Presenter is nil!")
+            }
+       
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
