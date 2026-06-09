@@ -31,41 +31,32 @@ class TeamDetailsViewController: UIViewController {
     
 
     private func setupBackground() {
-    
-        backgroundGradientLayer.colors = [
-            UIColor(red: 0.02, green: 0.20, blue: 0.10, alpha: 1.0).cgColor,
-            UIColor(red: 0.02, green: 0.07, blue: 0.05, alpha: 1.0).cgColor
-        ]
-        backgroundGradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        backgroundGradientLayer.endPoint   = CGPoint(x: 1, y: 1)
-        view.layer.insertSublayer(backgroundGradientLayer, at: 0)
-        
-      
-        tableView?.backgroundColor = .clear
+        view.backgroundColor = .systemBackground
+        tableView?.backgroundColor = .systemBackground
     }
     
   
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 0.02, green: 0.20, blue: 0.10, alpha: 1.0)
+        appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.white,
+            .foregroundColor: UIColor.label,
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
-        
+        navigationController?.navigationBar.tintColor = UIColor(named: "accentColor")
         let backItemAppearance = UIBarButtonItemAppearance()
-        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
         appearance.backButtonAppearance = backItemAppearance
-        
+
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
         let backImage = UIImage(systemName: "chevron.backward")?
-            .withTintColor(.white, renderingMode: .alwaysOriginal)
+            .withTintColor(accent, renderingMode: .alwaysOriginal)
         appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
-        
+
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
-        navigationController?.navigationBar.tintColor = .white
     }
     
     
@@ -80,7 +71,7 @@ class TeamDetailsViewController: UIViewController {
         logoImageView?.isSkeletonable = true
         logoImageView?.skeletonCornerRadius = Float((logoImageView?.frame.width ?? 80) / 2)
         
-        teamNameLabel?.textColor = .white
+        teamNameLabel?.textColor = .label
         teamNameLabel?.font = .systemFont(ofSize: 22, weight: .bold)
         teamNameLabel?.isSkeletonable = true
     }
@@ -89,9 +80,9 @@ class TeamDetailsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: "PlayerTableViewCell")
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
-        
+
         // Enable SkeletonView on the table
         tableView.isSkeletonable = true
     }
@@ -134,48 +125,47 @@ extension TeamDetailsViewController: UITableViewDelegate, SkeletonTableViewDataS
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard presenter.numberOfSections > 0 else { return nil }
         let headerView = UIView()
-        headerView.backgroundColor = UIColor(white: 1.0, alpha: 0.05)
+        headerView.backgroundColor = UIColor.systemGray6
         headerView.layer.cornerRadius = 10
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
+
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let iconImageView = UIImageView(image: UIImage(systemName: "person.3.fill"))
         iconImageView.tintColor = UIColor(named: "accentColor") ?? .systemGreen
         iconImageView.setContentHuggingPriority(.required, for: .horizontal)
-        
+
         let titleLabel = UILabel()
         titleLabel.text = presenter.titleForSection(section)
         titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
-        titleLabel.textColor = UIColor(named: "accentColor") ?? .systemGreen
-        
-       
+        titleLabel.textColor = .label
+
         let accentLine = UIView()
         accentLine.translatesAutoresizingMaskIntoConstraints = false
         accentLine.backgroundColor = UIColor(named: "accentColor") ?? .systemGreen
         accentLine.layer.cornerRadius = 1.5
-        
+
         stackView.addArrangedSubview(iconImageView)
         stackView.addArrangedSubview(titleLabel)
         headerView.addSubview(stackView)
         headerView.addSubview(accentLine)
-        
+
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
             stackView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10),
             stackView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -10),
-            
+
             accentLine.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             accentLine.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 6),
             accentLine.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -6),
             accentLine.widthAnchor.constraint(equalToConstant: 3)
         ])
-        
+
         return headerView
     }
     
@@ -222,7 +212,7 @@ extension TeamDetailsViewController: TeamDetailsViewProtocol {
     func displayTeamInfo(teamName: String?, logoUrl: String?) {
         title = teamName ?? "Team Details"
         teamNameLabel?.text = teamName
-        teamNameLabel?.textColor = .white
+        teamNameLabel?.textColor = .label
         logoImageView?.loadImage(from: logoUrl)
         
         DispatchQueue.main.async {
@@ -240,8 +230,8 @@ extension TeamDetailsViewController: TeamDetailsViewProtocol {
     func showLoading() {
         DispatchQueue.main.async {
             let gradient = SkeletonGradient(
-                baseColor: UIColor(red: 0.10, green: 0.28, blue: 0.18, alpha: 1.0),
-                secondaryColor: UIColor(red: 0.18, green: 0.45, blue: 0.28, alpha: 1.0)
+                baseColor: UIColor.systemGray5,
+                secondaryColor: UIColor.systemGray4
             )
             let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
             self.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
