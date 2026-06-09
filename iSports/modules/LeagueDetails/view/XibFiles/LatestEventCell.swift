@@ -50,7 +50,7 @@ class LatestEventCell: UICollectionViewCell {
     func configure(with event: Event) {
         homeTeamNameLabel?.text = event.displayHomeName
         awayTeamNameLabel?.text = event.displayAwayName
-        scoreLabel?.text = " \(event.eventFinalResult ?? "VS") "
+        scoreLabel?.text = " \(event.eventFinalResult ?? L10n.matchVs.localized) "
         dateLabel?.text = event.eventDate
         timeLabel?.text = event.eventTime
         

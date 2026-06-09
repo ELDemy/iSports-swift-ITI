@@ -20,19 +20,19 @@
       }
     },
     "Fav-Tab-Id.title" : {
-      "comment" : "Class = \"UITabBarItem\"; title = \"Favorite Leagues\"; ObjectID = \"Fav-Tab-Id\";",
+      "comment" : "Class = \"UITabBarItem\"; title = \"Favourites\"; ObjectID = \"Fav-Tab-Id\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "الدوريات المفضلة"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Favorite Leagues"
+            "value" : "Favourites"
           }
         }
       }

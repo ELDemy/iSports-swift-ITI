@@ -18,10 +18,11 @@ enum LeagueSection: Int, CaseIterable {
 
     func title(for sportName: String) -> String {
         switch self {
-        case .upcoming: return "Upcoming Events"
-        case .latest: return "Latest Results"
+        case .upcoming: return L10n.leagueUpcomingEvents.localized
+        case .latest: return L10n.leagueLatestResults.localized
         case .teams:
-            return sportName.lowercased() == "tennis" ? "Players" : "Teams"
+            return sportName.lowercased() == "tennis"
+                ? L10n.leaguePlayers.localized : L10n.leagueTeams.localized
         }
     }
 
@@ -35,9 +36,9 @@ enum LeagueSection: Int, CaseIterable {
 
     var emptyMessage: String {
         switch self {
-        case .upcoming: return "No upcoming events"
-        case .latest: return "No results yet"
-        case .teams: return "No teams available"
+        case .upcoming: return L10n.leagueNoUpcoming.localized
+        case .latest: return L10n.leagueNoResults.localized
+        case .teams: return L10n.leagueNoTeams.localized
         }
     }
 }
@@ -335,11 +336,13 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         DispatchQueue.main.async {
             self.collectionView.hideSkeleton()
             let alert = UIAlertController(
-                title: "Something went wrong",
+                title: L10n.errorSomethingWentWrong.localized,
                 message: message,
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            alert.addAction(
+                UIAlertAction(title: L10n.ok.localized, style: .default)
+            )
             self.present(alert, animated: true)
         }
     }

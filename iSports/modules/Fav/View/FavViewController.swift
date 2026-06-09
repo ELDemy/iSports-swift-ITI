@@ -15,7 +15,7 @@ class FavViewController: UIViewController, FavView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Favourites", comment: "")
+        self.title = L10n.favourites.localized
         
         if presenter == nil {
             let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
@@ -151,7 +151,7 @@ extension FavViewController: UITableViewDataSource {
         label.textAlignment = .natural
         
         guard let sport = presenter?.getSportName(for: section) else { return nil }
-        label.text = NSLocalizedString(sport, comment: "")
+        label.text = L10n.sport(for: sport)
         
         headerView.addSubview(label)
         

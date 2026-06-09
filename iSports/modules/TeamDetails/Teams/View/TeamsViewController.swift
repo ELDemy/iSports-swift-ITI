@@ -39,7 +39,7 @@ class TeamsViewController: UIViewController {
     }
     
     private func setupUI() {
-        title = "Teams In League"
+        title = L10n.teamsInLeagueTitle.localized
         view.backgroundColor = .systemBackground
         
         view.addSubview(collectionView)

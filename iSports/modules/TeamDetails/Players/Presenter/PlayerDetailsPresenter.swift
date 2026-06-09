@@ -49,13 +49,13 @@ class PlayerDetailsPresenter {
             var stats: [(iconName: String, title: String, value: String)] = []
             
             if let bday = player.playerBday, !bday.isEmpty {
-                stats.append(("calendar", "Birthday", bday))
+                stats.append(("calendar", L10n.playerBirthday.localized, bday))
             } else if let bday = player.playerBirthdate, !bday.isEmpty {
-                stats.append(("calendar", "Birthday", bday))
+                stats.append(("calendar", L10n.playerBirthday.localized, bday))
             }
             
             if let country = player.playerCountry, !country.isEmpty {
-                stats.append(("globe", "Country", country))
+                stats.append(("globe", L10n.playerCountry.localized, country))
             }
             
             if let latestStat = player.stats?.first {
@@ -64,23 +64,23 @@ class PlayerDetailsPresenter {
                 let won = latestStat.matchesWon ?? "-"
                 let lost = latestStat.matchesLost ?? "-"
                 
-                stats.append(("sportscourt", "Rank (\(latestStat.season ?? ""))", rank))
-                stats.append(("trophy.fill", "Titles", titles))
-                stats.append(("checkmark.circle.fill", "Matches Won", won))
-                stats.append(("xmark.circle.fill", "Matches Lost", lost))
+                stats.append(("sportscourt", String(format: L10n.playerRank.localized, latestStat.season ?? ""), rank))
+                stats.append(("trophy.fill", L10n.playerTitles.localized, titles))
+                stats.append(("checkmark.circle.fill", L10n.playerMatchesWon.localized, won))
+                stats.append(("xmark.circle.fill", L10n.playerMatchesLost.localized, lost))
                 
                 if let clayW = latestStat.clayWon, let clayL = latestStat.clayLost, !clayW.isEmpty || !clayL.isEmpty {
-                    stats.append(("circle.fill", "Clay W/L", "\(clayW)/\(clayL)"))
+                    stats.append(("circle.fill", L10n.playerClayWl.localized, "\(clayW)/\(clayL)"))
                 }
                 if let hardW = latestStat.hardWon, let hardL = latestStat.hardLost, !hardW.isEmpty || !hardL.isEmpty {
-                    stats.append(("square.fill", "Hard W/L", "\(hardW)/\(hardL)"))
+                    stats.append(("square.fill", L10n.playerHardWl.localized, "\(hardW)/\(hardL)"))
                 }
                 if let grassW = latestStat.grassWon, let grassL = latestStat.grassLost, !grassW.isEmpty || !grassL.isEmpty {
-                    stats.append(("leaf.fill", "Grass W/L", "\(grassW)/\(grassL)"))
+                    stats.append(("leaf.fill", L10n.playerGrassWl.localized, "\(grassW)/\(grassL)"))
                 }
             } else {
-                stats.append(("sportscourt", "Matches Won", "0"))
-                stats.append(("xmark.circle", "Matches Lost", "0"))
+                stats.append(("sportscourt", L10n.playerMatchesWon.localized, "0"))
+                stats.append(("xmark.circle", L10n.playerMatchesLost.localized, "0"))
             }
             view?.displayPlayerStats(stats: stats)
         } else {
@@ -91,11 +91,11 @@ class PlayerDetailsPresenter {
             let rating = player.playerRating ?? "N/A"
             
             let stats: [(iconName: String, title: String, value: String)] = [
-                ("person.text.rectangle", "Age", age),
-                ("number.circle", "Squad Number", number),
-                ("sportscourt", "Matches Played", matches),
-                ("soccerball", "Goals", goals),
-                ("star.circle", "Rating", rating)
+                ("person.text.rectangle", L10n.playerAge.localized, age),
+                ("number.circle", L10n.playerSquadNumber.localized, number),
+                ("sportscourt", L10n.playerMatchesPlayed.localized, matches),
+                ("soccerball", L10n.playerGoals.localized, goals),
+                ("star.circle", L10n.playerRating.localized, rating)
             ]
             view?.displayPlayerStats(stats: stats)
         }

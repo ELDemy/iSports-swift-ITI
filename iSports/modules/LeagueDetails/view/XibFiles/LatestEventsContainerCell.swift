@@ -27,7 +27,7 @@ class LatestEventsContainerCell: UICollectionViewCell {
     }()
     private let emptyLabel: UILabel = {
         let l = UILabel()
-        l.text = "No results yet"
+        l.text = L10n.leagueNoResults.localized
         l.font = .systemFont(ofSize: 14, weight: .medium)
         l.textColor = UIColor(named: "SecondaryText") ?? .secondaryLabel
         l.textAlignment = .center

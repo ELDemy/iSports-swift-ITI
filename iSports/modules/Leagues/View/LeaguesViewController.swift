@@ -13,7 +13,7 @@ class LeaguesViewController: UIViewController, LeaguesView {
         let accent = UIColor(named: "accentColor") ?? .systemGreen
       //  self.navigationController?.navigationBar.tintColor = .black
         self.navigationController?.navigationBar.tintColor = accent
-            self.title = NSLocalizedString(presenter.sport.capitalized, comment: "")
+            self.title = L10n.sport(for: presenter.sport)
 
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: accent

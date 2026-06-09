@@ -22,6 +22,11 @@ class HomeViewController: UIViewController {
     @IBOutlet private weak var basketballBgImageView: UIImageView!
     @IBOutlet private weak var tennisBgImageView: UIImageView!
     @IBOutlet private weak var cricketBgImageView: UIImageView!
+    
+    @IBOutlet weak var footballLabel: UILabel!
+    @IBOutlet weak var basketballLabel: UILabel!
+    @IBOutlet weak var tennisLabel: UILabel!
+    @IBOutlet weak var cricketLabel: UILabel!
 
    
     private let bannerImages: [String] = ["banner1", "banner2", "banner3"]
@@ -40,7 +45,11 @@ class HomeViewController: UIViewController {
         loadSportCardImages()
         gestures()
         
-        
+        footballLabel.text = L10n.football.localized
+        basketballLabel.text = L10n.basketball.localized
+        tennisLabel.text = L10n.tennis.localized
+        cricketLabel.text = L10n.cricket.localized
+        self.tabBarItem.title = L10n.home.localized
     }
     private func gestures(){
         setupTapGesture(for: footballView, action: #selector(footballTapped))

@@ -285,6 +285,10 @@
                         <outlet property="cricketView" destination="Card-Cricket" id="sfQ-a7-nRh"/>
                         <outlet property="footballBgImageView" destination="BgImg-Foot" id="outlet-bg-foot"/>
                         <outlet property="footballView" destination="Card-Football" id="FiF-gS-5WV"/>
+                        <outlet property="footballLabel" destination="Lbl-Foot" id="outlet-lbl-foot"/>
+                        <outlet property="basketballLabel" destination="Lbl-Basket" id="outlet-lbl-basket"/>
+                        <outlet property="tennisLabel" destination="Lbl-Tennis" id="outlet-lbl-tennis"/>
+                        <outlet property="cricketLabel" destination="Lbl-Cricket" id="outlet-lbl-cricket"/>
                         <outlet property="tennisBgImageView" destination="BgImg-Tennis" id="outlet-bg-tennis"/>
                         <outlet property="tennisView" destination="Card-Tennis" id="uc6-JD-IqK"/>
                     </connections>

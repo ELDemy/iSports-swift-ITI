@@ -38,9 +38,10 @@ class OnBoardingPageVC: UIViewController {
         imageView.clipsToBounds = true
 
         skipButton.isHidden = isLastPage
+        skipButton.setTitle(L10n.onboardingSkip.localized, for: .normal)
 
         actionButton.setTitle(
-            isLastPage ? "Get Started" : "Next",
+            isLastPage ? L10n.onboardingGetStarted.localized : L10n.onboardingNext.localized,
             for: .normal
         )
         

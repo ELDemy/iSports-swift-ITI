@@ -118,9 +118,9 @@ class PlayerDetailsViewController: UIViewController {
     
     private func setupNavigationBar() {
         if let sport = sportName, sport.lowercased() == "tennis" {
-            title = "Tennis Player"
+            title = L10n.playerTennisTitle.localized
         } else {
-            title = "Player Profile"
+            title = L10n.playerProfileTitle.localized
         }
         let accent = UIColor(named: "accentColor") ?? .systemGreen
         let appearance = UINavigationBarAppearance()
