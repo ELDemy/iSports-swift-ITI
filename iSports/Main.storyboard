@@ -529,8 +529,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lod-Qi-Y7u" userLabel="Searching..">
-                                <rect key="frame" x="0.0" y="106" width="393" height="44"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="lod-Qi-Y7u" userLabel="Searching..">
+                                <rect key="frame" x="0.0" y="94" width="393" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -542,12 +542,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="lod-Qi-Y7u" id="eLf-5X-kJO"/>
                         <outlet property="tableView" destination="5dv-uc-aej" id="leagues-tv-outlet"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4896.9465648854957" y="128.87323943661971"/>
+            <point key="canvasLocation" x="4008" y="208"/>
         </scene>
         <!--Match Details View Controller-->
         <scene sceneID="match-details-scene">

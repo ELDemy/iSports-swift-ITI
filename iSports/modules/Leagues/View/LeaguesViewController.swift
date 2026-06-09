@@ -5,6 +5,7 @@ class LeaguesViewController: UIViewController, LeaguesView {
    
     
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var presenter: LeaguePresenter!
     
@@ -12,6 +13,8 @@ class LeaguesViewController: UIViewController, LeaguesView {
             super.viewDidLoad()
         let accent = UIColor(named: "accentColor") ?? .systemGreen
       //  self.navigationController?.navigationBar.tintColor = .black
+        
+        setupModernSearchBar()
         self.navigationController?.navigationBar.tintColor = accent
             self.title = NSLocalizedString(presenter.sport.capitalized, comment: "")
 
@@ -35,6 +38,26 @@ class LeaguesViewController: UIViewController, LeaguesView {
             tableView.showAnimatedGradientSkeleton()
             presenter.fetchLeague()
         }
+    
+    func setupModernSearchBar() {
+        searchBar.delegate = self
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "Search leagues..."
+        searchBar.tintColor = UIColor(resource: .accent)
+        
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = UIColor.secondarySystemBackground
+            textField.layer.cornerRadius = 15
+            textField.layer.masksToBounds = true
+            
+            textField.borderStyle = .none
+        }
+        
+        searchBar.layer.shadowColor = UIColor.black.cgColor
+        searchBar.layer.shadowOpacity = 0.1
+        searchBar.layer.shadowOffset = CGSize(width: 0, height: 2)
+        searchBar.layer.shadowRadius = 4
+    }
     func hideLoading() {
             tableView.hideSkeleton()
             
