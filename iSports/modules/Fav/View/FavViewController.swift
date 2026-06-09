@@ -15,7 +15,7 @@ class FavViewController: UIViewController, FavView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("FAV_TITLE", comment: "")
+        self.title = NSLocalizedString("Favourites", comment: "")
         
         if presenter == nil {
             let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
