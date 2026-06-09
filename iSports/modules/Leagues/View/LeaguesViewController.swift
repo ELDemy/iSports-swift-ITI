@@ -78,11 +78,12 @@ extension LeaguesViewController: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
 
-      
         cell.favBtn.isHidden = false
 
         let league = presenter.getLeague(at: indexPath.row)
-        let placeholderImage = UIImage(named: presenter.sport)
+        
+        let sportName = presenter.sport.lowercased()
+        let placeholderImage = UIImage(named: sportName) ?? UIImage(named: "default_placeholder")
 
         cell.setup(league, placeholder: placeholderImage)
 
