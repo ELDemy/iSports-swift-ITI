@@ -17,21 +17,22 @@ private enum SportCategory {
 
 // MARK: - Presenter Protocol
 protocol LeagueDetailsPresenterProtocol: AnyObject {
-    var leagueId: Int { get set }
+    var league: LeagueModel { get set }
     var sportName: String { get set }
-    var leagueName: String { get set }
+    var appRouter: AppRouter? { get set }
     func viewDidLoad()
     func didTapFavorite()
-    func didSelectTeam(at index: Int)
+    func didSelectTeam(team: Team)->Bool
+    func didSelectEvent(event: Event)
 }
 
 // MARK: - LeagueDetailsPresenter
 class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
 
     // MARK: - Protocol Properties
-    var leagueId:   Int
+    var league: LeagueModel
     var sportName:  String
-    var leagueName: String
+    var appRouter:  AppRouter?
 
     // MARK: - Private
     private weak var view:     LeagueDetailsViewProtocol?
@@ -43,33 +44,57 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
     private var teams:          [Team]  = []
 
     // MARK: - Init
-    init(view:        LeagueDetailsViewProtocol,
-         leagueId:   Int           = 766,
+    init(view:       LeagueDetailsViewProtocol,
+         appRouter:  AppRouter?,
+         league:     LeagueModel,
          sportName:  String        = "basketball",
-         leagueName: String        = "League Details",
          network:    NetworkService = AlamofireManager.shared) {
         self.view       = view
-        self.leagueId   = leagueId
+        self.league     = league
         self.sportName  = sportName
-        self.leagueName = leagueName
         self.network    = network
+        self.appRouter  = appRouter
+        
+       isFavorite = checkIsFavorite()
     }
 
     // MARK: - LeagueDetailsPresenterProtocol
     func viewDidLoad() {
         view?.showLoading()
-        view?.setLeagueName(leagueName, sportName: sportName)
+        view?.setLeagueName(league.leagueName!, sportName: sportName)
         fetchLeagueData()
     }
 
+    func checkIsFavorite() -> Bool {
+        let id = Int16(league.leagueKey!)
+        return CoreDataManager.shared.isFavorite(id: id) != nil
+    }
+    
     func didTapFavorite() {
+        SoundManager.shared.playSound(Constants.Sounds.fav)
+        
+        CoreDataManager.shared.toggleLeagueFavoriteStatus(apiLeague: league, sportName: self.sportName)
+        
         isFavorite.toggle()
         view?.toggleFavoriteState(isFavorite: isFavorite)
     }
 
-    func didSelectTeam(at index: Int) {
-        guard index < teams.count else { return }
-        print("Selected: \(teams[index].teamName ?? "Unknown")")
+    func didSelectTeam(team: Team) -> Bool {
+      
+        if sportName == "basketball" || sportName == "cricket" {
+            return false
+        }
+        
+        if sportName == "tennis" {
+            appRouter?.navigateToPlayerDetails(team: team, sportName: sportName)
+        } else {
+            appRouter?.navigateToTeamDetails(team: team, sportName: sportName)
+        }
+        return true;
+    }
+    
+    func didSelectEvent(event: Event) {
+        appRouter?.navigateToMatchDetails(event: event)
     }
 
     // MARK: - Private – Networking
@@ -85,7 +110,7 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
         network.getEvents(sportName: sportName,
                           from: fromDate,
                           to: toDate,
-                          leagueId: leagueId) { result in
+                          leagueId: league.leagueKey!) { result in
             switch result {
             case .success(let events): fetchedEvents = events
             case .failure(let error):
@@ -95,7 +120,6 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
             group.leave()
         }
 
-        // 2. Teams / Participants
         group.enter()
         fetchParticipants { result in
             switch result {
@@ -129,15 +153,14 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
         return (from, to)
     }
 
-    /// Chooses the correct participant endpoint based on sport category
     private func fetchParticipants(completion: @escaping (Result<[Team], Error>) -> Void) {
         switch SportCategory(sportName: sportName) {
         case .teamBased:
-            network.getTeams(sportName: sportName, leagueId: leagueId, completion: completion)
+            network.getTeams(sportName: sportName, leagueId: league.leagueKey!, completion: completion)
         case .playerBased:
             network.getParticipants(sportName: sportName,
                                     method: "Players",
-                                    leagueId: leagueId) { result in
+                                    leagueId: league.leagueKey!) { result in
                 switch result {
                 case .success(let participants):
                     let teams = participants.map {
