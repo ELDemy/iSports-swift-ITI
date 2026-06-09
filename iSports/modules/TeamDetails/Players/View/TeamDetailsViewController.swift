@@ -37,11 +37,12 @@ class TeamDetailsViewController: UIViewController {
     
   
     private func setupNavigationBar() {
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.label,
+            .foregroundColor: accent,
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
         navigationController?.navigationBar.tintColor = UIColor(named: "accentColor")
@@ -49,10 +50,13 @@ class TeamDetailsViewController: UIViewController {
         backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
         appearance.backButtonAppearance = backItemAppearance
 
-        let accent = UIColor(named: "accentColor") ?? .systemGreen
+       
         let backImage = UIImage(systemName: "chevron.backward")?
             .withTintColor(accent, renderingMode: .alwaysOriginal)
         appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: accent
+        ]
 
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance

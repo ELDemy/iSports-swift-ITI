@@ -122,20 +122,18 @@ class PlayerDetailsViewController: UIViewController {
         } else {
             title = "Player Profile"
         }
-
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.label,
+            .foregroundColor:accent,
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
 
         let backItemAppearance = UIBarButtonItemAppearance()
         backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
         appearance.backButtonAppearance = backItemAppearance
-
-        let accent = UIColor(named: "accentColor") ?? .systemGreen
         
         let backImage = UIImage(systemName: "chevron.backward")?
             .withTintColor(accent, renderingMode: .alwaysOriginal)
@@ -144,7 +142,8 @@ class PlayerDetailsViewController: UIViewController {
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
-        navigationController?.navigationBar.tintColor = UIColor(named: "accentColor")
+        //navigationController?.navigationBar.tintColor = UIColor(named: "accentColor")
+        navigationController?.navigationBar.tintColor = accent
     }
     
  
