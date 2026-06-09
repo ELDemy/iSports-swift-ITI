@@ -13,6 +13,7 @@
 		5EB1FE4D2FD6D0D000742234 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB1FE4C2FD6D0D000742234 /* SkeletonView */; };
 		5EB8FE562FD6E92D005D472E /* Leagues+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8FE552FD6E92D005D472E /* Leagues+CoreDataProperties.swift */; };
 		5EB8FE572FD6E92D005D472E /* Leagues+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8FE542FD6E92D005D472E /* Leagues+CoreDataClass.swift */; };
+		D60FF3F52FD6F51100FB943D /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D6133E862FCDB04300A4C520 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D6133E852FCDB04300A4C520 /* Alamofire */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 				5EB1FE4D2FD6D0D000742234 /* SkeletonView in Frameworks */,
 				5EB1FE4A2FD6D04800742234 /* SDWebImage in Frameworks */,
 				D6133E862FCDB04300A4C520 /* Alamofire in Frameworks */,
+				D60FF3F52FD6F51100FB943D /* (null) in Frameworks */,
 				1EAFEFBA2FCDCC9700497568 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

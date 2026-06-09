@@ -32,7 +32,6 @@ class TeamDetailsPresenter {
     
     private func loadPlayers() {
         guard let sportName = sportName, let teamId = team?.teamKey else {
-            // Fallback if no sport or team id
             self.processPlayers(self.team?.players ?? PlayerMockData.getAllPlayers())
             return
         }
@@ -46,7 +45,6 @@ class TeamDetailsPresenter {
                     self?.processPlayers(players)
                 case .failure(let error):
                     print("Error fetching roster: \(error)")
-                    // Optionally process empty or mock data on failure
                     self?.processPlayers([])
                 }
             }

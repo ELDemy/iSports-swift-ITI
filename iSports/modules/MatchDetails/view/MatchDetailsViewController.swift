@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
     
@@ -57,6 +58,7 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isSkeletonable = true
         
         // Register cells programmatically to avoid complex XIB setups in prompt
         tableView.register(MatchHeaderCell.self, forCellReuseIdentifier: MatchHeaderCell.identifier)
@@ -121,10 +123,60 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         matchEvents = items.sorted(by: { $0.time < $1.time })
         tableView.reloadData()
     }
+    
+    func showLoading() {
+        let gradient = getSkeletonGradient()
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+        tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+    }
+    
+    func hideLoading() {
+        tableView.hideSkeleton(reloadDataAfter: true)
+    }
+    
+    private func getSkeletonGradient() -> SkeletonGradient {
+        if traitCollection.userInterfaceStyle == .dark {
+            return SkeletonGradient(
+                baseColor: UIColor(red: 0.12, green: 0.12, blue: 0.14, alpha: 1.0),
+                secondaryColor: UIColor(red: 0.20, green: 0.20, blue: 0.22, alpha: 1.0)
+            )
+        } else {
+            return SkeletonGradient(
+                baseColor: UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.0),
+                secondaryColor: UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1.0)
+            )
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
-extension MatchDetailsViewController: UITableViewDataSource, UITableViewDelegate {
+extension MatchDetailsViewController: UITableViewDelegate, SkeletonTableViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        guard let sec = Section(rawValue: indexPath.section) else { return MatchStatCell.identifier }
+        switch sec {
+        case .header:
+            return MatchHeaderCell.identifier
+        case .content:
+            switch selectedTab {
+            case .statistics: return MatchStatCell.identifier
+            case .lineups: return MatchLineupCell.identifier
+            case .events: return MatchEventTimelineCell.identifier
+            }
+        }
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sec = Section(rawValue: section) else { return 0 }
+        switch sec {
+        case .header: return 1
+        case .content: return 4
+        }
+    }
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return Section.allCases.count
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count

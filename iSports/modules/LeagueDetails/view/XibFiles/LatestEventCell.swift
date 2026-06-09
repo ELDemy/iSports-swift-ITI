@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 class LatestEventCell: UICollectionViewCell {
     
@@ -15,6 +16,19 @@ class LatestEventCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupImageViews()
+        setupSkeletonable()
+    }
+    
+    private func setupSkeletonable() {
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        homeTeamNameLabel?.isSkeletonable = true
+        awayTeamNameLabel?.isSkeletonable = true
+        scoreLabel?.isSkeletonable = true
+        dateLabel?.isSkeletonable = true
+        timeLabel?.isSkeletonable = true
+        homeTeamImageView?.isSkeletonable = true
+        awayTeamImageView?.isSkeletonable = true
     }
     
     private func setupImageViews() {
@@ -29,6 +43,7 @@ class LatestEventCell: UICollectionViewCell {
         for imageView in [homeTeamImageView, awayTeamImageView] {
             guard let iv = imageView else { continue }
             iv.layer.cornerRadius = iv.bounds.width / 2
+            iv.skeletonCornerRadius = Float(iv.bounds.width / 2)
         }
     }
     

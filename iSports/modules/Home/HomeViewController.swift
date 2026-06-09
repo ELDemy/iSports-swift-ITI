@@ -51,11 +51,15 @@ class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Hide the nav bar on the Home screen — it's shown again when pushing Leagues
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         startBannerAutoScroll()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        // Restore the nav bar for any screen we push onto (Leagues, etc.)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         bannerTimer?.invalidate()
         bannerTimer = nil
     }
