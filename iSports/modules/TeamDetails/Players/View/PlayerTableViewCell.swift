@@ -6,19 +6,21 @@ class PlayerTableViewCell: UITableViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.93, green: 0.96, blue: 0.93, alpha: 1.0)
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 16
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.08
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.layer.shadowRadius = 8
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.systemGray5.cgColor
         return view
     }()
     
     private let numberContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.85, green: 0.95, blue: 0.88, alpha: 1.0)
+        view.backgroundColor = UIColor.systemGray6
         view.layer.cornerRadius = 15
         return view
     }()
@@ -27,7 +29,7 @@ class PlayerTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 14)
-        label.textColor = UIColor(red: 0.1, green: 0.6, blue: 0.3, alpha: 1.0)
+        label.textColor = .secondaryLabel
         label.textAlignment = .center
         return label
     }()
@@ -219,7 +221,7 @@ class PlayerTableViewCell: UITableViewCell {
         super.setHighlighted(highlighted, animated: animated)
         UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut) {
             self.containerView.transform = highlighted ? CGAffineTransform(scaleX: 0.96, y: 0.96) : .identity
-            self.containerView.backgroundColor = highlighted ? UIColor(red: 0.88, green: 0.93, blue: 0.88, alpha: 1.0) : UIColor(red: 0.93, green: 0.96, blue: 0.93, alpha: 1.0)
+            self.containerView.backgroundColor = highlighted ? UIColor.systemGray5 : .systemBackground
             self.containerView.layer.shadowOpacity = highlighted ? 0.0 : 0.08
         }
     }

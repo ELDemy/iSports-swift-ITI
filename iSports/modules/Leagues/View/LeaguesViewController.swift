@@ -10,9 +10,14 @@ class LeaguesViewController: UIViewController, LeaguesView {
     
     override func viewDidLoad() {
             super.viewDidLoad()
-            
-        self.navigationController?.navigationBar.tintColor = .black
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
+      //  self.navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.navigationBar.tintColor = accent
             self.title = NSLocalizedString(presenter.sport.capitalized, comment: "")
+
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: accent
+        ]
             
             let nib = UINib(nibName: "TableViewCell", bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: "cell")

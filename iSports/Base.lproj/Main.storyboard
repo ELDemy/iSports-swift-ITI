@@ -42,7 +42,7 @@
             </objects>
             <point key="canvasLocation" x="1837.4045801526718" y="-2.1126760563380285"/>
         </scene>
-        <!--Favorite Leagues-->
+        <!--Favourites-->
         <scene sceneID="Fav-Scene-Id">
             <objects>
                 <viewController id="Fav-VC-Id" customClass="FavViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
                         <viewLayoutGuide key="safeArea" id="Fav-Safe-Id"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite Leagues" image="star" catalog="system" id="Fav-Tab-Id"/>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="star" catalog="system" id="Fav-Tab-Id"/>
                     <connections>
                         <outlet property="tableView" destination="OZR-8V-Mlw" id="fav-tv-outlet"/>
                     </connections>
