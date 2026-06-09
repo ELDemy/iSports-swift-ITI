@@ -61,12 +61,19 @@ class FavPresenter {
     
     func removeFavorite(at indexPath: IndexPath) {
         SoundManager.shared.playSound(Constants.Sounds.remove)
-        let sport = sports[indexPath.section]
-        if let league = groupedLeagues[sport]?[indexPath.row] {
-            CoreDataManager.shared.deleteLeague(league: league)
-        }
-        
-        fetchFavorites()
+            
+            let sport = sports[indexPath.section]
+            
+            if let league = groupedLeagues[sport]?[indexPath.row] {
+                CoreDataManager.shared.deleteLeague(league: league)
+                
+                groupedLeagues[sport]?.remove(at: indexPath.row)
+                
+                if groupedLeagues[sport]?.isEmpty == true {
+                    groupedLeagues.removeValue(forKey: sport)
+                    sports.remove(at: indexPath.section)
+                }
+            }
     }
     
     func didSelectLeague(at indexPath: IndexPath) {
