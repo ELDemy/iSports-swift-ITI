@@ -32,10 +32,12 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tab-Bar-Id">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" name="accentColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="t6k-Ou-ysl" kind="relationship" relationship="viewControllers" id="Seg-Home"/>
                         <segue destination="Fav-VC-Id" kind="relationship" relationship="viewControllers" id="Seg-Fav"/>
+                        <segue destination="Settings-Nav-Id" kind="relationship" relationship="viewControllers" id="Settings-Tab-Segue"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-Bar-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -579,8 +581,44 @@
             </objects>
             <point key="canvasLocation" x="6500" y="-35"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="Settings-Nav-Scene">
+            <objects>
+                <navigationController storyboardIdentifier="SettingsNavController" automaticallyAdjustsScrollViewInsets="NO" id="Settings-Nav-Id" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="Settings-Tab-Item"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Settings-Nav-Bar">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Settings-VC-Id" kind="relationship" relationship="rootViewController" id="Settings-Root-Segue"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-Nav-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3500" y="-2"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="Settings-VC-Scene">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="Settings-VC-Id" customClass="SettingsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Settings-View-Id">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Settings-Safe-Id"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Settings-Nav-Item"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-VC-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4300" y="-2"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="shield.fill" catalog="system" width="121" height="128"/>
         <image name="star" catalog="system" width="128" height="116"/>

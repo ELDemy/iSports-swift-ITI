@@ -21,7 +21,6 @@ class MainViewController: UIViewController {
     private func navigateToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
-            tabBarVC.addSettingsTab()
 
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = windowScene.windows.first {

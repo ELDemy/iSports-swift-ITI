@@ -17,7 +17,19 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         self.title = "Settings"
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [
+            .foregroundColor: accent,
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
+        ]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = accent
         
         setupUI()
     }
@@ -71,17 +83,5 @@ class SettingsViewController: UIViewController {
         
         themeButton.setTitle(title, for: .normal)
         themeButton.setImage(UIImage(systemName: iconName), for: .normal)
-    }
-}
-
-extension UITabBarController {
-    func addSettingsTab() {
-        let settingsVC = SettingsViewController()
-        let navVC = UINavigationController(rootViewController: settingsVC)
-        navVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gearshape"), selectedImage: UIImage(systemName: "gearshape.fill"))
-        if var vcs = self.viewControllers {
-            vcs.append(navVC)
-            self.viewControllers = vcs
-        }
     }
 }

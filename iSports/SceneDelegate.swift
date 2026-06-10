@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if hasSeenOnboarding {
             // Skip onboarding
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
-            tabBarVC.addSettingsTab()
             let navController = UINavigationController(rootViewController: tabBarVC)
             navController.setNavigationBarHidden(true, animated: false)
             window.rootViewController = navController
