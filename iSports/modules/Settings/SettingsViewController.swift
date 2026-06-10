@@ -6,6 +6,7 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = L10n.settings.localized
         view.backgroundColor = .systemBackground
         
         let accent = UIColor(named: "accentColor") ?? .systemGreen
@@ -61,10 +62,16 @@ class SettingsViewController: UIViewController {
             currentStyle = traitCollection.userInterfaceStyle
         }
         
-        let title = currentStyle == .dark ? " Light Mode" : " Dark Mode"
+        let title = currentStyle == .dark ? L10n.lightMode.localized : L10n.darkMode.localized
         let iconName = currentStyle == .dark ? "sun.max.fill" : "moon.fill"
         
-        themeButton.setTitle(title, for: .normal)
-        themeButton.setImage(UIImage(systemName: iconName), for: .normal)
+        if #available(iOS 15.0, *), var config = themeButton.configuration {
+            config.title = title
+            config.image = UIImage(systemName: iconName)
+            themeButton.configuration = config
+        } else {
+            themeButton.setTitle(title, for: .normal)
+            themeButton.setImage(UIImage(systemName: iconName), for: .normal)
+        }
     }
 }

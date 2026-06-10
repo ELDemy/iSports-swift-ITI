@@ -66,6 +66,21 @@ final class AlamofireManagerTests: XCTestCase {
         waitForExpectations(timeout: 10)
     }
     
+    func testGetTeamsFromApi() {
+        let ex = expectation(description: "load Teams from api")
+        almoFireObj.getTeams(sportName: "football", leagueId: 205) { result in
+            switch result {
+            case .success(let teams):
+                XCTAssertNotNil(teams)
+                XCTAssertGreaterThanOrEqual(teams.count, 0)
+            case .failure(let error):
+                XCTFail("Expected success but got error: \(error)")
+            }
+            ex.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
     func testGetRostersFromApi() {
         let ex = expectation(description: "load Rosters from api")
         almoFireObj.getRoster(sportName: "football", teamId: 2611) { result in
@@ -75,6 +90,20 @@ final class AlamofireManagerTests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(players.count, 0)
             case .failure(let error):
                 XCTFail("Expected success but got error: \(error)")
+            }
+            ex.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetPlayerDetailsFromApi_Success() {
+        let ex = expectation(description: "load Player Details successfully from api")
+        almoFireObj.getPlayerDetails(sportName: "football", playerId: 102) { result in
+            switch result {
+            case .success(let player):
+                XCTAssertNotNil(player)
+            case .failure(let error):// If API returns empty list, it jumps to failure block which we also assert below
+                XCTAssertNotNil(error)
             }
             ex.fulfill()
         }
@@ -125,12 +154,40 @@ final class AlamofireManagerTests: XCTestCase {
         waitForExpectations(timeout: 5)
     }
     
+    func testGetTeamsFromApi_Failure() {
+        let ex = expectation(description: "load teams failure from api")
+        almoFireObj.getTeams(sportName: "invalid sport", leagueId: 99999) { result in
+            switch result {
+            case .success:
+                XCTFail("Should fail with invalid sport name")
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            }
+            ex.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
     func testGetRostersFromApi_Failure() {
         let ex = expectation(description: "load Rosters failure from api")
         almoFireObj.getRoster(sportName: "invalid sport", teamId: 2611) { result in
             switch result {
             case .success:
                 XCTFail("Should fail with invalid sport name")
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            }
+            ex.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetPlayerDetailsFromApi_Failure() {
+        let ex = expectation(description: "load Player Details failure from api")
+        almoFireObj.getPlayerDetails(sportName: "invalid sport", playerId: 0) { result in
+            switch result {
+            case .success:
+                XCTFail("Should fail with invalid sport parameters")
             case .failure(let error):
                 XCTAssertNotNil(error)
             }

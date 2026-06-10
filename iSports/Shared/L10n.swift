@@ -4,6 +4,7 @@ enum L10n: String {
     // Tab Bar
     case home = "tab_home"
     case favourites = "tab_favourites"
+    case settings = "tab_settings"
     
     // Sports
     case basketball = "sport_basketball"
@@ -69,6 +70,10 @@ enum L10n: String {
     case playerMatchesPlayed = "player_matches_played"
     case playerGoals = "player_goals"
     case playerRating = "player_rating"
+    
+    // Settings Theme Modes
+    case lightMode = "settings_light_mode"
+    case darkMode = "settings_dark_mode"
     
     var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")
