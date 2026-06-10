@@ -48,6 +48,11 @@
 "team_details_coming_soon" = "قريباً";
 "team_details_coming_soon_message" = "ستتوفر تفاصيل اللاعبين لهذه الرياضة قريباً.";
 
+"GOALKEEPERS" = "الحراس";
+"DEFENDERS" = "المدافعون";
+"MIDFIELDERS" = "وسط الملعب";
+"FORWARDS"= "المهاجمون";
+
 "player_birthday" = "تاريخ الميلاد";
 "player_country" = "البلد";
 "player_rank" = "التصنيف (%@)";

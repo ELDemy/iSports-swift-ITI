@@ -49,6 +49,11 @@ enum L10n: String {
     case teamDetailsComingSoon = "team_details_coming_soon"
     case teamDetailsComingSoonMessage = "team_details_coming_soon_message"
     
+    case GOALKEEPERS = "GOALKEEPERS"
+    case DEFENDERS = "DEFENDERS"
+    case MIDFIELDERS = "MIDFIELDERS"
+    case FORWARDS = "FORWARDS"
+    
     case playerBirthday = "player_birthday"
     case playerCountry = "player_country"
     case playerRank = "player_rank"

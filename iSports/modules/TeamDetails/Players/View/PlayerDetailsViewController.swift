@@ -314,37 +314,6 @@ private extension UILabel {
     }
 }
 
-//extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
-//    func displayPlayerDetails(player: PlayerModel?, imageUrl: String?) {
-//        nameLabel.text = player?.playerName
-//        
-//        positionLabel.text = player?.playerType?.uppercased()
-//        
-//        let placeholder: UIImage?
-//        if player?.playerType == "Goalkeepers" {
-//            placeholder = UIImage(named: "goalkeeper")
-//        } else {
-//            placeholder = UIImage(named: "player")
-//        }
-//        playerImageView.loadImage(from: imageUrl, placeholder: placeholder)
-//        
-//        if let teamLogoUrl = player?.playerLogo {
-//            teamLogoBackgroundImageView.loadImage(from: teamLogoUrl)
-//        }
-//    }
-//    
-//    func displayPlayerStats(stats: [(iconName: String, title: String, value: String)]) {
-//        statsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-//        for (index, stat) in stats.enumerated() {
-//            let row = createStatRow(iconName: stat.iconName, title: stat.title, value: stat.value)
-//           
-//            if index == 0, let separator = row.subviews.first {
-//                separator.isHidden = true
-//            }
-//            statsStackView.addArrangedSubview(row)
-//        }
-//    }
-//}
 extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
 
     func showLoading() {
@@ -374,7 +343,6 @@ extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
         }
 
         if let sport = sportName, sport.lowercased() == "tennis" {
-            // For tennis show country as the subtitle; hide position label if no country
             let country = player?.playerCountry ?? ""
             if country.isEmpty {
                 positionLabel.isHidden = true
@@ -382,7 +350,6 @@ extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
                 positionLabel.isHidden = false
                 positionLabel.text = country.uppercased()
             }
-            // Use the player logo as the image
             playerImageView.loadImage(from: imageUrl)
             if let logoUrl = imageUrl {
                 teamLogoBackgroundImageView.loadImage(from: logoUrl)
@@ -418,7 +385,6 @@ extension PlayerDetailsViewController: PlayerDetailsViewProtocol {
             }
             statsStackView.addArrangedSubview(row)
         }
-        // Hide shimmer once all stats have been populated
         hideLoading()
     }
 }

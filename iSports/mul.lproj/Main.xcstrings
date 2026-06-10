@@ -25,8 +25,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "الدوريات المفضلة"
+            "state" : "translated",
+            "value" : "المفضلة"
           }
         },
         "en" : {

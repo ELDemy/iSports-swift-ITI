@@ -48,6 +48,12 @@
 "team_details_coming_soon" = "Coming Soon";
 "team_details_coming_soon_message" = "Player details for this sport will come up soon.";
 
+"GOALKEEPERS" = "GOALKEEPERS";
+"DEFENDERS" = "DEFENDERS";
+"MIDFIELDERS" = "MIDFIELDERS";
+"FORWARDS"= "FORWARDS";
+
+
 "player_birthday" = "Birthday";
 "player_country" = "Country";
 "player_rank" = "Rank (%@)";

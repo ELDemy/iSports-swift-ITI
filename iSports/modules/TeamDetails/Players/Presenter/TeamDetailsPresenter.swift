@@ -58,10 +58,10 @@ class TeamDetailsPresenter {
         let forwards = allPlayers.filter { $0.playerType == "Forwards" }
         
         var newSections: [PositionSection] = []
-        if !goalkeepers.isEmpty { newSections.append(PositionSection(title: "GOALKEEPERS", players: goalkeepers)) }
-        if !defenders.isEmpty { newSections.append(PositionSection(title: "DEFENDERS", players: defenders)) }
-        if !midfielders.isEmpty { newSections.append(PositionSection(title: "MIDFIELDERS", players: midfielders)) }
-        if !forwards.isEmpty { newSections.append(PositionSection(title: "FORWARDS", players: forwards)) }
+        if !goalkeepers.isEmpty { newSections.append(PositionSection(title:L10n.GOALKEEPERS.localized, players: goalkeepers)) }
+        if !defenders.isEmpty { newSections.append(PositionSection(title: L10n.DEFENDERS.localized, players: defenders)) }
+        if !midfielders.isEmpty { newSections.append(PositionSection(title: L10n.MIDFIELDERS.localized, players: midfielders)) }
+        if !forwards.isEmpty { newSections.append(PositionSection(title: L10n.FORWARDS.localized, players: forwards)) }
         
         self.sections = newSections
         view?.reloadData()
