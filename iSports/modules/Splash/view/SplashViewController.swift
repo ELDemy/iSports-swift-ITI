@@ -62,6 +62,7 @@ class SplashViewController: UIViewController {
         guard let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {
             return
         }
+        tabBarVC.addSettingsTab()
         navigationController?.setViewControllers([tabBarVC], animated: true)
     }
 }

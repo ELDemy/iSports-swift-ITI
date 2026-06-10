@@ -47,18 +47,27 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         title = "Match Details"
         view.backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
         
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(named: "background") ?? .systemBackground
+        appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.label,
-            .font: UIFont.systemFont(ofSize: 18, weight: .bold),
+            .foregroundColor: accent,
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.backButtonAppearance = backItemAppearance
         
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = .label
+        let backImage = UIImage(systemName: "chevron.backward")?
+            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = accent
         
         if tableView == nil {
             let tv = UITableView(frame: view.bounds, style: .grouped)

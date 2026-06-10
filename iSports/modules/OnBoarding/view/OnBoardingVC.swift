@@ -140,6 +140,7 @@ extension OnBoardingVC: OnBoardingViewProtocol {
             print("Error: Could not find MainTabBarController in Storyboard")
             return
         }
+        tabBarVC.addSettingsTab()
 
         let transition = CATransition()
         transition.duration = 0.5

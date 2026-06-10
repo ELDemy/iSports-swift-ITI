@@ -10,12 +10,29 @@ class LeaguesViewController: UIViewController, LeaguesView {
     
     override func viewDidLoad() {
             super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = .label
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
         self.title = NSLocalizedString(presenter.sport.capitalized, comment: "")
 
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.label
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [
+            .foregroundColor: accent,
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
+
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.backButtonAppearance = backItemAppearance
+        
+        let backImage = UIImage(systemName: "chevron.backward")?
+            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = accent
             
             let nib = UINib(nibName: "TableViewCell", bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: "cell")
