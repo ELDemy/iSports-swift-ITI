@@ -97,7 +97,7 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
         var fetchedTeams:  [Team]  = []
         var fetchError:    Error?
 
-        let (fromDate, toDate) = makeDateRange(pastDays: 30, futureDays: 60)
+        let (fromDate, toDate) = makeDateRange(pastDays: 45, futureDays: 7)
 
         group.enter()
         network.getEvents(sportName: sportName,

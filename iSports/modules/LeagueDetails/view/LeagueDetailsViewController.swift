@@ -320,10 +320,11 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
 
     func toggleFavoriteState(isFavorite: Bool) {
         let iconName = isFavorite ? "star.fill" : "star"
+        let tintColor: UIColor = isFavorite ? .systemRed : .accent
+        
         DispatchQueue.main.async {
-            self.navigationItem.rightBarButtonItem?.image = UIImage(
-                systemName: iconName
-            )
+            self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: iconName)
+            self.navigationItem.rightBarButtonItem?.tintColor = tintColor
         }
         animateHeartButton()
     }
