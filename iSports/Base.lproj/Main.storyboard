@@ -1,252 +1,252 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sez-CN-98W">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="light" />
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721" />
+        <capability name="Named colors" minToolsVersion="9.0" />
+        <capability name="Safe area layout guides" minToolsVersion="9.0" />
+        <capability name="System colors in document resources" minToolsVersion="11.0" />
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0" />
     </dependencies>
     <scenes>
-        <!--Splash View Controller-->
+        
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="SplashViewController" id="BYZ-38-t0r" customClass="SplashViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY" />
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" />
                     </view>
-                    <navigationItem key="navigationItem" id="lEQ-A6-pfy"/>
+                    <navigationItem key="navigationItem" id="lEQ-A6-pfy" />
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="947" y="-2"/>
+            <point key="canvasLocation" x="947" y="-2" />
         </scene>
-        <!--Tab Bar Controller-->
+        
         <scene sceneID="Tab-Bar-Scene">
             <objects>
                 <tabBarController storyboardIdentifier="MainTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tab-Bar-Ctrl" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tab-Bar-Id">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49" />
+                        <autoresizingMask key="autoresizingMask" />
                     </tabBar>
                     <connections>
-                        <segue destination="t6k-Ou-ysl" kind="relationship" relationship="viewControllers" id="Seg-Home"/>
-                        <segue destination="Fav-VC-Id" kind="relationship" relationship="viewControllers" id="Seg-Fav"/>
+                        <segue destination="t6k-Ou-ysl" kind="relationship" relationship="viewControllers" id="Seg-Home" />
+                        <segue destination="Fav-VC-Id" kind="relationship" relationship="viewControllers" id="Seg-Fav" />
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-Bar-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-Bar-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="1837.4045801526718" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="1837.4045801526718" y="-2.1126760563380285" />
         </scene>
-        <!--Favourites-->
+        
         <scene sceneID="Fav-Scene-Id">
             <objects>
                 <viewController id="Fav-VC-Id" customClass="FavViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fav-View-Id">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="735" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OZR-8V-Mlw">
-                                <rect key="frame" x="0.0" y="118" width="393" height="617"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="617" />
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" />
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3LJ-8Y-VtI" customClass="TableViewCell" customModule="iSports" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422" />
+                                        <autoresizingMask key="autoresizingMask" />
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3LJ-8Y-VtI" id="i6Q-l6-c5S">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422" />
+                                            <autoresizingMask key="autoresizingMask" />
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Fav-Safe-Id"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="Fav-Safe-Id" />
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" />
                         <constraints>
-                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="leading" secondItem="Fav-Safe-Id" secondAttribute="leading" id="4vb-W3-tvw"/>
-                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="trailing" secondItem="Fav-Safe-Id" secondAttribute="trailing" id="74p-6q-UN2"/>
-                            <constraint firstItem="Fav-Safe-Id" firstAttribute="bottom" secondItem="OZR-8V-Mlw" secondAttribute="bottom" id="KiD-Ca-jiH"/>
-                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="top" secondItem="Fav-Safe-Id" secondAttribute="top" id="tlA-fg-mYS"/>
+                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="leading" secondItem="Fav-Safe-Id" secondAttribute="leading" id="4vb-W3-tvw" />
+                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="trailing" secondItem="Fav-Safe-Id" secondAttribute="trailing" id="74p-6q-UN2" />
+                            <constraint firstItem="Fav-Safe-Id" firstAttribute="bottom" secondItem="OZR-8V-Mlw" secondAttribute="bottom" id="KiD-Ca-jiH" />
+                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="top" secondItem="Fav-Safe-Id" secondAttribute="top" id="tlA-fg-mYS" />
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourites" image="star" catalog="system" id="Fav-Tab-Id"/>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="star" catalog="system" id="Fav-Tab-Id" />
                     <connections>
-                        <outlet property="tableView" destination="OZR-8V-Mlw" id="fav-tv-outlet"/>
+                        <outlet property="tableView" destination="OZR-8V-Mlw" id="fav-tv-outlet" />
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fav-Resp-Id" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fav-Resp-Id" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="2747.3282442748091" y="379.57746478873241"/>
+            <point key="canvasLocation" x="2747.3282442748091" y="379.57746478873241" />
         </scene>
-        <!--Home-->
+        
         <scene sceneID="Wm5-Uz-UKe">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="t6k-Ou-ysl" customClass="HomeViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u70-m0-4cF">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="735" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Grid-Stack-1">
-                                <rect key="frame" x="16" y="328.66666666666669" width="361" height="300.00000000000006"/>
+                                <rect key="frame" x="16" y="328.66666666666669" width="361" height="300.00000000000006" />
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Row-1-Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="142"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="142" />
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Football">
-                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142" />
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Foot">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142" />
                                                         <constraints>
-                                                            <constraint firstAttribute="height" secondItem="BgImg-Foot" secondAttribute="height" id="BgH-Foot"/>
-                                                            <constraint firstAttribute="width" secondItem="BgImg-Foot" secondAttribute="width" id="BgW-Foot"/>
+                                                            <constraint firstAttribute="height" secondItem="BgImg-Foot" secondAttribute="height" id="BgH-Foot" />
+                                                            <constraint firstAttribute="width" secondItem="BgImg-Foot" secondAttribute="width" id="BgW-Foot" />
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Foot">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142" />
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB" />
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Football" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Foot">
-                                                        <rect key="frame" x="8" y="105.66666666666663" width="156.66666666666666" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="8" y="105.66666666666663" width="156.66666666666666" height="20.333333333333329" />
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17" />
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" />
                                                 <constraints>
-                                                    <constraint firstItem="BgImg-Foot" firstAttribute="bottom" secondItem="Card-Football" secondAttribute="bottom" id="BgBot-Foot"/>
-                                                    <constraint firstItem="BgImg-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" id="BgLead-Foot"/>
-                                                    <constraint firstItem="BgImg-Foot" firstAttribute="top" secondItem="Card-Football" secondAttribute="top" id="BgTop-Foot"/>
-                                                    <constraint firstItem="BgImg-Foot" firstAttribute="trailing" secondItem="Card-Football" secondAttribute="trailing" id="BgTrail-Foot"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Foot" secondAttribute="bottom" constant="16" id="EiV-LC-Ko7"/>
-                                                    <constraint firstItem="Lbl-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" constant="8" id="Lead-Foot"/>
-                                                    <constraint firstItem="Overlay-Foot" firstAttribute="bottom" secondItem="Card-Football" secondAttribute="bottom" id="OvBot-Foot"/>
-                                                    <constraint firstItem="Overlay-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" id="OvLead-Foot"/>
-                                                    <constraint firstItem="Overlay-Foot" firstAttribute="top" secondItem="Card-Football" secondAttribute="top" id="OvTop-Foot"/>
-                                                    <constraint firstItem="Overlay-Foot" firstAttribute="trailing" secondItem="Card-Football" secondAttribute="trailing" id="OvTrail-Foot"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Foot" secondAttribute="trailing" constant="8" id="Trail-Foot"/>
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="bottom" secondItem="Card-Football" secondAttribute="bottom" id="BgBot-Foot" />
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" id="BgLead-Foot" />
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="top" secondItem="Card-Football" secondAttribute="top" id="BgTop-Foot" />
+                                                    <constraint firstItem="BgImg-Foot" firstAttribute="trailing" secondItem="Card-Football" secondAttribute="trailing" id="BgTrail-Foot" />
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Foot" secondAttribute="bottom" constant="16" id="EiV-LC-Ko7" />
+                                                    <constraint firstItem="Lbl-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" constant="8" id="Lead-Foot" />
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="bottom" secondItem="Card-Football" secondAttribute="bottom" id="OvBot-Foot" />
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="leading" secondItem="Card-Football" secondAttribute="leading" id="OvLead-Foot" />
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="top" secondItem="Card-Football" secondAttribute="top" id="OvTop-Foot" />
+                                                    <constraint firstItem="Overlay-Foot" firstAttribute="trailing" secondItem="Card-Football" secondAttribute="trailing" id="OvTrail-Foot" />
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Foot" secondAttribute="trailing" constant="8" id="Trail-Foot" />
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="16"/>
+                                                        <integer key="value" value="16" />
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Basketball">
-                                                <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="142"/>
+                                                <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="142" />
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Basket">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142" />
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Basket">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142" />
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB" />
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basketball" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Basket">
-                                                        <rect key="frame" x="8" y="105.66666666666663" width="156.33333333333334" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="8" y="105.66666666666663" width="156.33333333333334" height="20.333333333333329" />
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17" />
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" />
                                                 <constraints>
-                                                    <constraint firstItem="BgImg-Basket" firstAttribute="bottom" secondItem="Card-Basketball" secondAttribute="bottom" id="BgBot-Basket"/>
-                                                    <constraint firstItem="BgImg-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" id="BgLead-Basket"/>
-                                                    <constraint firstItem="BgImg-Basket" firstAttribute="top" secondItem="Card-Basketball" secondAttribute="top" id="BgTop-Basket"/>
-                                                    <constraint firstItem="BgImg-Basket" firstAttribute="trailing" secondItem="Card-Basketball" secondAttribute="trailing" id="BgTrail-Basket"/>
-                                                    <constraint firstItem="Lbl-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" constant="8" id="Lead-Basket"/>
-                                                    <constraint firstItem="Overlay-Basket" firstAttribute="bottom" secondItem="Card-Basketball" secondAttribute="bottom" id="OvBot-Basket"/>
-                                                    <constraint firstItem="Overlay-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" id="OvLead-Basket"/>
-                                                    <constraint firstItem="Overlay-Basket" firstAttribute="top" secondItem="Card-Basketball" secondAttribute="top" id="OvTop-Basket"/>
-                                                    <constraint firstItem="Overlay-Basket" firstAttribute="trailing" secondItem="Card-Basketball" secondAttribute="trailing" id="OvTrail-Basket"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Basket" secondAttribute="trailing" constant="8" id="Trail-Basket"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Basket" secondAttribute="bottom" constant="16" id="xUh-1r-hc6"/>
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="bottom" secondItem="Card-Basketball" secondAttribute="bottom" id="BgBot-Basket" />
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" id="BgLead-Basket" />
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="top" secondItem="Card-Basketball" secondAttribute="top" id="BgTop-Basket" />
+                                                    <constraint firstItem="BgImg-Basket" firstAttribute="trailing" secondItem="Card-Basketball" secondAttribute="trailing" id="BgTrail-Basket" />
+                                                    <constraint firstItem="Lbl-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" constant="8" id="Lead-Basket" />
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="bottom" secondItem="Card-Basketball" secondAttribute="bottom" id="OvBot-Basket" />
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="leading" secondItem="Card-Basketball" secondAttribute="leading" id="OvLead-Basket" />
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="top" secondItem="Card-Basketball" secondAttribute="top" id="OvTop-Basket" />
+                                                    <constraint firstItem="Overlay-Basket" firstAttribute="trailing" secondItem="Card-Basketball" secondAttribute="trailing" id="OvTrail-Basket" />
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Basket" secondAttribute="trailing" constant="8" id="Trail-Basket" />
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Basket" secondAttribute="bottom" constant="16" id="xUh-1r-hc6" />
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="16"/>
+                                                        <integer key="value" value="16" />
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Row-2-Stack">
-                                        <rect key="frame" x="0.0" y="158" width="361" height="142"/>
+                                        <rect key="frame" x="0.0" y="158" width="361" height="142" />
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Tennis">
-                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142" />
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Tennis">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142" />
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Tennis">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="142" />
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB" />
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tennis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Tennis">
-                                                        <rect key="frame" x="8" y="105.66666666666669" width="156.66666666666666" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="8" y="105.66666666666669" width="156.66666666666666" height="20.333333333333329" />
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17" />
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" />
                                                 <constraints>
-                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="bottom" secondItem="Card-Tennis" secondAttribute="bottom" id="BgBot-Tennis"/>
-                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" id="BgLead-Tennis"/>
-                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="top" secondItem="Card-Tennis" secondAttribute="top" id="BgTop-Tennis"/>
-                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="trailing" secondItem="Card-Tennis" secondAttribute="trailing" id="BgTrail-Tennis"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Tennis" secondAttribute="bottom" constant="16" id="Fsm-fE-mQY"/>
-                                                    <constraint firstItem="Lbl-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" constant="8" id="Lead-Tennis"/>
-                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="bottom" secondItem="Card-Tennis" secondAttribute="bottom" id="OvBot-Tennis"/>
-                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" id="OvLead-Tennis"/>
-                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="top" secondItem="Card-Tennis" secondAttribute="top" id="OvTop-Tennis"/>
-                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="trailing" secondItem="Card-Tennis" secondAttribute="trailing" id="OvTrail-Tennis"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Tennis" secondAttribute="trailing" constant="8" id="Trail-Tennis"/>
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="bottom" secondItem="Card-Tennis" secondAttribute="bottom" id="BgBot-Tennis" />
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" id="BgLead-Tennis" />
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="top" secondItem="Card-Tennis" secondAttribute="top" id="BgTop-Tennis" />
+                                                    <constraint firstItem="BgImg-Tennis" firstAttribute="trailing" secondItem="Card-Tennis" secondAttribute="trailing" id="BgTrail-Tennis" />
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Tennis" secondAttribute="bottom" constant="16" id="Fsm-fE-mQY" />
+                                                    <constraint firstItem="Lbl-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" constant="8" id="Lead-Tennis" />
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="bottom" secondItem="Card-Tennis" secondAttribute="bottom" id="OvBot-Tennis" />
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="leading" secondItem="Card-Tennis" secondAttribute="leading" id="OvLead-Tennis" />
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="top" secondItem="Card-Tennis" secondAttribute="top" id="OvTop-Tennis" />
+                                                    <constraint firstItem="Overlay-Tennis" firstAttribute="trailing" secondItem="Card-Tennis" secondAttribute="trailing" id="OvTrail-Tennis" />
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Tennis" secondAttribute="trailing" constant="8" id="Trail-Tennis" />
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="16"/>
+                                                        <integer key="value" value="16" />
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Card-Cricket">
-                                                <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="142"/>
+                                                <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="142" />
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgImg-Cricket">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142" />
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Overlay-Cricket">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="142" />
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB" />
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cricket" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Cricket">
-                                                        <rect key="frame" x="8" y="105.66666666666669" width="156.33333333333334" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="8" y="105.66666666666669" width="156.33333333333334" height="20.333333333333329" />
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17" />
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" />
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Cricket" secondAttribute="bottom" constant="16" id="8Tt-tW-lfS"/>
-                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="bottom" secondItem="Card-Cricket" secondAttribute="bottom" id="BgBot-Cricket"/>
-                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" id="BgLead-Cricket"/>
-                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="top" secondItem="Card-Cricket" secondAttribute="top" id="BgTop-Cricket"/>
-                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="trailing" secondItem="Card-Cricket" secondAttribute="trailing" id="BgTrail-Cricket"/>
-                                                    <constraint firstItem="Lbl-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" constant="8" id="Lead-Cricket"/>
-                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="bottom" secondItem="Card-Cricket" secondAttribute="bottom" id="OvBot-Cricket"/>
-                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" id="OvLead-Cricket"/>
-                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="top" secondItem="Card-Cricket" secondAttribute="top" id="OvTop-Cricket"/>
-                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="trailing" secondItem="Card-Cricket" secondAttribute="trailing" id="OvTrail-Cricket"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Cricket" secondAttribute="trailing" constant="8" id="Trail-Cricket"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Lbl-Cricket" secondAttribute="bottom" constant="16" id="8Tt-tW-lfS" />
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="bottom" secondItem="Card-Cricket" secondAttribute="bottom" id="BgBot-Cricket" />
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" id="BgLead-Cricket" />
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="top" secondItem="Card-Cricket" secondAttribute="top" id="BgTop-Cricket" />
+                                                    <constraint firstItem="BgImg-Cricket" firstAttribute="trailing" secondItem="Card-Cricket" secondAttribute="trailing" id="BgTrail-Cricket" />
+                                                    <constraint firstItem="Lbl-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" constant="8" id="Lead-Cricket" />
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="bottom" secondItem="Card-Cricket" secondAttribute="bottom" id="OvBot-Cricket" />
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="leading" secondItem="Card-Cricket" secondAttribute="leading" id="OvLead-Cricket" />
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="top" secondItem="Card-Cricket" secondAttribute="top" id="OvTop-Cricket" />
+                                                    <constraint firstItem="Overlay-Cricket" firstAttribute="trailing" secondItem="Card-Cricket" secondAttribute="trailing" id="OvTrail-Cricket" />
+                                                    <constraint firstAttribute="trailing" secondItem="Lbl-Cricket" secondAttribute="trailing" constant="8" id="Trail-Cricket" />
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="16"/>
+                                                        <integer key="value" value="16" />
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -254,373 +254,358 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Grid-Hgt-1"/>
+                                    <constraint firstAttribute="height" constant="300" id="Grid-Hgt-1" />
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FHx-BR-3fk">
-                                <rect key="frame" x="16" y="117.99999999999999" width="361" height="183.66666666666663"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="16" y="117.99999999999999" width="361" height="183.66666666666663" />
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="16"/>
+                                        <integer key="value" value="16" />
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO" />
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="acp-nP-o9e"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="acp-nP-o9e" />
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" />
                         <constraints>
-                            <constraint firstItem="Grid-Stack-1" firstAttribute="top" secondItem="FHx-BR-3fk" secondAttribute="bottom" constant="27" id="0bN-vi-qD8"/>
-                            <constraint firstItem="FHx-BR-3fk" firstAttribute="top" secondItem="acp-nP-o9e" secondAttribute="top" id="6oL-Z3-IqR"/>
-                            <constraint firstItem="Grid-Stack-1" firstAttribute="leading" secondItem="acp-nP-o9e" secondAttribute="leading" constant="16" id="Ld5-Grid"/>
-                            <constraint firstItem="acp-nP-o9e" firstAttribute="trailing" secondItem="FHx-BR-3fk" secondAttribute="trailing" constant="16" id="Pif-Vm-Ngx"/>
-                            <constraint firstItem="acp-nP-o9e" firstAttribute="trailing" secondItem="Grid-Stack-1" secondAttribute="trailing" constant="16" id="Tr5-Grid"/>
-                            <constraint firstItem="FHx-BR-3fk" firstAttribute="leading" secondItem="acp-nP-o9e" secondAttribute="leading" constant="16" id="du0-YG-PzD"/>
-                            <constraint firstItem="FHx-BR-3fk" firstAttribute="height" secondItem="u70-m0-4cF" secondAttribute="height" multiplier="0.25" id="zFe-Tc-cOw"/>
+                            <constraint firstItem="Grid-Stack-1" firstAttribute="top" secondItem="FHx-BR-3fk" secondAttribute="bottom" constant="27" id="0bN-vi-qD8" />
+                            <constraint firstItem="FHx-BR-3fk" firstAttribute="top" secondItem="acp-nP-o9e" secondAttribute="top" id="6oL-Z3-IqR" />
+                            <constraint firstItem="Grid-Stack-1" firstAttribute="leading" secondItem="acp-nP-o9e" secondAttribute="leading" constant="16" id="Ld5-Grid" />
+                            <constraint firstItem="acp-nP-o9e" firstAttribute="trailing" secondItem="FHx-BR-3fk" secondAttribute="trailing" constant="16" id="Pif-Vm-Ngx" />
+                            <constraint firstItem="acp-nP-o9e" firstAttribute="trailing" secondItem="Grid-Stack-1" secondAttribute="trailing" constant="16" id="Tr5-Grid" />
+                            <constraint firstItem="FHx-BR-3fk" firstAttribute="leading" secondItem="acp-nP-o9e" secondAttribute="leading" constant="16" id="du0-YG-PzD" />
+                            <constraint firstItem="FHx-BR-3fk" firstAttribute="height" secondItem="u70-m0-4cF" secondAttribute="height" multiplier="0.25" id="zFe-Tc-cOw" />
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="Tab-Item-Home"/>
-                    <connections>
-                        <outlet property="bannerImageView" destination="FHx-BR-3fk" id="outlet-banner"/>
-                        <outlet property="basketballBgImageView" destination="BgImg-Basket" id="outlet-bg-basket"/>
-                        <outlet property="basketballView" destination="Card-Basketball" id="EVU-m7-HXx"/>
-                        <outlet property="cricketBgImageView" destination="BgImg-Cricket" id="outlet-bg-cricket"/>
-                        <outlet property="cricketView" destination="Card-Cricket" id="sfQ-a7-nRh"/>
-                        <outlet property="footballBgImageView" destination="BgImg-Foot" id="outlet-bg-foot"/>
-                        <outlet property="footballView" destination="Card-Football" id="FiF-gS-5WV"/>
-                        <outlet property="footballLabel" destination="Lbl-Foot" id="outlet-lbl-foot"/>
-                        <outlet property="basketballLabel" destination="Lbl-Basket" id="outlet-lbl-basket"/>
-                        <outlet property="tennisLabel" destination="Lbl-Tennis" id="outlet-lbl-tennis"/>
-                        <outlet property="cricketLabel" destination="Lbl-Cricket" id="outlet-lbl-cricket"/>
-                        <outlet property="tennisBgImageView" destination="BgImg-Tennis" id="outlet-bg-tennis"/>
-                        <outlet property="tennisView" destination="Card-Tennis" id="uc6-JD-IqK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C1P-RV-MvZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="Tab-Item-Home" />
+                    </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C1P-RV-MvZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="2747.3282442748091" y="-306.33802816901408"/>
+            <point key="canvasLocation" x="2747.3282442748091" y="-306.33802816901408" />
         </scene>
-        <!--Navigation Controller-->
+        
         <scene sceneID="CaD-ir-8h2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sez-CN-98W" sceneMemberID="viewController">
-                    <toolbarItems/>
+                    <toolbarItems />
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nXI-Os-X9x">
-                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="44" />
+                        <autoresizingMask key="autoresizingMask" />
                     </navigationBar>
-                    <nil name="viewControllers"/>
+                    <nil name="viewControllers" />
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VbC-Kd-7My"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VbC-Kd-7My" />
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4wd-iy-Qts" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4wd-iy-Qts" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="-59" y="-2"/>
+            <point key="canvasLocation" x="-59" y="-2" />
         </scene>
-        <!--On Boarding PageVC-->
+        
         <scene sceneID="tbn-af-gCc">
             <objects>
                 <viewController storyboardIdentifier="OnBoardingPageVC" id="hBf-UA-glN" customClass="OnBoardingPageVC" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yjq-1u-IOm">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TIF-lQ-aKg">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnH-LB-Bl3">
-                                <rect key="frame" x="30" y="770" width="333" height="50"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="30" y="770" width="333" height="50" />
+                                <state key="normal" title="Button" />
                                 <buttonConfiguration key="configuration" style="filled" title="Next">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                    <color key="baseBackgroundColor" name="accentColor"/>
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1" />
+                                    <color key="baseBackgroundColor" name="accentColor" />
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="nextTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="dPb-Pe-bWe"/>
+                                    <action selector="nextTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="dPb-Pe-bWe" />
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxz-Ma-6pG">
-                                <rect key="frame" x="32" y="594" width="329" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
+                                <rect key="frame" x="32" y="594" width="329" height="34" />
+                                <fontDescription key="fontDescription" type="system" pointSize="28" />
+                                <color key="textColor" name="AccentColor" />
+                                <nil key="highlightedColor" />
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsW-xn-mQd">
-                                <rect key="frame" x="320" y="118" width="57" height="39"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="320" y="118" width="57" height="39" />
+                                <state key="normal" title="Button" />
                                 <buttonConfiguration key="configuration" style="filled" title="Skip">
-                                    <color key="baseBackgroundColor" name="accentColor"/>
+                                    <color key="baseBackgroundColor" name="accentColor" />
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="skipTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="snY-fh-bVo"/>
+                                    <action selector="skipTapped:" destination="hBf-UA-glN" eventType="touchUpInside" id="snY-fh-bVo" />
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="desc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dy-JB-cmZ">
-                                <rect key="frame" x="32" y="660" width="329" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
+                                <rect key="frame" x="32" y="660" width="329" height="36" />
+                                <fontDescription key="fontDescription" type="system" pointSize="30" />
+                                <color key="textColor" name="AccentColor" />
+                                <nil key="highlightedColor" />
                             </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="bf3-6j-VHH"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="bf3-6j-VHH" />
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" />
                         <constraints>
-                            <constraint firstItem="TIF-lQ-aKg" firstAttribute="top" secondItem="yjq-1u-IOm" secondAttribute="top" id="2b1-tL-glX"/>
-                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="top" secondItem="Sxz-Ma-6pG" secondAttribute="bottom" constant="32" id="4Ug-6z-i0j"/>
-                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="leading" secondItem="0Dy-JB-cmZ" secondAttribute="leading" id="4gS-Nv-Kg7"/>
-                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="GsW-xn-mQd" secondAttribute="trailing" constant="16" id="8H1-qI-22Y"/>
-                            <constraint firstAttribute="trailing" secondItem="TIF-lQ-aKg" secondAttribute="trailing" id="9nh-s5-I7h"/>
-                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="centerY" secondItem="bf3-6j-VHH" secondAttribute="centerY" constant="160" id="B1P-cm-ahy"/>
-                            <constraint firstAttribute="leading" secondItem="TIF-lQ-aKg" secondAttribute="leading" id="BKi-1J-qRN"/>
-                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="leading" secondItem="bf3-6j-VHH" secondAttribute="leading" constant="32" id="Bm4-Ji-ddK"/>
-                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="0Dy-JB-cmZ" secondAttribute="trailing" constant="32" id="Lfg-me-14Z"/>
-                            <constraint firstItem="GsW-xn-mQd" firstAttribute="top" secondItem="bf3-6j-VHH" secondAttribute="top" id="Ms7-rz-Mfu"/>
-                            <constraint firstItem="tnH-LB-Bl3" firstAttribute="bottom" secondItem="yjq-1u-IOm" secondAttribute="bottom" constant="-32" id="Thw-to-s3Y"/>
-                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="centerX" secondItem="TIF-lQ-aKg" secondAttribute="centerX" id="Xej-Cs-bML"/>
-                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="trailing" secondItem="0Dy-JB-cmZ" secondAttribute="trailing" id="fza-7P-cpP"/>
-                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="tnH-LB-Bl3" secondAttribute="trailing" constant="30" id="htS-e9-j5K"/>
-                            <constraint firstItem="tnH-LB-Bl3" firstAttribute="leading" secondItem="bf3-6j-VHH" secondAttribute="leading" constant="30" id="ksF-JP-pwk"/>
-                            <constraint firstAttribute="bottom" secondItem="TIF-lQ-aKg" secondAttribute="bottom" id="spU-sW-NJh"/>
-                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="centerX" secondItem="TIF-lQ-aKg" secondAttribute="centerX" id="zT0-wZ-Sgq"/>
+                            <constraint firstItem="TIF-lQ-aKg" firstAttribute="top" secondItem="yjq-1u-IOm" secondAttribute="top" id="2b1-tL-glX" />
+                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="top" secondItem="Sxz-Ma-6pG" secondAttribute="bottom" constant="32" id="4Ug-6z-i0j" />
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="leading" secondItem="0Dy-JB-cmZ" secondAttribute="leading" id="4gS-Nv-Kg7" />
+                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="GsW-xn-mQd" secondAttribute="trailing" constant="16" id="8H1-qI-22Y" />
+                            <constraint firstAttribute="trailing" secondItem="TIF-lQ-aKg" secondAttribute="trailing" id="9nh-s5-I7h" />
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="centerY" secondItem="bf3-6j-VHH" secondAttribute="centerY" constant="160" id="B1P-cm-ahy" />
+                            <constraint firstAttribute="leading" secondItem="TIF-lQ-aKg" secondAttribute="leading" id="BKi-1J-qRN" />
+                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="leading" secondItem="bf3-6j-VHH" secondAttribute="leading" constant="32" id="Bm4-Ji-ddK" />
+                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="0Dy-JB-cmZ" secondAttribute="trailing" constant="32" id="Lfg-me-14Z" />
+                            <constraint firstItem="GsW-xn-mQd" firstAttribute="top" secondItem="bf3-6j-VHH" secondAttribute="top" id="Ms7-rz-Mfu" />
+                            <constraint firstItem="tnH-LB-Bl3" firstAttribute="bottom" secondItem="yjq-1u-IOm" secondAttribute="bottom" constant="-32" id="Thw-to-s3Y" />
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="centerX" secondItem="TIF-lQ-aKg" secondAttribute="centerX" id="Xej-Cs-bML" />
+                            <constraint firstItem="Sxz-Ma-6pG" firstAttribute="trailing" secondItem="0Dy-JB-cmZ" secondAttribute="trailing" id="fza-7P-cpP" />
+                            <constraint firstItem="bf3-6j-VHH" firstAttribute="trailing" secondItem="tnH-LB-Bl3" secondAttribute="trailing" constant="30" id="htS-e9-j5K" />
+                            <constraint firstItem="tnH-LB-Bl3" firstAttribute="leading" secondItem="bf3-6j-VHH" secondAttribute="leading" constant="30" id="ksF-JP-pwk" />
+                            <constraint firstAttribute="bottom" secondItem="TIF-lQ-aKg" secondAttribute="bottom" id="spU-sW-NJh" />
+                            <constraint firstItem="0Dy-JB-cmZ" firstAttribute="centerX" secondItem="TIF-lQ-aKg" secondAttribute="centerX" id="zT0-wZ-Sgq" />
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="actionButton" destination="tnH-LB-Bl3" id="FLk-2r-hz5"/>
-                        <outlet property="descLabel" destination="0Dy-JB-cmZ" id="ERA-Fd-qg7"/>
-                        <outlet property="imageView" destination="TIF-lQ-aKg" id="c7w-Jf-cx5"/>
-                        <outlet property="skipButton" destination="GsW-xn-mQd" id="Qo8-xx-Ig2"/>
-                        <outlet property="titleLabel" destination="Sxz-Ma-6pG" id="aPb-7a-uhH"/>
+                        <outlet property="actionButton" destination="tnH-LB-Bl3" id="FLk-2r-hz5" />
+                        <outlet property="descLabel" destination="0Dy-JB-cmZ" id="ERA-Fd-qg7" />
+                        <outlet property="imageView" destination="TIF-lQ-aKg" id="c7w-Jf-cx5" />
+                        <outlet property="skipButton" destination="GsW-xn-mQd" id="Qo8-xx-Ig2" />
+                        <outlet property="titleLabel" destination="Sxz-Ma-6pG" id="aPb-7a-uhH" />
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kZb-4J-w53" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZb-4J-w53" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="750" y="787"/>
+            <point key="canvasLocation" x="750" y="787" />
         </scene>
-        <!--On BoardingVC-->
+        
         <scene sceneID="SOq-7S-24g">
             <objects>
                 <viewController storyboardIdentifier="OnBoardingVC" id="qqN-cl-04J" customClass="OnBoardingVC" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aBv-fy-Id0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DqV-0t-buF">
-                                <rect key="frame" x="160" y="652" width="73" height="26"/>
-                                <color key="pageIndicatorTintColor" name="accentColor"/>
+                                <rect key="frame" x="160" y="652" width="73" height="26" />
+                                <color key="pageIndicatorTintColor" name="accentColor" />
                             </pageControl>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Zqo-y8-RJB"/>
-                        <color key="backgroundColor" systemColor="systemCyanColor"/>
+                        <viewLayoutGuide key="safeArea" id="Zqo-y8-RJB" />
+                        <color key="backgroundColor" systemColor="systemCyanColor" />
                         <constraints>
-                            <constraint firstItem="DqV-0t-buF" firstAttribute="centerX" secondItem="Zqo-y8-RJB" secondAttribute="centerX" id="D0a-9C-ZO9"/>
-                            <constraint firstItem="Zqo-y8-RJB" firstAttribute="bottom" secondItem="DqV-0t-buF" secondAttribute="bottom" constant="55" id="Zwh-AB-uiX"/>
+                            <constraint firstItem="DqV-0t-buF" firstAttribute="centerX" secondItem="Zqo-y8-RJB" secondAttribute="centerX" id="D0a-9C-ZO9" />
+                            <constraint firstItem="Zqo-y8-RJB" firstAttribute="bottom" secondItem="DqV-0t-buF" secondAttribute="bottom" constant="55" id="Zwh-AB-uiX" />
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="pageControl" destination="DqV-0t-buF" id="0kr-1M-wU1"/>
+                        <outlet property="pageControl" destination="DqV-0t-buF" id="0kr-1M-wU1" />
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="idM-Ue-eMf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="idM-Ue-eMf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="1659" y="823"/>
+            <point key="canvasLocation" x="1659" y="823" />
         </scene>
-        <!--League Details View Controller-->
+        
         <scene sceneID="Qj3-pQ-uUq">
             <objects>
                 <viewController storyboardIdentifier="LeagueDetailsViewController" id="Gmd-9I-4qM" customClass="LeagueDetailsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6tS-wp-qa4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N9Z-Wp-R4d">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
-                                <color key="backgroundColor" name="background"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="666" />
+                                <color key="backgroundColor" name="background" />
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pI3-AW-3nw">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <size key="itemSize" width="128" height="128" />
+                                    <size key="headerReferenceSize" width="0.0" height="0.0" />
+                                    <size key="footerReferenceSize" width="0.0" height="0.0" />
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0" />
                                 </collectionViewFlowLayout>
-                                <cells/>
+                                <cells />
                             </collectionView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="RZY-od-vRf"/>
-                        <color key="backgroundColor" name="background"/>
+                        <viewLayoutGuide key="safeArea" id="RZY-od-vRf" />
+                        <color key="backgroundColor" name="background" />
                         <constraints>
-                            <constraint firstItem="N9Z-Wp-R4d" firstAttribute="top" secondItem="RZY-od-vRf" secondAttribute="top" id="8EO-rU-UIR"/>
-                            <constraint firstItem="RZY-od-vRf" firstAttribute="bottom" secondItem="N9Z-Wp-R4d" secondAttribute="bottom" id="ROK-7b-FSQ"/>
-                            <constraint firstItem="N9Z-Wp-R4d" firstAttribute="leading" secondItem="RZY-od-vRf" secondAttribute="leading" id="ab6-xX-xOg"/>
-                            <constraint firstItem="RZY-od-vRf" firstAttribute="trailing" secondItem="N9Z-Wp-R4d" secondAttribute="trailing" id="fet-eK-ILB"/>
+                            <constraint firstItem="N9Z-Wp-R4d" firstAttribute="top" secondItem="RZY-od-vRf" secondAttribute="top" id="8EO-rU-UIR" />
+                            <constraint firstItem="RZY-od-vRf" firstAttribute="bottom" secondItem="N9Z-Wp-R4d" secondAttribute="bottom" id="ROK-7b-FSQ" />
+                            <constraint firstItem="N9Z-Wp-R4d" firstAttribute="leading" secondItem="RZY-od-vRf" secondAttribute="leading" id="ab6-xX-xOg" />
+                            <constraint firstItem="RZY-od-vRf" firstAttribute="trailing" secondItem="N9Z-Wp-R4d" secondAttribute="trailing" id="fet-eK-ILB" />
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="s5y-C1-e9C"/>
+                    <navigationItem key="navigationItem" id="s5y-C1-e9C" />
                     <connections>
-                        <outlet property="collectionView" destination="N9Z-Wp-R4d" id="aDY-ZG-Aua"/>
+                        <outlet property="collectionView" destination="N9Z-Wp-R4d" id="aDY-ZG-Aua" />
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p0i-Vg-1go" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p0i-Vg-1go" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="2795" y="1089"/>
+            <point key="canvasLocation" x="2795" y="1089" />
         </scene>
-        <!--Team Details View Controller-->
+        
         <scene sceneID="c03-lY-Z0P">
             <objects>
                 <viewController storyboardIdentifier="TeamDetailsViewController" id="e0R-uU-EQj" customClass="TeamDetailsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xHX-qY-Pob">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shield.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="g64-Cc-ogQ">
-                                <rect key="frame" x="156.66666666666666" y="139" width="80" height="78.333333333333314"/>
-                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <rect key="frame" x="156.66666666666666" y="139" width="80" height="78.333333333333314" />
+                                <color key="tintColor" systemColor="systemRedColor" />
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="1EN-TJ-kqb"/>
-                                    <constraint firstAttribute="width" constant="80" id="lw0-Kv-GPt"/>
+                                    <constraint firstAttribute="height" constant="80" id="1EN-TJ-kqb" />
+                                    <constraint firstAttribute="width" constant="80" id="lw0-Kv-GPt" />
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bayern München" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nif-8X-U3Q">
-                                <rect key="frame" x="102.33333333333333" y="234" width="188.33333333333337" height="28.666666666666686"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <rect key="frame" x="102.33333333333333" y="234" width="188.33333333333337" height="28.666666666666686" />
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24" />
+                                <nil key="textColor" />
+                                <nil key="highlightedColor" />
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JsQ-O7-vGQ">
-                                <rect key="frame" x="0.0" y="294.66666666666674" width="393" height="489.33333333333326"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="294.66666666666674" width="393" height="489.33333333333326" />
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="ygW-kh-ap1"/>
-                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="ygW-kh-ap1" />
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
                         <constraints>
-                            <constraint firstItem="g64-Cc-ogQ" firstAttribute="top" secondItem="ygW-kh-ap1" secondAttribute="top" constant="20" id="2m3-mA-zg6"/>
-                            <constraint firstItem="g64-Cc-ogQ" firstAttribute="centerX" secondItem="xHX-qY-Pob" secondAttribute="centerX" id="8RR-c3-yoH"/>
-                            <constraint firstItem="nif-8X-U3Q" firstAttribute="centerX" secondItem="xHX-qY-Pob" secondAttribute="centerX" id="AiK-QV-Kju"/>
-                            <constraint firstItem="ygW-kh-ap1" firstAttribute="bottom" secondItem="JsQ-O7-vGQ" secondAttribute="bottom" id="Cb1-s9-rHK"/>
-                            <constraint firstItem="ygW-kh-ap1" firstAttribute="trailing" secondItem="JsQ-O7-vGQ" secondAttribute="trailing" id="Ipl-4z-NhP"/>
-                            <constraint firstItem="JsQ-O7-vGQ" firstAttribute="leading" secondItem="ygW-kh-ap1" secondAttribute="leading" id="Seu-Xo-ilT"/>
-                            <constraint firstItem="nif-8X-U3Q" firstAttribute="top" secondItem="g64-Cc-ogQ" secondAttribute="bottom" constant="16" id="btg-4i-hl1"/>
-                            <constraint firstItem="JsQ-O7-vGQ" firstAttribute="top" secondItem="nif-8X-U3Q" secondAttribute="bottom" constant="32" id="cA9-7P-g1F"/>
+                            <constraint firstItem="g64-Cc-ogQ" firstAttribute="top" secondItem="ygW-kh-ap1" secondAttribute="top" constant="20" id="2m3-mA-zg6" />
+                            <constraint firstItem="g64-Cc-ogQ" firstAttribute="centerX" secondItem="xHX-qY-Pob" secondAttribute="centerX" id="8RR-c3-yoH" />
+                            <constraint firstItem="nif-8X-U3Q" firstAttribute="centerX" secondItem="xHX-qY-Pob" secondAttribute="centerX" id="AiK-QV-Kju" />
+                            <constraint firstItem="ygW-kh-ap1" firstAttribute="bottom" secondItem="JsQ-O7-vGQ" secondAttribute="bottom" id="Cb1-s9-rHK" />
+                            <constraint firstItem="ygW-kh-ap1" firstAttribute="trailing" secondItem="JsQ-O7-vGQ" secondAttribute="trailing" id="Ipl-4z-NhP" />
+                            <constraint firstItem="JsQ-O7-vGQ" firstAttribute="leading" secondItem="ygW-kh-ap1" secondAttribute="leading" id="Seu-Xo-ilT" />
+                            <constraint firstItem="nif-8X-U3Q" firstAttribute="top" secondItem="g64-Cc-ogQ" secondAttribute="bottom" constant="16" id="btg-4i-hl1" />
+                            <constraint firstItem="JsQ-O7-vGQ" firstAttribute="top" secondItem="nif-8X-U3Q" secondAttribute="bottom" constant="32" id="cA9-7P-g1F" />
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="logoImageView" destination="g64-Cc-ogQ" id="KcT-8h-ih4"/>
-                        <outlet property="tableView" destination="JsQ-O7-vGQ" id="zME-Hg-tbh"/>
-                        <outlet property="teamNameLabel" destination="nif-8X-U3Q" id="F2P-WZ-scB"/>
+                        <outlet property="logoImageView" destination="g64-Cc-ogQ" id="KcT-8h-ih4" />
+                        <outlet property="tableView" destination="JsQ-O7-vGQ" id="zME-Hg-tbh" />
+                        <outlet property="teamNameLabel" destination="nif-8X-U3Q" id="F2P-WZ-scB" />
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iMO-iY-5dg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iMO-iY-5dg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="3822" y="1089"/>
+            <point key="canvasLocation" x="3822" y="1089" />
         </scene>
-        <!--Leagues View Controller-->
+        
         <scene sceneID="dEE-Vp-wj6">
             <objects>
                 <viewController storyboardIdentifier="LeaguesViewController" id="2hL-IG-B0m" customClass="LeaguesViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2S6-or-rwr">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5dv-uc-aej">
-                                <rect key="frame" x="0.0" y="190" width="393" height="594"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="190" width="393" height="594" />
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" />
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SOx-GY-ADj" customClass="TableViewCell" customModule="iSports" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422" />
+                                        <autoresizingMask key="autoresizingMask" />
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SOx-GY-ADj" id="gic-3k-tP6">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422" />
+                                            <autoresizingMask key="autoresizingMask" />
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="lod-Qi-Y7u" userLabel="Searching..">
-                                <rect key="frame" x="0.0" y="118" width="393" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="56" />
+                                <textInputTraits key="textInputTraits" />
                                 <connections>
-                                    <outlet property="delegate" destination="2hL-IG-B0m" id="ewE-I1-msJ"/>
+                                    <outlet property="delegate" destination="2hL-IG-B0m" id="ewE-I1-msJ" />
                                 </connections>
                             </searchBar>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="gvS-Lv-ubU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="gvS-Lv-ubU" />
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" />
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5dv-uc-aej" secondAttribute="trailing" id="2OE-UN-qAA"/>
-                            <constraint firstItem="5dv-uc-aej" firstAttribute="leading" secondItem="2S6-or-rwr" secondAttribute="leading" id="31I-23-mIc"/>
-                            <constraint firstItem="gvS-Lv-ubU" firstAttribute="top" secondItem="lod-Qi-Y7u" secondAttribute="top" id="UQA-h8-a0h"/>
-                            <constraint firstItem="5dv-uc-aej" firstAttribute="top" secondItem="lod-Qi-Y7u" secondAttribute="bottom" constant="16" id="YyV-Z7-woh"/>
-                            <constraint firstItem="gvS-Lv-ubU" firstAttribute="trailing" secondItem="lod-Qi-Y7u" secondAttribute="trailing" id="bU9-DF-liv"/>
-                            <constraint firstItem="5dv-uc-aej" firstAttribute="bottom" secondItem="gvS-Lv-ubU" secondAttribute="bottom" id="c81-XU-9LG"/>
-                            <constraint firstItem="lod-Qi-Y7u" firstAttribute="leading" secondItem="gvS-Lv-ubU" secondAttribute="leading" id="tcE-xR-zNP"/>
+                            <constraint firstAttribute="trailing" secondItem="5dv-uc-aej" secondAttribute="trailing" id="2OE-UN-qAA" />
+                            <constraint firstItem="5dv-uc-aej" firstAttribute="leading" secondItem="2S6-or-rwr" secondAttribute="leading" id="31I-23-mIc" />
+                            <constraint firstItem="gvS-Lv-ubU" firstAttribute="top" secondItem="lod-Qi-Y7u" secondAttribute="top" id="UQA-h8-a0h" />
+                            <constraint firstItem="5dv-uc-aej" firstAttribute="top" secondItem="lod-Qi-Y7u" secondAttribute="bottom" constant="16" id="YyV-Z7-woh" />
+                            <constraint firstItem="gvS-Lv-ubU" firstAttribute="trailing" secondItem="lod-Qi-Y7u" secondAttribute="trailing" id="bU9-DF-liv" />
+                            <constraint firstItem="5dv-uc-aej" firstAttribute="bottom" secondItem="gvS-Lv-ubU" secondAttribute="bottom" id="c81-XU-9LG" />
+                            <constraint firstItem="lod-Qi-Y7u" firstAttribute="leading" secondItem="gvS-Lv-ubU" secondAttribute="leading" id="tcE-xR-zNP" />
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="searchBar" destination="lod-Qi-Y7u" id="eLf-5X-kJO"/>
-                        <outlet property="tableView" destination="5dv-uc-aej" id="leagues-tv-outlet"/>
+                        <outlet property="searchBar" destination="lod-Qi-Y7u" id="eLf-5X-kJO" />
+                        <outlet property="tableView" destination="5dv-uc-aej" id="leagues-tv-outlet" />
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="4008" y="208"/>
+            <point key="canvasLocation" x="4008" y="208" />
         </scene>
-        <!--Match Details View Controller-->
+        
         <scene sceneID="match-details-scene">
             <objects>
                 <viewController storyboardIdentifier="MatchDetailsViewController" id="MatchDetailsVC-ID" customClass="MatchDetailsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="match-view-id">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="match-table-view">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="666" />
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" />
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="match-safe-area"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="match-safe-area" />
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" />
                         <constraints>
-                            <constraint firstItem="match-safe-area" firstAttribute="bottom" secondItem="match-table-view" secondAttribute="bottom" id="match-tv-bottom"/>
-                            <constraint firstItem="match-table-view" firstAttribute="leading" secondItem="match-safe-area" secondAttribute="leading" id="match-tv-leading"/>
-                            <constraint firstItem="match-table-view" firstAttribute="top" secondItem="match-safe-area" secondAttribute="top" id="match-tv-top"/>
-                            <constraint firstItem="match-safe-area" firstAttribute="trailing" secondItem="match-table-view" secondAttribute="trailing" id="match-tv-trailing"/>
+                            <constraint firstItem="match-safe-area" firstAttribute="bottom" secondItem="match-table-view" secondAttribute="bottom" id="match-tv-bottom" />
+                            <constraint firstItem="match-table-view" firstAttribute="leading" secondItem="match-safe-area" secondAttribute="leading" id="match-tv-leading" />
+                            <constraint firstItem="match-table-view" firstAttribute="top" secondItem="match-safe-area" secondAttribute="top" id="match-tv-top" />
+                            <constraint firstItem="match-safe-area" firstAttribute="trailing" secondItem="match-table-view" secondAttribute="trailing" id="match-tv-trailing" />
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="match-table-view" id="match-table-outlet"/>
+                        <outlet property="tableView" destination="match-table-view" id="match-table-outlet" />
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Match-Responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Match-Responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder" />
             </objects>
-            <point key="canvasLocation" x="6500" y="-35"/>
+            <point key="canvasLocation" x="6500" y="-35" />
         </scene>
     </scenes>
     <resources>
-        <image name="house" catalog="system" width="128" height="104"/>
-        <image name="shield.fill" catalog="system" width="121" height="128"/>
-        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="house" catalog="system" width="128" height="104" />
+        <image name="shield.fill" catalog="system" width="121" height="128" />
+        <image name="star" catalog="system" width="128" height="116" />
         <namedColor name="AccentColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
         </namedColor>
         <namedColor name="accentColor">
-            <color red="0.0039215686274509803" green="0.27843137254901962" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0039215686274509803" green="0.27843137254901962" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
         </namedColor>
         <namedColor name="background">
-            <color red="0.95686274509803926" green="0.96862745098039216" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.95686274509803926" green="0.96862745098039216" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
         </systemColor>
         <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
         </systemColor>
     </resources>
 </document>

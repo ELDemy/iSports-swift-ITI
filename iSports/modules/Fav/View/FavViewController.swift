@@ -20,6 +20,8 @@ class FavViewController: UIViewController, FavView {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = L10n.favourites.localized
+        self.navigationItem.title = "Favorites"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         if presenter == nil {
             let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
@@ -44,7 +46,7 @@ class FavViewController: UIViewController, FavView {
         
  
         let emptyView = EmptyStateView(
-            message: NSLocalizedString("FAV_EMPTY_STATE", comment: ""),
+            message: "No Favorites Yet\n\nExplore sports and add your favorite leagues to see them here!",
             animationName: Constants.Lottie.emptyEvents
         )
         
