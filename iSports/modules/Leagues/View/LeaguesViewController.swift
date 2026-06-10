@@ -129,9 +129,7 @@ extension LeaguesViewController: SkeletonTableViewDataSource {
 extension LeaguesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        print("DEBUG: Row \(indexPath.row) was tapped")
-            
+                    
             if presenter != nil {
                 presenter.didSelectLeague(at: indexPath.row)
             } else {

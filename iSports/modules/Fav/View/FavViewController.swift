@@ -11,7 +11,11 @@ class FavViewController: UIViewController, FavView {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var presenter: FavPresenter!
+    lazy var presenter: FavPresenter = {
+            let nav = self.navigationController ?? UINavigationController()
+            let router = AppRouter(navigationController: nav)
+            return FavPresenter(view: self, router: router, sportName: "football")
+        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +26,17 @@ class FavViewController: UIViewController, FavView {
             presenter = FavPresenter(view: self, router: router, sportName: "football")
         }
         
-        let nib = UINib(nibName: "TableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "cell")
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        let nib = UINib(nibName: "TableViewCell", bundle: nil)
+                tableView.register(nib, forCellReuseIdentifier: "cell")
+                
+                tableView.dataSource = self
+                tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.fetchFavorites()
+        presenter.fetchFavorites()
     }
     
     func showEmptyState() {
@@ -103,17 +108,15 @@ class FavViewController: UIViewController, FavView {
 
 extension FavViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.getNumberOfSections() ?? 0
+        return presenter.getNumberOfSections()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.getCount(in: section) ?? 0
+        return presenter.getCount(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-            
-            guard let presenter = presenter else { return cell }
             
             let coreDataLeague = presenter.getLeague(at: indexPath)
             
@@ -150,7 +153,7 @@ extension FavViewController: UITableViewDataSource {
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .natural
         
-        guard let sport = presenter?.getSportName(for: section) else { return nil }
+        let sport = presenter.getSportName(for: section)
         label.text = L10n.sport(for: sport)
         
         headerView.addSubview(label)

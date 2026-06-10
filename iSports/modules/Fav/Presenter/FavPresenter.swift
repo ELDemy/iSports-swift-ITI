@@ -1,7 +1,5 @@
 //
 //  FavPresenter.swift
-//  MAD46_Sports
-//
 //  Created by JETSMobileLabMini3 on 02/05/2026.
 //
 
@@ -17,7 +15,7 @@ protocol FavView: AnyObject {
 class FavPresenter {
     weak var view: FavView?
     var sport : String
-    private weak var router: AppRouterProtocol?
+    private let router: AppRouterProtocol
     var groupedLeagues: [String: [Leagues]] = [:]
     var sports: [String] = []
     
@@ -78,6 +76,7 @@ class FavPresenter {
     
     func didSelectLeague(at indexPath: IndexPath) {
         let sportName = sports[indexPath.section]
+        
         guard let coreDataLeague = groupedLeagues[sportName]?[indexPath.row] else { return }
         
         let name = coreDataLeague.leagueName ?? NSLocalizedString("UNKNOWN_LEAGUE", comment: "")
@@ -87,7 +86,8 @@ class FavPresenter {
         let savedLogoUrl = coreDataLeague.leagueLogo
         
         let model = LeagueModel(leagueKey: id, leagueName: name, leagueLogo: savedLogoUrl, countryName: sportName)
+        print("Presenter: Calling router to navigate to \(name)")
         
-        router?.navigateToLeagueDetails(sportName: savedSport, league: model)
+        router.navigateToLeagueDetails(sportName: savedSport, league: model)
     }
 }

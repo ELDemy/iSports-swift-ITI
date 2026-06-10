@@ -21,6 +21,7 @@ protocol LeagueDetailsPresenterProtocol: AnyObject {
     var sportName: String { get set }
     var appRouter: AppRouter? { get set }
     func viewDidLoad()
+    func checkIsFavorite() -> Bool
     func didTapFavorite()
     func didSelectTeam(team: Team)->Bool
     func didSelectEvent(event: Event)
