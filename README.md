@@ -43,36 +43,75 @@ iSports is a native iOS app built with **UIKit** that lets you explore football,
 
 ## Screenshots
 
-### 🌙 Dark theme
+```
+⚽  4 - 3 - 3  Formation
+```
+
+<!-- ═══════════════════════════════════════ ATTACK ═══════════════════════════════════════ -->
+<!-- 3 forwards = the dev team (light theme screens) -->
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/25df757e-cd01-44b5-b238-51cfc3b877be" width="18%" />
-  <img src="https://github.com/user-attachments/assets/7dbb681b-f53d-4c88-b604-6a20a3ec15ff" width="18%" />
-  <img src="https://github.com/user-attachments/assets/f769f3b9-01b6-4e0f-a1c2-56c62e97b18c" width="18%" />
-  <img src="https://github.com/user-attachments/assets/cd469567-1cf1-4910-9f58-10bac8dc8ea4" width="18%" />
-  <img src="https://github.com/user-attachments/assets/20d1444f-85f8-485d-9f24-d565d674589c" width="18%" />
+
+
+| Mohamed Ali Shaltoot | Mahmoud Mostafa ElDemerdash | Omer Ramadan ElRouby |
+|:---:|:---:|:---:|
+| <img src="https://avatars.githubusercontent.com/u/162721140?v=4" width="120" style="border-radius:100"/> | <img src="https://avatars.githubusercontent.com/u/94925532?v=4" width="120" style="border-radius:100"/>  | <img src="https://avatars.githubusercontent.com/u/115513246?v=4" width="120" style="border-radius:100"/>  |
+| `MohamedAliShaltoot` | `ELDemy` | `OmarRamadan20` |
+
 </div>
+
+<!-- ════════════════════════════════════════ MID ════════════════════════════════════════ -->
+
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/cf64b124-32e4-4cae-9bcb-710cf0b473a5" width="18%" />
+
+| | | |
+|:---:|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/25df757e-cd01-44b5-b238-51cfc3b877be" width="120" /> | <img src="https://github.com/user-attachments/assets/7dbb681b-f53d-4c88-b604-6a20a3ec15ff" width="120" /> | <img src="https://github.com/user-attachments/assets/f769f3b9-01b6-4e0f-a1c2-56c62e97b18c" width="120" /> |
+| `League Details 🌙` | `Leagues 🌙` | `Match Events 🌙` |
+
 </div>
 
-<br/>
-
-### ☀️ Light theme
+<!-- ══════════════════════════════════════ DEFENSE ══════════════════════════════════════ -->
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/1c4d2d28-396c-4752-b954-84c0b0f27a67" width="18%" />
-  <img src="https://github.com/user-attachments/assets/83c340a6-8a24-4bf1-b792-73e1147fcfde" width="18%" />
-  <img src="https://github.com/user-attachments/assets/b19884b8-b011-4c80-aa05-5e45c873472a" width="18%" />
-  <img src="https://github.com/user-attachments/assets/12eadeef-636c-4f66-8b73-22d0f8aa9210" width="18%" />
-  <img src="https://github.com/user-attachments/assets/c8af163f-e8ad-4e36-9c1f-3def8c12b5c6" width="18%" />
+
+| | | | |
+|:---:|:---:|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/cd469567-1cf1-4910-9f58-10bac8dc8ea4" width="100" /> | <img src="https://github.com/user-attachments/assets/20d1444f-85f8-485d-9f24-d565d674589c" width="100" /> | <img src="https://github.com/user-attachments/assets/cf64b124-32e4-4cae-9bcb-710cf0b473a5" width="100" /> | <img src="https://github.com/user-attachments/assets/12eadeef-636c-4f66-8b73-22d0f8aa9210" width="100" /> |
+| `Lineups 🌙` | `Team Details 🌙` | `Player Details 🌙` | `Match Events ☀️` |
+
 </div>
+
+<!-- ══════════════════════════════════════ KEEPER ═══════════════════════════════════════ -->
+
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/d0f0bef1-cbc5-45b0-b5bb-b3ec84914001" width="18%" />
-  <img src="https://github.com/user-attachments/assets/098f63c6-b2ca-4dc2-843a-1673e87b8404" width="18%" />
-  <img src="https://github.com/user-attachments/assets/71f4c31c-46dc-4cd4-b81b-9f8d310ab84b" width="18%" />
-  <img src="https://github.com/user-attachments/assets/54ad2406-e6cd-42b0-add7-a12cbe11beda" width="18%" />
-  <img src="https://github.com/user-attachments/assets/74c34508-2068-4add-8ac5-3dc9d44e1ad1" width="18%" />
+
+| |
+|:---:|
+| <img src="https://github.com/user-attachments/assets/c8af163f-e8ad-4e36-9c1f-3def8c12b5c6" width="120" /> |
+| `Statistics ☀️` |
+
+</div>
+
+<!-- ══════════════════════════════════════ BENCH ════════════════════════════════════════ -->
+
+<div align="center">
+
+---
+
+### 🪑 Substitutes Bench
+<img src="https://github.com/user-attachments/assets/1c4d2d28-396c-4752-b954-84c0b0f27a67" width="120" />
+<img src="https://github.com/user-attachments/assets/83c340a6-8a24-4bf1-b792-73e1147fcfde" width="120" />
+<img src="https://github.com/user-attachments/assets/b19884b8-b011-4c80-aa05-5e45c873472a" width="120" /> 
+<img src="https://github.com/user-attachments/assets/d0f0bef1-cbc5-45b0-b5bb-b3ec84914001" width="120" />
+<img src="https://github.com/user-attachments/assets/098f63c6-b2ca-4dc2-843a-1673e87b8404" width="120" />
+<img src="https://github.com/user-attachments/assets/71f4c31c-46dc-4cd4-b81b-9f8d310ab84b" width="120" />
+<img src="https://github.com/user-attachments/assets/54ad2406-e6cd-42b0-add7-a12cbe11beda" width="120" />
+<img src="https://github.com/user-attachments/assets/74c34508-2068-4add-8ac5-3dc9d44e1ad1" width="120" />
+
+
+`Home ☀️` &nbsp;&nbsp; `Leagues ☀️` &nbsp;&nbsp; `League Details ☀️` &nbsp;&nbsp; `Lineups ☀️` &nbsp;&nbsp; `Team Details ☀️` &nbsp;&nbsp; `Player Details ☀️` &nbsp;&nbsp; `Favorites ☀️` &nbsp;&nbsp; `Settings ☀️`
+
 </div>
 
 ---
@@ -160,7 +199,6 @@ Splash
 </div>
 
 ---
-
 ## Team
 
 <div align="center">
@@ -174,7 +212,6 @@ Splash
 </div>
 
 ---
-
 <div align="center">
 
 *Built with UIKit · MVP Architecture · Modern iOS development practices*
