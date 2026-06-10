@@ -163,30 +163,6 @@
         }
       }
     },
-    "Settings-Nav-Item.title" : {
-      "comment" : "Class = \"UINavigationItem\"; title = \"Settings\"; ObjectID = \"Settings-Nav-Item\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Settings"
-          }
-        }
-      }
-    },
-    "Settings-Tab-Item.title" : {
-      "comment" : "Class = \"UITabBarItem\"; title = \"Settings\"; ObjectID = \"Settings-Tab-Item\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Settings"
-          }
-        }
-      }
-    },
     "Sxz-Ma-6pG.text" : {
       "comment" : "Class = \"UILabel\"; text = \"title\"; ObjectID = \"Sxz-Ma-6pG\";",
       "extractionState" : "extracted_with_value",
@@ -219,30 +195,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Home"
-          }
-        }
-      }
-    },
-    "Theme-Button-Id.configuration.title" : {
-      "comment" : "Class = \"UIButton\"; configuration.title = \" Dark Mode\"; ObjectID = \"Theme-Button-Id\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : " Dark Mode"
-          }
-        }
-      }
-    },
-    "Theme-Button-Id.normalTitle" : {
-      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"Theme-Button-Id\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Button"
           }
         }
       }
