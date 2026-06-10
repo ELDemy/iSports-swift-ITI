@@ -136,8 +136,19 @@ extension LeaguesViewController: SkeletonTableViewDataSource {
 
         cell.onFavTapped = { [weak self] in
             guard let self = self else { return }
-            let newState = self.presenter.toggleFavorite(at: indexPath.row)
-            cell.updateFavIcon(isFav: newState)
+            
+            if self.presenter.isFavorite(at: indexPath.row) {
+                let alert = UIAlertController(title: "Remove from Favorites", message: "Are you sure you want to remove this league from your favorites?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+                    let newState = self.presenter.toggleFavorite(at: indexPath.row)
+                    cell.updateFavIcon(isFav: newState)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let newState = self.presenter.toggleFavorite(at: indexPath.row)
+                cell.updateFavIcon(isFav: newState)
+            }
         }
 
         return cell
