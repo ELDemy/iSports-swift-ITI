@@ -19,43 +19,54 @@ class FavViewController: UIViewController, FavView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = L10n.favourites.localized
-        self.navigationItem.title = "Favorites"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
+
+        // MARK: - Styled Navigation Bar
+        navigationItem.title = ""
+        navigationController?.navigationBar.prefersLargeTitles = false
+
         let accent = UIColor(named: "accentColor") ?? .systemGreen
+
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
-        appearance.titleTextAttributes = [
-            .foregroundColor: accent,
-            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
-        ]
-
-        let backItemAppearance = UIBarButtonItemAppearance()
-        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
-        appearance.backButtonAppearance = backItemAppearance
-        
-        let backImage = UIImage(systemName: "chevron.backward")?
-            .withTintColor(accent, renderingMode: .alwaysOriginal)
-        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
-
+        appearance.shadowColor = .clear
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
         navigationController?.navigationBar.tintColor = accent
-        
-        if presenter == nil {
-            let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
-            presenter = FavPresenter(view: self, router: router, sportName: "football")
-        }
-        
-        
+
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.backButtonAppearance = backItemAppearance
+
+        let backImage = UIImage(systemName: "chevron.backward")?
+            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+
+        // Custom title view with emoji + styled label
+        let titleStack = UIStackView()
+        titleStack.axis = .horizontal
+        titleStack.alignment = .center
+        titleStack.spacing = 6
+
+        let emojiLabel = UILabel()
+        emojiLabel.text = "❤️"
+        emojiLabel.font = UIFont.systemFont(ofSize: 22)
+
+        let wordLabel = UILabel()
+        wordLabel.text = "Favourites"
+        wordLabel.font = UIFont.systemFont(ofSize: 22, weight: .heavy)
+        wordLabel.textColor = accent
+
+        titleStack.addArrangedSubview(emojiLabel)
+        titleStack.addArrangedSubview(wordLabel)
+        navigationItem.titleView = titleStack
+
+        // MARK: - Table View
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
-                tableView.register(nib, forCellReuseIdentifier: "cell")
-                
-                tableView.dataSource = self
-                tableView.delegate = self
+        tableView.register(nib, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
