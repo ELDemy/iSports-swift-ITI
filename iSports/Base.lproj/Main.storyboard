@@ -554,7 +554,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="5040" y="133"/>
+
         </scene>
         <!--Match Details View Controller-->
         <scene sceneID="match-details-scene">
