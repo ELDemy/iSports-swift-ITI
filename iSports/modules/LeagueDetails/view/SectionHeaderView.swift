@@ -21,7 +21,7 @@ class SectionHeaderView: UICollectionReusableView {
     private let countBadge: UILabel = {
         let l = UILabel()
         l.font = .systemFont(ofSize: 11, weight: .semibold)
-        l.textColor = .white
+        l.textColor = UIColor(named: "badgeTextColor")
         l.textAlignment = .center
         l.backgroundColor = UIColor(named: "accentColor")
         l.layer.cornerRadius = 10

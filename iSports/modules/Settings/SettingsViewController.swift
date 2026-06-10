@@ -67,8 +67,19 @@ class SettingsViewController: UIViewController {
         
         let title = currentStyle == .dark ? " Light Mode" : " Dark Mode"
         let iconName = currentStyle == .dark ? "sun.max.fill" : "moon.fill"
+        // Reverse colors
+         let foregroundColor: UIColor =
+             currentStyle == .dark ? .black : .white
         
-        themeButton.setTitle(title, for: .normal)
-        themeButton.setImage(UIImage(systemName: iconName), for: .normal)
+       themeButton.setTitle(title, for: .normal)
+       themeButton.setImage(UIImage(systemName: iconName), for: .normal)
+        
+        themeButton.setTitleColor(foregroundColor, for: .normal)
+            themeButton.tintColor = foregroundColor
+        if var config = themeButton.configuration {
+            config.baseForegroundColor = foregroundColor
+            themeButton.configuration = config
+        }
+       
     }
 }
