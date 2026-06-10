@@ -10,8 +10,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         self.tabBarItem.title = L10n.home.localized
-        self.navigationItem.title = "iSports"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         if presenter == nil {
             let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
@@ -39,24 +37,55 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func setupNavigationBar() {
+        guard let navigationController = navigationController else { return }
+            
+            navigationController.setNavigationBarHidden(false, animated: false)
+            navigationController.navigationBar.prefersLargeTitles = false
+
+            let accent = UIColor(named: "accentColor") ?? UIColor.systemGreen
+
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .systemBackground
+            appearance.shadowColor = .clear
+
+            navigationController.navigationBar.standardAppearance = appearance
+            navigationController.navigationBar.scrollEdgeAppearance = appearance
+            navigationController.navigationBar.compactAppearance = appearance
+            navigationController.navigationBar.tintColor = accent
+
+            let titleLabel = UILabel()
+            titleLabel.text = "iSport"
+            titleLabel.font = .boldSystemFont(ofSize: 20)
+            titleLabel.textColor = .label 
+            titleLabel.sizeToFit()
+
+            navigationItem.titleView = titleLabel
+    }
+
     private func setupUI() {
+        view.subviews.forEach { $0.removeFromSuperview() }
         view.backgroundColor = .systemBackground
-        
+
+        setupNavigationBar()
+
         let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 16
-        layout.minimumLineSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        
+        layout.minimumInteritemSpacing = 12
+        layout.minimumLineSpacing = 12
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 16, bottom: 16, right: 16)
+
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+
         collectionView.register(SportCollectionViewCell.self, forCellWithReuseIdentifier: SportCollectionViewCell.identifier)
         collectionView.register(BannerHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BannerHeaderView.identifier)
-        
+
         view.addSubview(collectionView)
+
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -92,8 +121,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - 48) / 2
-        return CGSize(width: width, height: 160)
+        let totalPadding: CGFloat = 16 + 16 + 12  // left + right + spacing between
+        let width = (collectionView.bounds.width - totalPadding) / 2
+        return CGSize(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -105,6 +135,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 200)
+        return CGSize(width: collectionView.bounds.width, height: 260)
     }
 }

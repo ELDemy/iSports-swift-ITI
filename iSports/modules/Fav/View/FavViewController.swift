@@ -19,10 +19,11 @@ class FavViewController: UIViewController, FavView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = L10n.favourites.localized
-        self.navigationItem.title = "Favorites"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
+
+        // MARK: - Styled Navigation Bar
+        navigationItem.title = ""
+        navigationController?.navigationBar.prefersLargeTitles = false
+
         let accent = UIColor(named: "accentColor") ?? .systemGreen
         let dynamicColor = UIColor { traitCollection in
             return traitCollection.userInterfaceStyle == .dark ? .white : accent
@@ -55,10 +56,9 @@ class FavViewController: UIViewController, FavView {
         
         
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
-                tableView.register(nib, forCellReuseIdentifier: "cell")
-                
-                tableView.dataSource = self
-                tableView.delegate = self
+        tableView.register(nib, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
