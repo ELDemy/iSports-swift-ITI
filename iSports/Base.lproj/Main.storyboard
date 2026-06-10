@@ -44,7 +44,7 @@
             </objects>
             <point key="canvasLocation" x="1837.4045801526718" y="-2.1126760563380285"/>
         </scene>
-        <!--Favorite Leagues-->
+        <!--Favourites-->
         <scene sceneID="Fav-Scene-Id">
             <objects>
                 <viewController id="Fav-VC-Id" customClass="FavViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
@@ -71,7 +71,7 @@
                         <viewLayoutGuide key="safeArea" id="Fav-Safe-Id"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite Leagues" image="star" catalog="system" id="Fav-Tab-Id"/>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="star" catalog="system" id="Fav-Tab-Id"/>
                     <connections>
                         <outlet property="tableView" destination="OZR-8V-Mlw" id="fav-tv-outlet"/>
                     </connections>
@@ -287,6 +287,10 @@
                         <outlet property="cricketView" destination="Card-Cricket" id="sfQ-a7-nRh"/>
                         <outlet property="footballBgImageView" destination="BgImg-Foot" id="outlet-bg-foot"/>
                         <outlet property="footballView" destination="Card-Football" id="FiF-gS-5WV"/>
+                        <outlet property="footballLabel" destination="Lbl-Foot" id="outlet-lbl-foot"/>
+                        <outlet property="basketballLabel" destination="Lbl-Basket" id="outlet-lbl-basket"/>
+                        <outlet property="tennisLabel" destination="Lbl-Tennis" id="outlet-lbl-tennis"/>
+                        <outlet property="cricketLabel" destination="Lbl-Cricket" id="outlet-lbl-cricket"/>
                         <outlet property="tennisBgImageView" destination="BgImg-Tennis" id="outlet-bg-tennis"/>
                         <outlet property="tennisView" destination="Card-Tennis" id="uc6-JD-IqK"/>
                     </connections>
@@ -531,8 +535,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lod-Qi-Y7u" userLabel="Searching..">
-                                <rect key="frame" x="0.0" y="106" width="393" height="44"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="lod-Qi-Y7u" userLabel="Searching..">
+                                <rect key="frame" x="0.0" y="94" width="393" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -544,6 +548,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="lod-Qi-Y7u" id="eLf-5X-kJO"/>
                         <outlet property="tableView" destination="5dv-uc-aej" id="leagues-tv-outlet"/>
                     </connections>
                 </viewController>

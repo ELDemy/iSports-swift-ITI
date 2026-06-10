@@ -1,0 +1,71 @@
+// Tab Bar
+"tab_home" = "Home";
+"tab_favourites" = "Favourites";
+
+// Sports
+"sport_basketball" = "Basketball";
+"sport_football" = "Football";
+"sport_tennis" = "Tennis";
+"sport_cricket" = "Cricket";
+
+// Onboarding
+"onboarding_skip" = "Skip";
+"onboarding_next" = "Next";
+"onboarding_get_started" = "Get Started";
+
+"onboarding_title_1" = "Your Ultimate Sports";
+"onboarding_desc_1" = "Everything you need to follow matches, scores, and sports news in one place.";
+
+"onboarding_title_2" = "Personalized for You";
+"onboarding_desc_2" = "Choose your favorite teams and receive updates tailored to your interests.";
+
+"onboarding_title_3" = "Ready for Every Match";
+"onboarding_desc_3" = "Stay connected to every game with instant updates and key match insights.";
+
+// League Details
+"league_upcoming_events" = "Upcoming Events";
+"league_latest_results" = "Latest Results";
+"league_players" = "Players";
+"league_teams" = "Teams";
+"league_no_upcoming" = "No upcoming events";
+"league_no_results" = "No results yet";
+"league_no_teams" = "No teams available";
+"error_something_went_wrong" = "Something went wrong";
+"ok" = "OK";
+
+// Match Details
+"match_statistics" = "Statistics";
+"match_lineups" = "Lineups";
+"match_events" = "Events";
+"match_details_title" = "Match Details";
+"match_vs" = "VS";
+
+// Team & Player Details
+"team_details_title" = "Team Details";
+"player_tennis_title" = "Tennis Player";
+"player_profile_title" = "Player Profile";
+"teams_in_league_title" = "Teams In League";
+"team_details_coming_soon" = "Coming Soon";
+"team_details_coming_soon_message" = "Player details for this sport will come up soon.";
+
+"GOALKEEPERS" = "GOALKEEPERS";
+"DEFENDERS" = "DEFENDERS";
+"MIDFIELDERS" = "MIDFIELDERS";
+"FORWARDS"= "FORWARDS";
+
+
+"player_birthday" = "Birthday";
+"player_country" = "Country";
+"player_rank" = "Rank (%@)";
+"player_titles" = "Titles";
+"player_matches_won" = "Matches Won";
+"player_matches_lost" = "Matches Lost";
+"player_clay_wl" = "Clay W/L";
+"player_hard_wl" = "Hard W/L";
+"player_grass_wl" = "Grass W/L";
+
+"player_age" = "Age";
+"player_squad_number" = "Squad Number";
+"player_matches_played" = "Matches Played";
+"player_goals" = "Goals";
+"player_rating" = "Rating";

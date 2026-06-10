@@ -145,13 +145,15 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
     }
 
     private func makeDateRange(pastDays: Int, futureDays: Int) -> (from: String, to: String) {
-        let fmt   = DateFormatter()
-        fmt.dateFormat = "yyyy-MM-dd"
-        let today = Date()
-        let from  = fmt.string(from: Calendar.current.date(byAdding: .day, value: -pastDays, to: today)!)
-        let to    = fmt.string(from: Calendar.current.date(byAdding: .day, value:  futureDays, to: today)!)
-        return (from, to)
-    }
+            let fmt = DateFormatter()
+            fmt.dateFormat = "yyyy-MM-dd"
+            fmt.locale = Locale(identifier: "en_US_POSIX")
+            
+            let today = Date()
+            let from  = fmt.string(from: Calendar.current.date(byAdding: .day, value: -pastDays, to: today)!)
+            let to    = fmt.string(from: Calendar.current.date(byAdding: .day, value:  futureDays, to: today)!)
+            return (from, to)
+        }
 
     private func fetchParticipants(completion: @escaping (Result<[Team], Error>) -> Void) {
         switch SportCategory(sportName: sportName) {

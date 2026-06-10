@@ -99,13 +99,26 @@ class TableViewCell: UITableViewCell {
     func setup(_ league: LeagueModel, placeholder: UIImage?) {
         labelTxt.text = league.leagueName
 
+        let defaultImage = placeholder
+            ?? UIImage(systemName: "sportscourt.fill")
+            ?? UIImage()
+
         if let urlString = league.leagueLogo,
            let url = URL(string: urlString) {
-           
-            imageV.sd_setImage(with: url, placeholderImage: placeholder)
-
+            imageV.sd_setImage(
+                with: url,
+                placeholderImage: defaultImage,
+                options: [],
+                completed: { [weak self] image, error, _, _ in
+                    if image == nil {
+                        self?.imageV.image = defaultImage
+                        self?.imageV.tintColor = UIColor(named: "AppPrimary") ?? .systemGreen
+                    }
+                }
+            )
         } else {
-            imageV.image = placeholder
+            imageV.image = defaultImage
+            imageV.tintColor = UIColor(named: "AppPrimary") ?? .systemGreen
         }
     }
     func updateFavIcon(isFav : Bool)

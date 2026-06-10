@@ -1,0 +1,70 @@
+// Tab Bar
+"tab_home" = "الصفحة الرئيسية";
+"tab_favourites" = "المفضلة";
+
+// Sports
+"sport_basketball" = "كرة السلة";
+"sport_football" = "كرة القدم";
+"sport_tennis" = "التنس";
+"sport_cricket" = "الكريكيت";
+
+// Onboarding
+"onboarding_skip" = "تخطي";
+"onboarding_next" = "التالي";
+"onboarding_get_started" = "ابدأ الآن";
+
+"onboarding_title_1" = "رياضتك المثالية";
+"onboarding_desc_1" = "كل ما تحتاجه لمتابعة المباريات، النتائج، وأخبار الرياضة في مكان واحد.";
+
+"onboarding_title_2" = "مخصصة لك";
+"onboarding_desc_2" = "اختر فرقك المفضلة واستقبل التحديثات المصممة لتناسب اهتماماتك.";
+
+"onboarding_title_3" = "مستعد لكل مباراة";
+"onboarding_desc_3" = "ابق على اتصال بكل مباراة مع تحديثات فورية ورؤى رئيسية للمباريات.";
+
+// League Details
+"league_upcoming_events" = "الأحداث القادمة";
+"league_latest_results" = "أحدث النتائج";
+"league_players" = "اللاعبين";
+"league_teams" = "الفرق";
+"league_no_upcoming" = "لا توجد أحداث قادمة";
+"league_no_results" = "لا توجد نتائج حتى الآن";
+"league_no_teams" = "لا توجد فرق متاحة";
+"error_something_went_wrong" = "حدث خطأ ما";
+"ok" = "حسناً";
+
+// Match Details
+"match_statistics" = "الإحصائيات";
+"match_lineups" = "التشكيلات";
+"match_events" = "الأحداث";
+"match_details_title" = "تفاصيل المباراة";
+"match_vs" = "ضد";
+
+// Team & Player Details
+"team_details_title" = "تفاصيل الفريق";
+"player_tennis_title" = "لاعب تنس";
+"player_profile_title" = "ملف اللاعب";
+"teams_in_league_title" = "فرق الدوري";
+"team_details_coming_soon" = "قريباً";
+"team_details_coming_soon_message" = "ستتوفر تفاصيل اللاعبين لهذه الرياضة قريباً.";
+
+"GOALKEEPERS" = "الحراس";
+"DEFENDERS" = "المدافعون";
+"MIDFIELDERS" = "وسط الملعب";
+"FORWARDS"= "المهاجمون";
+
+"player_birthday" = "تاريخ الميلاد";
+"player_country" = "البلد";
+"player_rank" = "التصنيف (%@)";
+"player_titles" = "الألقاب";
+"player_matches_won" = "المباريات التي فاز بها";
+"player_matches_lost" = "المباريات التي خسرها";
+"player_clay_wl" = "طيني فوز/خسارة";
+"player_hard_wl" = "صلب فوز/خسارة";
+"player_grass_wl" = "عشبي فوز/خسارة";
+
+"player_age" = "العمر";
+"player_squad_number" = "رقم القميص";
+"player_matches_played" = "المباريات الملعوبة";
+"player_goals" = "الأهداف";
+"player_rating" = "التقييم";
