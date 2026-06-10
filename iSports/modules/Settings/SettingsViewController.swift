@@ -7,7 +7,7 @@ class SettingsViewController: UIViewController {
 
        override func viewDidLoad() {
            super.viewDidLoad()
-
+           self.title = L10n.settings.localized
            presenter = SettingsPresenter(view: self)
 
            configureNavigationBar()

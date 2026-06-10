@@ -32,12 +32,11 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tab-Bar-Id">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="selectedImageTintColor" name="accentColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="t6k-Ou-ysl" kind="relationship" relationship="viewControllers" id="Seg-Home"/>
                         <segue destination="Fav-VC-Id" kind="relationship" relationship="viewControllers" id="Seg-Fav"/>
-                        <segue destination="Settings-Nav-Id" kind="relationship" relationship="viewControllers" id="Settings-Tab-Segue"/>
+                        <segue destination="Settings-Nav-Id" kind="relationship" relationship="viewControllers" id="jhK-Vc-e9y"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-Bar-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -52,16 +51,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OZR-8V-Mlw">
-                                <rect key="frame" x="0.0" y="118" width="400" height="597"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OZR-8V-Mlw">
+                                <rect key="frame" x="0.0" y="118" width="393" height="617"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3LJ-8Y-VtI" customClass="TableViewCell" customModule="iSports" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="400" height="47.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3LJ-8Y-VtI" id="i6Q-l6-c5S">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="47.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -70,6 +68,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fav-Safe-Id"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="leading" secondItem="Fav-Safe-Id" secondAttribute="leading" id="4vb-W3-tvw"/>
+                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="trailing" secondItem="Fav-Safe-Id" secondAttribute="trailing" id="74p-6q-UN2"/>
+                            <constraint firstItem="Fav-Safe-Id" firstAttribute="bottom" secondItem="OZR-8V-Mlw" secondAttribute="bottom" id="KiD-Ca-jiH"/>
+                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="top" secondItem="Fav-Safe-Id" secondAttribute="top" id="tlA-fg-mYS"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favourites" image="star" catalog="system" id="Fav-Tab-Id"/>
                     <connections>
@@ -279,21 +283,6 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="Tab-Item-Home"/>
-                    <connections>
-                        <outlet property="bannerImageView" destination="FHx-BR-3fk" id="outlet-banner"/>
-                        <outlet property="basketballBgImageView" destination="BgImg-Basket" id="outlet-bg-basket"/>
-                        <outlet property="basketballLabel" destination="Lbl-Basket" id="outlet-lbl-basket"/>
-                        <outlet property="basketballView" destination="Card-Basketball" id="EVU-m7-HXx"/>
-                        <outlet property="cricketBgImageView" destination="BgImg-Cricket" id="outlet-bg-cricket"/>
-                        <outlet property="cricketLabel" destination="Lbl-Cricket" id="outlet-lbl-cricket"/>
-                        <outlet property="cricketView" destination="Card-Cricket" id="sfQ-a7-nRh"/>
-                        <outlet property="footballBgImageView" destination="BgImg-Foot" id="outlet-bg-foot"/>
-                        <outlet property="footballLabel" destination="Lbl-Foot" id="outlet-lbl-foot"/>
-                        <outlet property="footballView" destination="Card-Football" id="FiF-gS-5WV"/>
-                        <outlet property="tennisBgImageView" destination="BgImg-Tennis" id="outlet-bg-tennis"/>
-                        <outlet property="tennisLabel" destination="Lbl-Tennis" id="outlet-lbl-tennis"/>
-                        <outlet property="tennisView" destination="Card-Tennis" id="uc6-JD-IqK"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1P-RV-MvZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -445,7 +434,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RZY-od-vRf"/>
-                        <color key="backgroundColor" name="ViewBackground"/>
+                        <color key="backgroundColor" name="background"/>
                         <constraints>
                             <constraint firstItem="N9Z-Wp-R4d" firstAttribute="top" secondItem="RZY-od-vRf" secondAttribute="top" id="8EO-rU-UIR"/>
                             <constraint firstItem="RZY-od-vRf" firstAttribute="bottom" secondItem="N9Z-Wp-R4d" secondAttribute="bottom" id="ROK-7b-FSQ"/>
@@ -460,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0i-Vg-1go" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2795" y="1089"/>
+            <point key="canvasLocation" x="4924" y="1451"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="c03-lY-Z0P">
@@ -510,7 +499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMO-iY-5dg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3822" y="1089"/>
+            <point key="canvasLocation" x="5605" y="1451"/>
         </scene>
         <!--Leagues View Controller-->
         <scene sceneID="dEE-Vp-wj6">
@@ -520,9 +509,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5dv-uc-aej">
-                                <rect key="frame" x="0.0" y="166" width="393" height="686"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5dv-uc-aej">
+                                <rect key="frame" x="0.0" y="190" width="393" height="594"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SOx-GY-ADj" customClass="TableViewCell" customModule="iSports" customModuleProvider="target">
@@ -535,9 +523,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="lod-Qi-Y7u" userLabel="Searching..">
-                                <rect key="frame" x="0.0" y="94" width="393" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="lod-Qi-Y7u" userLabel="Searching..">
+                                <rect key="frame" x="0.0" y="118" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="2hL-IG-B0m" id="ewE-I1-msJ"/>
@@ -546,6 +533,15 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gvS-Lv-ubU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5dv-uc-aej" secondAttribute="trailing" id="2OE-UN-qAA"/>
+                            <constraint firstItem="5dv-uc-aej" firstAttribute="leading" secondItem="2S6-or-rwr" secondAttribute="leading" id="31I-23-mIc"/>
+                            <constraint firstItem="gvS-Lv-ubU" firstAttribute="top" secondItem="lod-Qi-Y7u" secondAttribute="top" id="UQA-h8-a0h"/>
+                            <constraint firstItem="5dv-uc-aej" firstAttribute="top" secondItem="lod-Qi-Y7u" secondAttribute="bottom" constant="16" id="YyV-Z7-woh"/>
+                            <constraint firstItem="gvS-Lv-ubU" firstAttribute="trailing" secondItem="lod-Qi-Y7u" secondAttribute="trailing" id="bU9-DF-liv"/>
+                            <constraint firstItem="5dv-uc-aej" firstAttribute="bottom" secondItem="gvS-Lv-ubU" secondAttribute="bottom" id="c81-XU-9LG"/>
+                            <constraint firstItem="lod-Qi-Y7u" firstAttribute="leading" secondItem="gvS-Lv-ubU" secondAttribute="leading" id="tcE-xR-zNP"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="lod-Qi-Y7u" id="eLf-5X-kJO"/>
@@ -554,7 +550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5040" y="133"/>
+            <point key="canvasLocation" x="4008" y="208"/>
         </scene>
         <!--Match Details View Controller-->
         <scene sceneID="match-details-scene">
@@ -589,6 +585,7 @@
         <!--Settings-->
         <scene sceneID="Settings-Nav-Scene">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-Nav-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="SettingsNavController" automaticallyAdjustsScrollViewInsets="NO" id="Settings-Nav-Id" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="Settings-Tab-Item"/>
                     <toolbarItems/>
@@ -601,9 +598,8 @@
                         <segue destination="Settings-VC-Id" kind="relationship" relationship="rootViewController" id="Settings-Root-Segue"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-Nav-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3500" y="-2"/>
+            <point key="canvasLocation" x="2731" y="1081"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Settings-VC-Scene">
@@ -643,7 +639,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-VC-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4300" y="-2"/>
+            <point key="canvasLocation" x="3761" y="1081"/>
         </scene>
     </scenes>
     <resources>
@@ -654,9 +650,6 @@
         <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ViewBackground">
-            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="accentColor">
             <color red="0.0039215686274509803" green="0.27843137254901962" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

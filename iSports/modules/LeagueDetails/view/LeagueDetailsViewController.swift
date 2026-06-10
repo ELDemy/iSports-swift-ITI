@@ -353,6 +353,7 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
             self.present(alert, animated: true)
         }
     }
+    
 
     // MARK: - Private Helpers
     private func skeletonGradient() -> SkeletonGradient {
@@ -390,7 +391,33 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     }
 
     // MARK: - Actions
-    @objc private func favoriteTapped() { presenter.didTapFavorite() }
+    @objc private func favoriteTapped() {
+        if(presenter.checkIsFavorite()){
+           confirmDeletion()
+        }else{
+            presenter.didTapFavorite()
+        }
+    }
+    func confirmDeletion() {
+        // Creating the Alert Controller
+        let alert = UIAlertController(
+            title: "Remove from Favorites",
+            message: "Are you sure you want to remove this league from your favorites?",
+            preferredStyle: .alert
+        )
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            presenter.didTapFavorite()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 
     private func animateHeartButton() {
         guard
