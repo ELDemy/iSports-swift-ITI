@@ -12,32 +12,33 @@ class LeaguesViewController: UIViewController, LeaguesView {
     override func viewDidLoad() {
             super.viewDidLoad()
         let accent = UIColor(named: "accentColor") ?? .systemGreen
-      //  self.navigationController?.navigationBar.tintColor = .black
+        self.title = NSLocalizedString(presenter.sport.capitalized, comment: "")
+        
+        let dynamicColor = UIColor { traitCollection in
+            return traitCollection.userInterfaceStyle == .dark ? .white : accent
+        }
         
         setupModernSearchBar()
-        self.navigationController?.navigationBar.tintColor = accent
-            self.title = L10n.sport(for: presenter.sport)
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: accent,
+            .foregroundColor: dynamicColor,
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
 
         let backItemAppearance = UIBarButtonItemAppearance()
-        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: dynamicColor]
         appearance.backButtonAppearance = backItemAppearance
         
-        let backImage = UIImage(systemName: "chevron.backward")?
-            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        let backImage = UIImage(systemName: "chevron.backward")
         appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
 
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
-        navigationController?.navigationBar.tintColor = accent
+        navigationController?.navigationBar.tintColor = dynamicColor
             
             let nib = UINib(nibName: "TableViewCell", bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: "cell")

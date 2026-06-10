@@ -9,18 +9,22 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         let accent = UIColor(named: "accentColor") ?? .systemGreen
+        let dynamicColor = UIColor { traitCollection in
+            return traitCollection.userInterfaceStyle == .dark ? .white : accent
+        }
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: accent,
+            .foregroundColor: dynamicColor,
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.tintColor = accent
+        navigationController?.navigationBar.tintColor = dynamicColor
         
         setupUI()
     }

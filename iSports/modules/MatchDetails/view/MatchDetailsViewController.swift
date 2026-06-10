@@ -48,26 +48,29 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         view.backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
         
         let accent = UIColor(named: "accentColor") ?? .systemGreen
+        let dynamicColor = UIColor { traitCollection in
+            return traitCollection.userInterfaceStyle == .dark ? .white : accent
+        }
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: accent,
+            .foregroundColor: dynamicColor,
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
 
         let backItemAppearance = UIBarButtonItemAppearance()
-        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: dynamicColor]
         appearance.backButtonAppearance = backItemAppearance
         
-        let backImage = UIImage(systemName: "chevron.backward")?
-            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        let backImage = UIImage(systemName: "chevron.backward")
         appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
 
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
-        navigationController?.navigationBar.tintColor = accent
+        navigationController?.navigationBar.tintColor = dynamicColor
         
         if tableView == nil {
             let tv = UITableView(frame: view.bounds, style: .grouped)
