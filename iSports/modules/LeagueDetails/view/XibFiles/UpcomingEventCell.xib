@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="160"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IMG-11-123">
-                                <rect key="frame" x="6" y="20" width="60" height="60"/>
+                                <rect key="frame" x="25.333333333333329" y="20" width="60" height="60"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="tintColor" red="0.0039215686269999999" green="0.2784313725" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -36,7 +36,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IMG-22-123">
-                                <rect key="frame" x="236.33333333333337" y="20" width="60" height="60"/>
+                                <rect key="frame" x="214.66666666666666" y="20" width="59.999999999999972" height="60"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="tintColor" red="0.0039215686269999999" green="0.2784313725" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -63,14 +63,14 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U11-zz-123">
-                                <rect key="frame" x="16" y="88" width="40" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U11-zz-123">
+                                <rect key="frame" x="16" y="88" width="83" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Away" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U22-zz-123">
-                                <rect key="frame" x="248.33333333333334" y="88" width="35.666666666666657" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Away" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U22-zz-123">
+                                <rect key="frame" x="211" y="88" width="73" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -90,6 +90,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="U44-zz-123" firstAttribute="leading" secondItem="U11-zz-123" secondAttribute="trailing" constant="40" id="3gx-Tv-Oeg"/>
                             <constraint firstItem="IMG-11-123" firstAttribute="top" secondItem="BG0-vw-123" secondAttribute="top" constant="20" id="C11-zz-123"/>
                             <constraint firstItem="IMG-11-123" firstAttribute="centerX" secondItem="U11-zz-123" secondAttribute="centerX" id="C12-zz-123"/>
                             <constraint firstItem="U11-zz-123" firstAttribute="leading" secondItem="BG0-vw-123" secondAttribute="leading" constant="16" id="C13-zz-123"/>
@@ -105,6 +106,7 @@
                             <constraint firstItem="U44-zz-123" firstAttribute="centerX" secondItem="BG0-vw-123" secondAttribute="centerX" id="C41-zz-123"/>
                             <constraint firstItem="U44-zz-123" firstAttribute="top" secondItem="U33-zz-123" secondAttribute="bottom" constant="2" id="C42-zz-123"/>
                             <constraint firstItem="VS0-zz-123" firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="CW5-zz-123"/>
+                            <constraint firstItem="U22-zz-123" firstAttribute="leading" secondItem="U44-zz-123" secondAttribute="trailing" constant="40" id="wTX-OG-RUO"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -151,7 +153,7 @@
                 <outlet property="timeLabel" destination="U44-zz-123" id="O66-zz-123"/>
                 <outlet property="vsLabel" destination="VS0-zz-123" id="O77-zz-123"/>
             </connections>
-            <point key="canvasLocation" x="140" y="15"/>
+            <point key="canvasLocation" x="138.93129770992365" y="14.788732394366198"/>
         </collectionViewCell>
     </objects>
     <resources>
