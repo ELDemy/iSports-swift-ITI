@@ -282,16 +282,16 @@
                     <connections>
                         <outlet property="bannerImageView" destination="FHx-BR-3fk" id="outlet-banner"/>
                         <outlet property="basketballBgImageView" destination="BgImg-Basket" id="outlet-bg-basket"/>
+                        <outlet property="basketballLabel" destination="Lbl-Basket" id="outlet-lbl-basket"/>
                         <outlet property="basketballView" destination="Card-Basketball" id="EVU-m7-HXx"/>
                         <outlet property="cricketBgImageView" destination="BgImg-Cricket" id="outlet-bg-cricket"/>
+                        <outlet property="cricketLabel" destination="Lbl-Cricket" id="outlet-lbl-cricket"/>
                         <outlet property="cricketView" destination="Card-Cricket" id="sfQ-a7-nRh"/>
                         <outlet property="footballBgImageView" destination="BgImg-Foot" id="outlet-bg-foot"/>
-                        <outlet property="footballView" destination="Card-Football" id="FiF-gS-5WV"/>
                         <outlet property="footballLabel" destination="Lbl-Foot" id="outlet-lbl-foot"/>
-                        <outlet property="basketballLabel" destination="Lbl-Basket" id="outlet-lbl-basket"/>
-                        <outlet property="tennisLabel" destination="Lbl-Tennis" id="outlet-lbl-tennis"/>
-                        <outlet property="cricketLabel" destination="Lbl-Cricket" id="outlet-lbl-cricket"/>
+                        <outlet property="footballView" destination="Card-Football" id="FiF-gS-5WV"/>
                         <outlet property="tennisBgImageView" destination="BgImg-Tennis" id="outlet-bg-tennis"/>
+                        <outlet property="tennisLabel" destination="Lbl-Tennis" id="outlet-lbl-tennis"/>
                         <outlet property="tennisView" destination="Card-Tennis" id="uc6-JD-IqK"/>
                     </connections>
                 </viewController>
@@ -445,7 +445,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RZY-od-vRf"/>
-                        <color key="backgroundColor" name="background"/>
+                        <color key="backgroundColor" name="ViewBackground"/>
                         <constraints>
                             <constraint firstItem="N9Z-Wp-R4d" firstAttribute="top" secondItem="RZY-od-vRf" secondAttribute="top" id="8EO-rU-UIR"/>
                             <constraint firstItem="RZY-od-vRf" firstAttribute="bottom" secondItem="N9Z-Wp-R4d" secondAttribute="bottom" id="ROK-7b-FSQ"/>
@@ -554,9 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-
             <point key="canvasLocation" x="5040" y="133"/>
-
         </scene>
         <!--Match Details View Controller-->
         <scene sceneID="match-details-scene">
@@ -656,6 +654,9 @@
         <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ViewBackground">
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="accentColor">
             <color red="0.0039215686274509803" green="0.27843137254901962" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
