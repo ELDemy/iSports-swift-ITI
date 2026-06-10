@@ -47,6 +47,19 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         title = "Match Details"
         view.backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(named: "background") ?? .systemBackground
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.label,
+            .font: UIFont.systemFont(ofSize: 18, weight: .bold),
+        ]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .label
+        
         if tableView == nil {
             let tv = UITableView(frame: view.bounds, style: .grouped)
             tv.autoresizingMask = [.flexibleWidth, .flexibleHeight]

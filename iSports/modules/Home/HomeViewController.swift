@@ -49,7 +49,6 @@ class HomeViewController: UIViewController {
         loadSportCardImages()
         gestures()
         
-        
     }
     private func gestures(){
         setupTapGesture(for: footballView, action: #selector(footballTapped))

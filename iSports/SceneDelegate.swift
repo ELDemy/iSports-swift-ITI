@@ -20,13 +20,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if hasSeenOnboarding {
             // Skip onboarding
-            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+            tabBarVC.addSettingsTab()
             let navController = UINavigationController(rootViewController: tabBarVC)
+            navController.setNavigationBarHidden(true, animated: false)
             window.rootViewController = navController
         } else {
             //show onboarding
             let navController = storyboard.instantiateInitialViewController()
             window.rootViewController = navController
+        }
+
+        // Apply saved theme
+        if let savedTheme = UserDefaults.standard.string(forKey: "AppTheme") {
+            window.overrideUserInterfaceStyle = savedTheme == "Dark" ? .dark : .light
+        } else {
+            window.overrideUserInterfaceStyle = .unspecified
         }
 
         self.window = window

@@ -17,6 +17,19 @@ class FavViewController: UIViewController, FavView {
         super.viewDidLoad()
         self.title = NSLocalizedString("FAV_TITLE", comment: "")
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(named: "background") ?? .systemBackground
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.label,
+            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
+        ]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .label
+        
         if presenter == nil {
             let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
             presenter = FavPresenter(view: self, router: router, sportName: "football")

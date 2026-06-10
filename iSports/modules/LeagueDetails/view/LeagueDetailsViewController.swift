@@ -85,14 +85,14 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         appearance.backgroundColor =
             UIColor(named: "background") ?? .systemBackground
         appearance.titleTextAttributes = [
-            .foregroundColor: accent,
+            .foregroundColor: UIColor.label,
             .font: UIFont.systemFont(ofSize: 18, weight: .bold),
         ]
-        appearance.largeTitleTextAttributes = [.foregroundColor: accent]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
 
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = accent
+        navigationController?.navigationBar.tintColor = .label
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "star"),
