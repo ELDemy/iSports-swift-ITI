@@ -18,9 +18,26 @@ class LeaguesViewController: UIViewController, LeaguesView {
         self.navigationController?.navigationBar.tintColor = accent
             self.title = L10n.sport(for: presenter.sport)
 
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: accent
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [
+            .foregroundColor: accent,
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
+
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.backButtonAppearance = backItemAppearance
+        
+        let backImage = UIImage(systemName: "chevron.backward")?
+            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = accent
             
             let nib = UINib(nibName: "TableViewCell", bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: "cell")

@@ -77,22 +77,27 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         title = league.leagueName
         navigationController?.navigationBar.prefersLargeTitles = false
 
-        let accent =
-            UIColor(named: "accentColor")
-            ?? UIColor(red: 1 / 255, green: 71 / 255, blue: 81 / 255, alpha: 1)
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =
-            UIColor(named: "background") ?? .systemBackground
+        appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [
             .foregroundColor: accent,
-            .font: UIFont.systemFont(ofSize: 18, weight: .bold),
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
-        appearance.largeTitleTextAttributes = [.foregroundColor: accent]
 
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.backButtonAppearance = backItemAppearance
+        
+        let backImage = UIImage(systemName: "chevron.backward")?
+            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
         navigationController?.navigationBar.tintColor = accent
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(

@@ -56,7 +56,7 @@ class PlayerTableViewCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
     

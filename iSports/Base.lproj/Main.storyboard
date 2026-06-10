@@ -32,10 +32,12 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tab-Bar-Id">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" name="accentColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="t6k-Ou-ysl" kind="relationship" relationship="viewControllers" id="Seg-Home"/>
                         <segue destination="Fav-VC-Id" kind="relationship" relationship="viewControllers" id="Seg-Fav"/>
+                        <segue destination="Settings-Nav-Id" kind="relationship" relationship="viewControllers" id="Settings-Tab-Segue"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-Bar-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -564,7 +566,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4008" y="208"/>
+
+            <point key="canvasLocation" x="5040" y="133"/>
+
         </scene>
         <!--Match Details View Controller-->
         <scene sceneID="match-details-scene">
@@ -596,11 +600,72 @@
             </objects>
             <point key="canvasLocation" x="6500" y="-35"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="Settings-Nav-Scene">
+            <objects>
+                <navigationController storyboardIdentifier="SettingsNavController" automaticallyAdjustsScrollViewInsets="NO" id="Settings-Nav-Id" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="Settings-Tab-Item"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Settings-Nav-Bar">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Settings-VC-Id" kind="relationship" relationship="rootViewController" id="Settings-Root-Segue"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-Nav-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3500" y="-2"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Settings-VC-Scene">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="Settings-VC-Id" customClass="SettingsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Settings-View-Id">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Theme-Button-Id">
+                                <rect key="frame" x="76.666666666666686" y="340.66666666666669" width="240" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Theme-Btn-Hgt"/>
+                                    <constraint firstAttribute="width" constant="240" id="Theme-Btn-Wdt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="sun.max.fill" catalog="system" title=" Dark Mode" imagePadding="8">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <color key="baseBackgroundColor" name="accentColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="themeButtonTapped" destination="Settings-VC-Id" eventType="touchUpInside" id="Theme-Btn-Act"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Settings-Safe-Id"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Theme-Button-Id" firstAttribute="centerX" secondItem="Settings-View-Id" secondAttribute="centerX" id="Theme-Btn-CX"/>
+                            <constraint firstItem="Theme-Button-Id" firstAttribute="centerY" secondItem="Settings-View-Id" secondAttribute="centerY" id="Theme-Btn-CY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Settings-Nav-Item"/>
+                    <connections>
+                        <outlet property="themeButton" destination="Theme-Button-Id" id="Theme-Btn-Out"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-VC-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4300" y="-2"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="shield.fill" catalog="system" width="121" height="128"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

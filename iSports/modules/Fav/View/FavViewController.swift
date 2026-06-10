@@ -21,6 +21,28 @@ class FavViewController: UIViewController, FavView {
         super.viewDidLoad()
         self.title = L10n.favourites.localized
         
+        let accent = UIColor(named: "accentColor") ?? .systemGreen
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [
+            .foregroundColor: accent,
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
+        ]
+
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.backButtonAppearance = backItemAppearance
+        
+        let backImage = UIImage(systemName: "chevron.backward")?
+            .withTintColor(accent, renderingMode: .alwaysOriginal)
+        appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = accent
+        
         if presenter == nil {
             let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
             presenter = FavPresenter(view: self, router: router, sportName: "football")
