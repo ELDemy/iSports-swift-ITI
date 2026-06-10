@@ -1,224 +1,184 @@
-# iSports 🏆
+<div align="center">
 
-iSports is a comprehensive sports application built with UIKit that allows users to explore multiple sports, browse leagues, follow matches, view team information, and discover detailed player statistics.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=014751&height=200&section=header&text=iSports&fontSize=80&fontColor=3fe0be&fontAlignY=38&desc=Your%20Ultimate%20iOS%20Sports%20Companion&descAlignY=65&descColor=9FE1CB" />
+
+<br/>
+
+![Swift](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)
+![UIKit](https://img.shields.io/badge/UIKit-000000?style=for-the-badge&logo=apple&logoColor=white)
+![Xcode](https://img.shields.io/badge/Xcode-147EFB?style=for-the-badge&logo=xcode&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=apple&logoColor=white)
+
+![MVP](https://img.shields.io/badge/Architecture-MVP-014751?style=for-the-badge)
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Supported-1D9E75?style=for-the-badge)
+![SkeletonView](https://img.shields.io/badge/SkeletonView-Enabled-5DCAA5?style=for-the-badge)
+
+</div>
+
+---
+
+## Overview
+
+iSports is a native iOS app built with **UIKit** that lets you explore football, basketball, cricket, and tennis — all in one place. Browse leagues, follow fixtures, dive into match stats, and track your favourite teams and players.
+
+---
 
 ## Features
 
-### 🚀 Splash & Onboarding
+<div align="center">
 
-* Splash Screen for application launch.
-* Interactive Onboarding experience for first-time users.
-* Smooth navigation into the main application.
+| | Feature | Description |
+|:---:|:---|:---|
+| 🏠 | **Home** | Sport categories with a dynamic banner slider |
+| 🏆 | **Leagues** | Browse and search across all four sports |
+| 📅 | **League details** | Upcoming fixtures, latest results, teams & players |
+| ⚽ | **Match details** | Stats, events, and full lineups for every game |
+| 👥 | **Teams & players** | Squads, positions, jersey numbers, match history |
+| ⭐ | **Favorites** | Save leagues for quick access, persisted locally |
+| 🌙 | **Dark mode** | Full light & dark theme with seamless switching |
 
-### 🏠 Home Screen
+</div>
 
-The Home screen serves as the central hub of the application and includes:
+---
 
-* Featured sports categories:
+## Screenshots
 
-  * Football ⚽
-  * Basketball 🏀
-  * Cricket 🏏
-  * Tennis 🎾
+### 🌙 Dark theme
 
-* Dynamic banner slider showcasing sports-related images and highlights.
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/25df757e-cd01-44b5-b238-51cfc3b877be" width="18%" />
+  <img src="https://github.com/user-attachments/assets/7dbb681b-f53d-4c88-b604-6a20a3ec15ff" width="18%" />
+  <img src="https://github.com/user-attachments/assets/f769f3b9-01b6-4e0f-a1c2-56c62e97b18c" width="18%" />
+  <img src="https://github.com/user-attachments/assets/cd469567-1cf1-4910-9f58-10bac8dc8ea4" width="18%" />
+  <img src="https://github.com/user-attachments/assets/20d1444f-85f8-485d-9f24-d565d674589c" width="18%" />
+</div>
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/cf64b124-32e4-4cae-9bcb-710cf0b473a5" width="18%" />
+</div>
 
-### 🏆 Leagues
+<br/>
 
-Selecting a sport displays all available leagues for that sport.
+### ☀️ Light theme
 
-Users can:
-
-* Browse leagues.
-* Search and explore competitions.
-* Access league-specific information.
-
-### 📅 League Details
-
-Each league contains:
-
-#### Upcoming Events
-
-* Scheduled matches and future fixtures.
-
-#### Latest Results
-
-* Recently completed matches and results.
-
-#### Teams / Players
-
-* Teams for Football, Basketball, and Cricket.
-* Players for Tennis.
-
-### ⚽ Match Details
-
-Selecting a match provides detailed match information including:
-
-* Match Statistics
-* Match Events
-* Team Lineups
-
-This allows users to analyze game performance and follow match progression in depth.
-
-### 👥 Team Details
-
-Selecting a team displays:
-
-* Team information
-* Full squad list
-* Player positions
-* Jersey numbers
-* Matches played by team members
-
-### 🧑‍💼 Player Details
-
-Selecting a player provides detailed player information including:
-
-* Personal information
-* Position
-* Team affiliation
-* Performance details
-* Match participation history
-
-### ⭐ Favorites
-
-Users can save their favorite leagues for quick access and personalized browsing.
-
-### 🌙 Dark Mode Support
-
-* Light Mode
-* Dark Mode
-* Seamless theme switching from the Settings screen
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/1c4d2d28-396c-4752-b954-84c0b0f27a67" width="18%" />
+  <img src="https://github.com/user-attachments/assets/83c340a6-8a24-4bf1-b792-73e1147fcfde" width="18%" />
+  <img src="https://github.com/user-attachments/assets/b19884b8-b011-4c80-aa05-5e45c873472a" width="18%" />
+  <img src="https://github.com/user-attachments/assets/12eadeef-636c-4f66-8b73-22d0f8aa9210" width="18%" />
+  <img src="https://github.com/user-attachments/assets/c8af163f-e8ad-4e36-9c1f-3def8c12b5c6" width="18%" />
+</div>
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d0f0bef1-cbc5-45b0-b5bb-b3ec84914001" width="18%" />
+  <img src="https://github.com/user-attachments/assets/098f63c6-b2ca-4dc2-843a-1673e87b8404" width="18%" />
+  <img src="https://github.com/user-attachments/assets/71f4c31c-46dc-4cd4-b81b-9f8d310ab84b" width="18%" />
+  <img src="https://github.com/user-attachments/assets/54ad2406-e6cd-42b0-add7-a12cbe11beda" width="18%" />
+  <img src="https://github.com/user-attachments/assets/74c34508-2068-4add-8ac5-3dc9d44e1ad1" width="18%" />
+</div>
 
 ---
 
 ## Architecture
 
-The project follows the **MVP (Model-View-Presenter)** architectural pattern to achieve:
+<div align="center">
 
-* Separation of concerns
-* Better maintainability
-* Improved testability
-* Scalable project structure
-
----
-
-## Technologies Used
-
-* UIKit
-* UICollectionView Compositional Layout
-* MVP Architecture
-* URLSession / Networking Layer
-* Auto Layout
-* UserDefaults
-* SkeletonView
-* Dark Mode Support
-
----
-
-## Application Flow
-
-```text
-Splash Screen
-      ↓
-Onboarding Screen
-      ↓
-Home Screen
-      ↓
-Select Sport
-      ↓
-Leagues Screen
-      ↓
-League Details
-      ├── Upcoming Events
-      ├── Latest Results
-      └── Teams / Players
-                ↓
-        Team Details
-                ↓
-        Player Details
-
-OR
-
-League Details
-      ↓
-Match Details
-      ├── Statistics
-      ├── Events
-      └── Lineups
 ```
+┌─────────────────────────────────────────────┐
+│               AppRouter / Coordinator        │
+│           Navigation & flow control          │
+└───────────────────┬─────────────────────────┘
+                    │
+        ┌───────────┼───────────┐
+        ▼           ▼           ▼
+   ┌─────────┐ ┌───────────┐ ┌────────────┐
+   │  View   │ │ Presenter │ │   Model    │
+   │  (VC)   │◄─────────── │ │ Networking │
+   │ passive │ │  Business │ │ Persistence│
+   └─────────┘ │   Logic   │ └────────────┘
+               └───────────┘
+```
+
+</div>
+
+The project follows **MVP (Model-View-Presenter)** with a **Coordinator / Router** pattern — views are fully passive, business logic lives in presenters, and all navigation is routed through `AppRouter`.
+
+---
+
+## Tech stack
+
+<div align="center">
+
+| Category | Technology |
+|:---|:---|
+| Language | ![Swift](https://img.shields.io/badge/Swift-FA7343?style=flat&logo=swift&logoColor=white) |
+| UI framework | ![UIKit](https://img.shields.io/badge/UIKit-000000?style=flat&logo=apple&logoColor=white) |
+| Layout | `UICollectionView` Compositional Layout |
+| Architecture | MVP + Coordinator / Router |
+| Networking | `URLSession` |
+| Persistence | `UserDefaults` |
+| Loading states | `SkeletonView` |
+| Theme | Light & Dark mode |
+
+</div>
+
+---
+
+## App flow
+
+```
+Splash
+  └─► Onboarding
+        └─► Home
+              └─► Leagues
+                    └─► League Details
+                          ├─► Upcoming Events
+                          ├─► Latest Results
+                          └─► Teams / Players
+                                └─► Team Details ──► Player Details
+                          └─► Match Details
+                                ├─► Statistics
+                                ├─► Events
+                                └─► Lineups
+```
+
+---
 
 ## Screens
 
-* Splash Screen
-* Onboarding Screen
-* Home Screen
-* Leagues Screen
-* League Details Screen
-* Match Details Screen
-* Team Details Screen
-* Player Details Screen
-* Favorites Screen
-* Settings Screen
+<div align="center">
 
+![Splash](https://img.shields.io/badge/Splash-014751?style=flat)
+![Onboarding](https://img.shields.io/badge/Onboarding-014751?style=flat)
+![Home](https://img.shields.io/badge/Home-0F6E56?style=flat)
+![Leagues](https://img.shields.io/badge/Leagues-0F6E56?style=flat)
+![League Details](https://img.shields.io/badge/League%20Details-1D9E75?style=flat)
+![Match Details](https://img.shields.io/badge/Match%20Details-1D9E75?style=flat)
+![Team Details](https://img.shields.io/badge/Team%20Details-5DCAA5?style=flat&color=5DCAA5)
+![Player Details](https://img.shields.io/badge/Player%20Details-5DCAA5?style=flat&color=5DCAA5)
+![Favorites](https://img.shields.io/badge/Favorites-9FE1CB?style=flat&labelColor=085041)
+![Settings](https://img.shields.io/badge/Settings-9FE1CB?style=flat&labelColor=085041)
 
----
-
-## 👨‍💻 Development Team
-
-This project was designed and developed by:
-
-| Team Member                     | Role          |
-| ------------------------------- | ------------- |
-| **Mohamed Ali Shaltoot**        | iOS Developer |
-| **Mahmoud Moustfa ElDemerdash** | iOS Developer |
-| **Omer Ramadan ElRouby**        | iOS Developer |
+</div>
 
 ---
 
-### Contributors
+## Team
 
-* Mohamed Ali Shaltoot
-* Mahmoud Moustfa ElDemerdash
-* Omer Ramadan ElRouby
+<div align="center">
 
-Built with UIKit, MVP Architecture, and modern iOS development practices.
+| Avatar | Name | Role |
+|:---:|:---|:---|
+| <img src="https://ui-avatars.com/api/?name=Mohamed+Ali&background=014751&color=3fe0be&size=48&bold=true&rounded=true" /> | **Mohamed Ali Shaltoot** | iOS Developer |
+| <img src="https://ui-avatars.com/api/?name=Mahmoud+Demerdash&background=014751&color=3fe0be&size=48&bold=true&rounded=true" /> | **Mahmoud Mostafa ElDemerdash** | iOS Developer |
+| <img src="https://ui-avatars.com/api/?name=Omer+Ramadan&background=014751&color=3fe0be&size=48&bold=true&rounded=true" /> | **Omer Ramadan ElRouby** | iOS Developer |
 
+</div>
 
-## Dark Theme
+---
 
-<img width="1206" height="2622" alt="eventMatchDetailsDarkMode" src="https://github.com/user-attachments/assets/f769f3b9-01b6-4e0f-a1c2-56c62e97b18c" />
-<img width="1206" height="2622" alt="teamDetailsDarkMode" src="https://github.com/user-attachments/assets/20d1444f-85f8-485d-9f24-d565d674589c" />
-<img width="1206" height="2622" alt="playerDetailsDarkMode" src="https://github.com/user-attachments/assets/cf64b124-32e4-4cae-9bcb-710cf0b473a5" />
-<img width="1206" height="2622" alt="lineupsMatchDetailsDarkMode" src="https://github.com/user-attachments/assets/cd469567-1cf1-4910-9f58-10bac8dc8ea4" />
-<img width="1206" height="2622" alt="leagueScreenDarkMode" src="https://github.com/user-attachments/assets/7dbb681b-f53d-4c88-b604-6a20a3ec15ff" />
-<img width="1206" height="2622" alt="leagueDetailsScreenDarkMode" src="https://github.com/user-attachments/assets/25df757e-cd01-44b5-b238-51cfc3b877be" />
+<div align="center">
 
+*Built with UIKit · MVP Architecture · Modern iOS development practices*
 
-## Light Theme
+<img src="https://capsule-render.vercel.app/api?type=waving&color=014751&height=100&section=footer" />
 
-<img width="1206" height="2622" alt="teamDetailsLightMode" src="https://github.com/user-attachments/assets/098f63c6-b2ca-4dc2-843a-1673e87b8404" />
-<img width="1206" height="2622" alt="staticticsMatchDetailsLightMode" src="https://github.com/user-attachments/assets/c8af163f-e8ad-4e36-9c1f-3def8c12b5c6" />
-<img width="1206" height="2622" alt="SettingsLightMode" src="https://github.com/user-attachments/assets/74c34508-2068-4add-8ac5-3dc9d44e1ad1" />
-<img width="1206" height="2622" alt="playerDetailsLightMode" src="https://github.com/user-attachments/assets/71f4c31c-46dc-4cd4-b81b-9f8d310ab84b" />
-<img width="1206" height="2622" alt="lineupsMatchDetailsLightMode" src="https://github.com/user-attachments/assets/d0f0bef1-cbc5-45b0-b5bb-b3ec84914001" />
-<img width="1206" height="2622" alt="leagueScreenLightMode" src="https://github.com/user-attachments/assets/83c340a6-8a24-4bf1-b792-73e1147fcfde" />
-<img width="1206" height="2622" alt="leagueDetailsScreenLightMode" src="https://github.com/user-attachments/assets/b19884b8-b011-4c80-aa05-5e45c873472a" />
-<img width="1206" height="2622" alt="homeScreenLightMode" src="https://github.com/user-attachments/assets/1c4d2d28-396c-4752-b954-84c0b0f27a67" />
-<img width="1206" height="2622" alt="favScreenLightMode" src="https://github.com/user-attachments/assets/54ad2406-e6cd-42b0-add7-a12cbe11beda" />
-<img width="1206" height="2622" alt="eventMatchDetailsLightMode" src="https://github.com/user-attachments/assets/12eadeef-636c-4f66-8b73-22d0f8aa9210" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
