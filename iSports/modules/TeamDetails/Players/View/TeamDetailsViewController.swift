@@ -185,11 +185,11 @@ extension TeamDetailsViewController: UITableViewDelegate, SkeletonTableViewDataS
         let sport = sportName?.lowercased() ?? ""
         if sport == "basketball" || sport == "cricket" {
             let alert = UIAlertController(
-                title: "Coming Soon",
-                message: "Player details for this sport will come up soon.",
+                title: L10n.teamDetailsComingSoon.localized,
+                message: L10n.teamDetailsComingSoonMessage.localized,
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            alert.addAction(UIAlertAction(title: L10n.ok.localized, style: .default))
             present(alert, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
             return
@@ -214,7 +214,7 @@ extension TeamDetailsViewController: UITableViewDelegate, SkeletonTableViewDataS
 
 extension TeamDetailsViewController: TeamDetailsViewProtocol {
     func displayTeamInfo(teamName: String?, logoUrl: String?) {
-        title = teamName ?? "Team Details"
+        title = teamName ?? L10n.teamDetailsTitle.localized
         teamNameLabel?.text = teamName
         teamNameLabel?.textColor = .label
         logoImageView?.loadImage(from: logoUrl)

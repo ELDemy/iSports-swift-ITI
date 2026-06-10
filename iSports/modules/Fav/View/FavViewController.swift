@@ -15,7 +15,7 @@ class FavViewController: UIViewController, FavView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("FAV_TITLE", comment: "")
+        self.title = L10n.favourites.localized
         
         if presenter == nil {
             let router = AppRouter(navigationController: self.navigationController ?? UINavigationController())
@@ -57,13 +57,14 @@ class FavViewController: UIViewController, FavView {
     }
     
     func confirmDeletion(at indexPath: IndexPath) {
+        // Creating the Alert Controller
         let alert = UIAlertController(
-            title: NSLocalizedString("FAV_REMOVE_TITLE", comment: ""),
-            message: NSLocalizedString("FAV_REMOVE_MESSAGE", comment: ""),
+            title: "Remove from Favorites",
+            message: "Are you sure you want to remove this league from your favorites?",
             preferredStyle: .alert
         )
         
-        let deleteAction = UIAlertAction(title: NSLocalizedString("FAV_DELETE", comment: ""), style: .destructive) { [weak self] _ in
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             guard let self = self else { return }
             
             if let cell = self.tableView.cellForRow(at: indexPath) {
@@ -90,7 +91,8 @@ class FavViewController: UIViewController, FavView {
             }
         }
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("FAV_CANCEL", comment: ""), style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         
@@ -149,7 +151,7 @@ extension FavViewController: UITableViewDataSource {
         label.textAlignment = .natural
         
         guard let sport = presenter?.getSportName(for: section) else { return nil }
-        label.text = NSLocalizedString(sport, comment: "")
+        label.text = L10n.sport(for: sport)
         
         headerView.addSubview(label)
         

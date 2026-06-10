@@ -22,20 +22,16 @@ class HomeViewController: UIViewController {
     @IBOutlet private weak var basketballBgImageView: UIImageView!
     @IBOutlet private weak var tennisBgImageView: UIImageView!
     @IBOutlet private weak var cricketBgImageView: UIImageView!
+    
+    @IBOutlet weak var footballLabel: UILabel!
+    @IBOutlet weak var basketballLabel: UILabel!
+    @IBOutlet weak var tennisLabel: UILabel!
+    @IBOutlet weak var cricketLabel: UILabel!
 
    
-    private let bannerURLs: [String] = [
-        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
-        "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
-        "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80"
-    ]
+    private let bannerImages: [String] = ["banner1", "banner2", "banner3"]
 
-    private let sportImageURLs: [String: String] = [
-        "football":   "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=400&q=80",
-        "basketball": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&q=80",
-        "tennis":     "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=400&q=80",
-        "cricket":    "https://images.unsplash.com/photo-1624880357913-a8539238245b?w=400&q=80"
-    ]
+    
 
     // MARK: - Banner animation state
     private var currentBannerIndex = 0
@@ -49,7 +45,11 @@ class HomeViewController: UIViewController {
         loadSportCardImages()
         gestures()
         
-        
+        footballLabel.text = L10n.football.localized
+        basketballLabel.text = L10n.basketball.localized
+        tennisLabel.text = L10n.tennis.localized
+        cricketLabel.text = L10n.cricket.localized
+        self.tabBarItem.title = L10n.home.localized
     }
     private func gestures(){
         setupTapGesture(for: footballView, action: #selector(footballTapped))
@@ -77,25 +77,11 @@ class HomeViewController: UIViewController {
 
     private func setupBanner() {
         guard let banner = bannerImageView else { return }
-        banner.contentMode = .scaleAspectFill
-        banner.clipsToBounds = true
-        banner.layer.cornerRadius = 16
-        
-        banner.image = UIImage(named: "placeholder")
-
-        guard !bannerURLs.isEmpty else { return }
-
-        loadImage(from: bannerURLs[0]) { [weak self] image in
-            guard let self = self, let image = image else { return }
+            banner.contentMode = .scaleAspectFill
+            banner.clipsToBounds = true
+            banner.layer.cornerRadius = 16
             
-            UIView.transition(with: banner,
-                              duration: 0.4,
-                              options: .transitionCrossDissolve,
-                              animations: {
-                                  banner.image = image
-                              },
-                              completion: nil)
-        }
+            banner.image = UIImage(named: bannerImages[0])
     }
 
     private func startBannerAutoScroll() {
@@ -107,60 +93,64 @@ class HomeViewController: UIViewController {
 
     private func advanceBanner() {
         guard let banner = bannerImageView else { return }
-        currentBannerIndex = (currentBannerIndex + 1) % bannerURLs.count
+        
+        let nextIndex = (currentBannerIndex + 1) % bannerImages.count
+        
+        guard let nextImage = UIImage(named: bannerImages[nextIndex]) else {
+            print("DEBUG: Image named \(bannerImages[nextIndex]) not found!")
+            return
+        }
+        
+        currentBannerIndex = nextIndex
 
-        loadImage(from: bannerURLs[currentBannerIndex]) { [weak self] image in
-            guard let self = self, let image = image else { return }
+        let nextImageView = UIImageView(frame: banner.bounds)
+        nextImageView.contentMode = .scaleAspectFill
+        nextImageView.clipsToBounds = true
+        nextImageView.image = nextImage
+        nextImageView.alpha = 0
+        nextImageView.transform = CGAffineTransform(translationX: banner.bounds.width * 0.3, y: 0)
+        banner.addSubview(nextImageView)
 
-            let nextImageView = UIImageView(frame: banner.bounds)
-            nextImageView.contentMode = .scaleAspectFill
-            nextImageView.clipsToBounds = true
-            nextImageView.image = image
-            nextImageView.alpha = 0
-            nextImageView.transform = CGAffineTransform(translationX: banner.bounds.width * 0.3, y: 0)
-            banner.addSubview(nextImageView)
-
-            UIView.animate(withDuration: 0.3,
-                           delay: 0,
-                           usingSpringWithDamping: 0.85,
-                           initialSpringVelocity: 0.3,
-                           options: .curveEaseOut) {
-                nextImageView.alpha = 1
-                nextImageView.transform = .identity
-                banner.image = nil
-            } completion: { _ in
-                banner.image = image
-                nextImageView.removeFromSuperview()
-            }
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       usingSpringWithDamping: 0.85,
+                       initialSpringVelocity: 0.3,
+                       options: .curveEaseOut) {
+            nextImageView.alpha = 1
+            nextImageView.transform = .identity
+        } completion: { _ in
+            banner.image = nextImage
+            nextImageView.removeFromSuperview()
         }
     }
 
-    // MARK: - Sport Card Images
 
     private func loadSportCardImages() {
         let pairs: [(UIImageView?, String)] = [
-            (footballBgImageView,   sportImageURLs["football"]!),
-            (basketballBgImageView, sportImageURLs["basketball"]!),
-            (tennisBgImageView,     sportImageURLs["tennis"]!),
-            (cricketBgImageView,    sportImageURLs["cricket"]!)
+            (footballBgImageView, "football"),
+            (basketballBgImageView, "basketball"),
+            (tennisBgImageView, "tennis"),
+            (cricketBgImageView, "cricket")
         ]
 
-        for (imageView, urlString) in pairs {
+        for (imageView, imageName) in pairs {
             guard let iv = imageView else { continue }
+
             iv.contentMode = .scaleAspectFill
             iv.clipsToBounds = true
-            loadImage(from: urlString) { image in
-                guard let image = image else { return }
-                UIView.transition(with: iv,
-                                  duration: 0.4,
-                                  options: .transitionCrossDissolve,
-                                  animations: { iv.image = image },
-                                  completion: nil)
-            }
+
+            UIView.transition(
+                with: iv,
+                duration: 0.4,
+                options: .transitionCrossDissolve,
+                animations: {
+                    iv.image = UIImage(named: imageName)
+                },
+                completion: nil
+            )
         }
     }
 
-    // MARK: - Image Loading Helper
 
     private func loadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         guard let url = URL(string: urlString) else {

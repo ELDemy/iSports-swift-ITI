@@ -16,18 +16,18 @@ struct OnBoardingModel{
 
 let onboardingData: [OnBoardingModel] = [
     OnBoardingModel(
-        title: "Your Ultimate Sports",
-        desc: "Everything you need to follow matches, scores, and sports news in one place.",
+        title: L10n.onboardingTitle1.localized,
+        desc: L10n.onboardingDesc1.localized,
         image: "onboarding1"
     ),
     OnBoardingModel(
-        title: "Personalized for You",
-        desc: "Choose your favorite teams and receive updates tailored to your interests.",
+        title: L10n.onboardingTitle2.localized,
+        desc: L10n.onboardingDesc2.localized,
         image: "onboarding2"
     ),
     OnBoardingModel(
-        title: "Ready for Every Match",
-        desc: "Stay connected to every game with instant updates and key match insights.",
+        title: L10n.onboardingTitle3.localized,
+        desc: L10n.onboardingDesc3.localized,
         image: "onboarding3"
     )
 ]

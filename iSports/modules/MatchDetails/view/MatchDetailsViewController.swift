@@ -24,9 +24,9 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         case statistics = 0, lineups, events
         var title: String {
             switch self {
-            case .statistics: return "Statistics"
-            case .lineups: return "Lineups"
-            case .events: return "Events"
+            case .statistics: return L10n.matchStatistics.localized
+            case .lineups: return L10n.matchLineups.localized
+            case .events: return L10n.matchEvents.localized
             }
         }
     }
@@ -44,7 +44,7 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
     }
     
     private func setupUI() {
-        title = "Match Details"
+        title = L10n.matchDetailsTitle.localized
         view.backgroundColor = UIColor(named: "ViewBackground") ?? .systemGroupedBackground
         
         if tableView == nil {
