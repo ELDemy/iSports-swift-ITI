@@ -600,7 +600,7 @@
             </objects>
             <point key="canvasLocation" x="3500" y="-2"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="Settings-VC-Scene">
             <objects>
                 <viewController storyboardIdentifier="SettingsViewController" id="Settings-VC-Id" customClass="SettingsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
@@ -631,10 +631,10 @@
                             <constraint firstItem="Theme-Button-Id" firstAttribute="centerY" secondItem="Settings-View-Id" secondAttribute="centerY" id="Theme-Btn-CY"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Settings-Nav-Item"/>
                     <connections>
                         <outlet property="themeButton" destination="Theme-Button-Id" id="Theme-Btn-Out"/>
                     </connections>
-                    <navigationItem key="navigationItem" title="Settings" id="Settings-Nav-Item"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-VC-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -646,6 +646,7 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="shield.fill" catalog="system" width="121" height="128"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
