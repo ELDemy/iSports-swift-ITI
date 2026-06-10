@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sez-CN-98W">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -55,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OZR-8V-Mlw">
-                                <rect key="frame" x="0.0" y="118" width="393" height="617"/>
+                                <rect key="frame" x="0.0" y="67" width="393" height="668"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3LJ-8Y-VtI" customClass="TableViewCell" customModule="iSports" customModuleProvider="target">
@@ -75,7 +75,7 @@
                             <constraint firstItem="OZR-8V-Mlw" firstAttribute="leading" secondItem="Fav-Safe-Id" secondAttribute="leading" id="4vb-W3-tvw"/>
                             <constraint firstItem="OZR-8V-Mlw" firstAttribute="trailing" secondItem="Fav-Safe-Id" secondAttribute="trailing" id="74p-6q-UN2"/>
                             <constraint firstItem="Fav-Safe-Id" firstAttribute="bottom" secondItem="OZR-8V-Mlw" secondAttribute="bottom" id="KiD-Ca-jiH"/>
-                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="top" secondItem="Fav-Safe-Id" secondAttribute="top" id="tlA-fg-mYS"/>
+                            <constraint firstItem="OZR-8V-Mlw" firstAttribute="top" secondItem="Fav-View-Id" secondAttribute="top" constant="67" id="tlA-fg-mYS"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favourites" image="star" catalog="system" id="Fav-Tab-Id"/>

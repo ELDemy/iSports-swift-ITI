@@ -23,12 +23,17 @@ class FavViewController: UIViewController, FavView {
         // MARK: - Styled Navigation Bar
         navigationItem.title = ""
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
 
         let accent = UIColor(named: "accentColor") ?? .systemGreen
         let dynamicColor = UIColor { traitCollection in
             return traitCollection.userInterfaceStyle == .dark ? .white : accent
         }
-        
+        tableView.contentInsetAdjustmentBehavior = .never
+        edgesForExtendedLayout = .all
+        extendedLayoutIncludesOpaqueBars = true
+       
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
