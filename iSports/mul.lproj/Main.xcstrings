@@ -183,7 +183,7 @@
     },
     "Settings-Tab-Item.title" : {
       "comment" : "Class = \"UITabBarItem\"; title = \"Settings\"; ObjectID = \"Settings-Tab-Item\";",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -303,6 +303,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Button"
+          }
+        }
+      }
+    },
+    "wpz-7Y-ghm.title" : {
+      "comment" : "Class = \"UITabBarItem\"; title = \"Settings\"; ObjectID = \"wpz-7Y-ghm\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Settings"
           }
         }
       }

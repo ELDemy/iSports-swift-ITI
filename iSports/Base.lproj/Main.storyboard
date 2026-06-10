@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sez-CN-98W">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -17,7 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="mainColor"/>
+                        <color key="tintColor" name="mainColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="lEQ-A6-pfy"/>
                 </viewController>
@@ -32,11 +33,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tab-Bar-Id">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="mainColor"/>
+                        <color key="selectedImageTintColor" name="accentColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="t6k-Ou-ysl" kind="relationship" relationship="viewControllers" id="Seg-Home"/>
                         <segue destination="Fav-VC-Id" kind="relationship" relationship="viewControllers" id="Seg-Fav"/>
-                        <segue destination="Settings-Nav-Id" kind="relationship" relationship="viewControllers" id="jhK-Vc-e9y"/>
+                        <segue destination="Settings-VC-Id" kind="relationship" relationship="viewControllers" id="6NX-3m-vx3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tab-Bar-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -434,7 +437,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RZY-od-vRf"/>
-                        <color key="backgroundColor" name="background"/>
+                        <color key="backgroundColor" name="ViewBackground"/>
                         <constraints>
                             <constraint firstItem="N9Z-Wp-R4d" firstAttribute="top" secondItem="RZY-od-vRf" secondAttribute="top" id="8EO-rU-UIR"/>
                             <constraint firstItem="RZY-od-vRf" firstAttribute="bottom" secondItem="N9Z-Wp-R4d" secondAttribute="bottom" id="ROK-7b-FSQ"/>
@@ -583,34 +586,15 @@
             <point key="canvasLocation" x="6500" y="-35"/>
         </scene>
         <!--Settings-->
-        <scene sceneID="Settings-Nav-Scene">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-Nav-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController storyboardIdentifier="SettingsNavController" automaticallyAdjustsScrollViewInsets="NO" id="Settings-Nav-Id" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="Settings-Tab-Item"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Settings-Nav-Bar">
-                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Settings-VC-Id" kind="relationship" relationship="rootViewController" id="Settings-Root-Segue"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="2731" y="1081"/>
-        </scene>
-        <!--Settings-->
         <scene sceneID="Settings-VC-Scene">
             <objects>
                 <viewController storyboardIdentifier="SettingsViewController" id="Settings-VC-Id" customClass="SettingsViewController" customModule="iSports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Settings-View-Id">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Theme-Button-Id">
-                                <rect key="frame" x="76.666666666666686" y="340.66666666666669" width="240" height="54"/>
+                                <rect key="frame" x="76.666666666666686" y="399" width="240" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="Theme-Btn-Hgt"/>
                                     <constraint firstAttribute="width" constant="240" id="Theme-Btn-Wdt"/>
@@ -632,14 +616,16 @@
                             <constraint firstItem="Theme-Button-Id" firstAttribute="centerY" secondItem="Settings-View-Id" secondAttribute="centerY" id="Theme-Btn-CY"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="wpz-7Y-ghm"/>
                     <navigationItem key="navigationItem" title="Settings" id="Settings-Nav-Item"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="themeButton" destination="Theme-Button-Id" id="Theme-Btn-Out"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-VC-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3761" y="1081"/>
+            <point key="canvasLocation" x="2747" y="1090"/>
         </scene>
     </scenes>
     <resources>
@@ -651,11 +637,17 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="ViewBackground">
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="accentColor">
             <color red="0.0039215686274509803" green="0.27843137254901962" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="background">
             <color red="0.95686274509803926" green="0.96862745098039216" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainColor">
+            <color red="0.0039215686274509803" green="0.27843137254901962" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

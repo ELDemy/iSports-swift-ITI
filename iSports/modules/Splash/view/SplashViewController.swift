@@ -25,7 +25,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        view.backgroundColor = .accent
+        view.backgroundColor = .main
         setupAnimation()
     }
 
@@ -37,7 +37,8 @@ class SplashViewController: UIViewController {
         animationView.frame = view.bounds
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .playOnce
-
+        animationView.backgroundColor = .clear
+        
         view.addSubview(animationView)
 
         animationView.play { [weak self] (finished) in

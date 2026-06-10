@@ -5,18 +5,20 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var themeButton: UIButton!
     var presenter: SettingsPresenterProtocol!
 
-       override func viewDidLoad() {
-           super.viewDidLoad()
-           self.title = L10n.settings.localized
-           presenter = SettingsPresenter(view: self)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter = SettingsPresenter(view: self)
 
-           configureNavigationBar()
+        themeButton.layer.cornerRadius = 12
 
-           themeButton.layer.cornerRadius = 12
+        presenter.viewDidLoad()
+    }
 
-           presenter.viewDidLoad()
-       }
+    override func viewWillAppear(_ animated: Bool) {
+//        configureNavigationBar()
+//        self.title = L10n.settings.localized
 
+    }
     @IBAction func themeButtonTapped() {
         presenter.themeButtonTapped()
     }
@@ -58,7 +60,7 @@ extension SettingsViewController: SettingsViewProtocol {
     func applyTheme(_ style: UIUserInterfaceStyle) {
 
         guard let windowScene = view.window?.windowScene,
-              let window = windowScene.windows.first
+            let window = windowScene.windows.first
         else { return }
 
         UIView.transition(
@@ -85,7 +87,7 @@ extension SettingsViewController: SettingsViewProtocol {
 
         appearance.titleTextAttributes = [
             .foregroundColor: dynamicColor,
-            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
         ]
 
         navigationController?.navigationBar.standardAppearance = appearance
