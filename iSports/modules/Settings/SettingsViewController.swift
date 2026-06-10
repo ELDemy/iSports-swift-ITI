@@ -2,20 +2,11 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    private let themeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(named: "accentColor") ?? .systemBlue
-        button.tintColor = .white
-        button.layer.cornerRadius = 12
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        return button
-    }()
+    @IBOutlet weak var themeButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        self.title = "Settings"
         
         let accent = UIColor(named: "accentColor") ?? .systemGreen
         let appearance = UINavigationBarAppearance()
@@ -35,19 +26,11 @@ class SettingsViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.addSubview(themeButton)
-        NSLayoutConstraint.activate([
-            themeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            themeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            themeButton.widthAnchor.constraint(equalToConstant: 240),
-            themeButton.heightAnchor.constraint(equalToConstant: 54)
-        ])
-        
-        themeButton.addTarget(self, action: #selector(themeButtonTapped), for: .touchUpInside)
+        themeButton.layer.cornerRadius = 12
         updateThemeButtonTitle()
     }
 
-    @objc private func themeButtonTapped() {
+    @IBAction func themeButtonTapped() {
         guard let windowScene = view.window?.windowScene,
               let window = windowScene.windows.first else { return }
         
@@ -60,7 +43,7 @@ class SettingsViewController: UIViewController {
             newStyle = currentStyle == .dark ? .light : .dark
         }
         
-        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromTop, animations: {
             window.overrideUserInterfaceStyle = newStyle
         }, completion: nil)
         

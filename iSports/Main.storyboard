@@ -549,7 +549,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDh-6O-fG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4896.9465648854957" y="128.87323943661971"/>
+            <point key="canvasLocation" x="5040" y="133"/>
         </scene>
         <!--Match Details View Controller-->
         <scene sceneID="match-details-scene">
@@ -607,10 +607,34 @@
                     <view key="view" contentMode="scaleToFill" id="Settings-View-Id">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Theme-Button-Id">
+                                <rect key="frame" x="76.666666666666686" y="340.66666666666669" width="240" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Theme-Btn-Hgt"/>
+                                    <constraint firstAttribute="width" constant="240" id="Theme-Btn-Wdt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="sun.max.fill" catalog="system" title=" Dark Mode" imagePadding="8">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <color key="baseBackgroundColor" name="accentColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="themeButtonTapped" destination="Settings-VC-Id" eventType="touchUpInside" id="Theme-Btn-Act"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Settings-Safe-Id"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Theme-Button-Id" firstAttribute="centerX" secondItem="Settings-View-Id" secondAttribute="centerX" id="Theme-Btn-CX"/>
+                            <constraint firstItem="Theme-Button-Id" firstAttribute="centerY" secondItem="Settings-View-Id" secondAttribute="centerY" id="Theme-Btn-CY"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Settings-Nav-Item"/>
+                    <connections>
+                        <outlet property="themeButton" destination="Theme-Button-Id" id="Theme-Btn-Out"/>
+                    </connections>
+                    <navigationItem key="navigationItem" title="Settings" id="Settings-Nav-Item"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Settings-VC-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
