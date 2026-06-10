@@ -167,6 +167,12 @@
       "comment" : "Class = \"UINavigationItem\"; title = \"Settings\"; ObjectID = \"Settings-Nav-Item\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإعدادات"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -179,6 +185,12 @@
       "comment" : "Class = \"UITabBarItem\"; title = \"Settings\"; ObjectID = \"Settings-Tab-Item\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإعدادات"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -227,6 +239,12 @@
       "comment" : "Class = \"UIButton\"; configuration.title = \" Dark Mode\"; ObjectID = \"Theme-Button-Id\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " الوضع الداكن"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -239,6 +257,12 @@
       "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"Theme-Button-Id\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "زر"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",

@@ -1,6 +1,7 @@
 // Tab Bar
 "tab_home" = "الصفحة الرئيسية";
 "tab_favourites" = "المفضلة";
+"tab_settings" = "الإعدادات";
 
 // Sports
 "sport_basketball" = "كرة السلة";
@@ -68,3 +69,8 @@
 "player_matches_played" = "المباريات الملعوبة";
 "player_goals" = "الأهداف";
 "player_rating" = "التقييم";
+
+// Settings Theme Modes
+"settings_light_mode" = " الوضع المضيء";
+"settings_dark_mode" = " الوضع الداكن";
+

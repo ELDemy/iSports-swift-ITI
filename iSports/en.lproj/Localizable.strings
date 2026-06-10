@@ -1,6 +1,7 @@
 // Tab Bar
 "tab_home" = "Home";
 "tab_favourites" = "Favourites";
+"tab_settings" = "Settings";
 
 // Sports
 "sport_basketball" = "Basketball";
@@ -69,3 +70,7 @@
 "player_matches_played" = "Matches Played";
 "player_goals" = "Goals";
 "player_rating" = "Rating";
+
+// Settings Theme Modes
+"settings_light_mode" = " Light Mode";
+"settings_dark_mode" = " Dark Mode";
