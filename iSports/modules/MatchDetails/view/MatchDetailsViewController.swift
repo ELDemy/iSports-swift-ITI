@@ -85,7 +85,6 @@ class MatchDetailsViewController: UIViewController, MatchDetailsViewProtocol {
         tableView.delegate = self
         tableView.isSkeletonable = true
         
-        // Register cells programmatically to avoid complex XIB setups in prompt
         tableView.register(MatchHeaderCell.self, forCellReuseIdentifier: MatchHeaderCell.identifier)
         tableView.register(MatchStatCell.self, forCellReuseIdentifier: MatchStatCell.identifier)
         tableView.register(MatchLineupCell.self, forCellReuseIdentifier: MatchLineupCell.identifier)

@@ -53,7 +53,6 @@ class OnBoardingPageVC: UIViewController {
         titleLabel.textColor = UIColor(named: "accentColor") ?? .systemGreen
         
         descLabel.font = .systemFont(ofSize: 16, weight: .medium)
-       // descLabel.textColor = .darkGray
         descLabel.textColor = UIColor(named: "descColor")
         
         actionButton.backgroundColor = UIColor(named: "accentColor") ?? .systemGreen

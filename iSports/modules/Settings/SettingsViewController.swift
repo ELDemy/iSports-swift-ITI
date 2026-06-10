@@ -14,11 +14,6 @@ class SettingsViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-//        configureNavigationBar()
-//        self.title = L10n.settings.localized
-
-    }
     @IBAction func themeButtonTapped() {
         presenter.themeButtonTapped()
     }

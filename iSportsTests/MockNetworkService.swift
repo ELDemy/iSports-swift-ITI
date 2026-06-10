@@ -56,7 +56,7 @@ final class MockNetworkService: NetworkService {
         if shouldReturnWithError {
             completion(.failure(mockError))
         } else {
-            completion(.success([])) // Fixed: Returns empty array on success
+            completion(.success([])) 
         }
     }
     
@@ -64,7 +64,6 @@ final class MockNetworkService: NetworkService {
         if shouldReturnWithError {
             completion(.failure(mockError))
         } else {
-            // Fixed: Returns a mock single player instance instead of an array
             let dummyPlayer = PlayerModel(
                 playerKey: nil,
                 playerName: nil,

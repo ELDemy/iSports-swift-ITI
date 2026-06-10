@@ -1,7 +1,6 @@
 import SkeletonView
 import UIKit
 
-// MARK: - View Protocol
 protocol LeagueDetailsViewProtocol: AnyObject {
     func showLoading()
     func hideLoading()
@@ -12,7 +11,6 @@ protocol LeagueDetailsViewProtocol: AnyObject {
     func setLeagueName(_ name: String, sportName: String)
 }
 
-// MARK: - Section Enum
 enum LeagueSection: Int, CaseIterable {
     case upcoming, latest, teams
 
@@ -43,27 +41,21 @@ enum LeagueSection: Int, CaseIterable {
     }
 }
 
-// MARK: - LeagueDetailsViewController
 class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
 
-    // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
 
-    // MARK: - Dependencies (set by AppRouter before push)
     var presenter: LeagueDetailsPresenterProtocol!
     var league: LeagueModel!
     var sportName: String!
 
-    // MARK: - Private Data
     var upcomingEvents: [Event] = []
     var latestEvents: [Event] = []
     var teams: [Team] = []
     var currentSportName: String = ""
 
-    // MARK: - UI
     private let activityIndicator = UIActivityIndicatorView(style: .large)
 
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -72,7 +64,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         presenter.viewDidLoad()
     }
 
-    // MARK: - Setup
     private func setupNavigationBar() {
         title = league.leagueName
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -157,7 +148,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         collectionView.isSkeletonable = true
     }
 
-    // MARK: - Compositional Layout
     private func makeCompositionalLayout()
         -> UICollectionViewCompositionalLayout
     {
@@ -294,7 +284,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         return section
     }
 
-    // MARK: - LeagueDetailsViewProtocol
     func showLoading() {
         let gradient = skeletonGradient()
         let animation = SkeletonAnimationBuilder().makeSlidingAnimation(
@@ -355,7 +344,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
     }
     
 
-    // MARK: - Private Helpers
     private func skeletonGradient() -> SkeletonGradient {
         if traitCollection.userInterfaceStyle == .dark {
             return SkeletonGradient(
@@ -390,7 +378,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         }
     }
 
-    // MARK: - Actions
     @objc private func favoriteTapped() {
         if(presenter.checkIsFavorite()){
            confirmDeletion()
@@ -399,7 +386,6 @@ class LeagueDetailsViewController: UIViewController, LeagueDetailsViewProtocol {
         }
     }
     func confirmDeletion() {
-        // Creating the Alert Controller
         let alert = UIAlertController(
             title: "Remove from Favorites",
             message: "Are you sure you want to remove this league from your favorites?",

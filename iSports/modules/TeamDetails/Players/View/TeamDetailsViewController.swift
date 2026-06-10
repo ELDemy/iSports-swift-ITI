@@ -71,7 +71,6 @@ class TeamDetailsViewController: UIViewController {
         logoImageView?.layer.borderWidth = 3
         logoImageView?.layer.borderColor = UIColor(named: "accentColor")?.cgColor ?? UIColor.systemGreen.cgColor
         
-        // Make logo skeletonable
         logoImageView?.isSkeletonable = true
         logoImageView?.skeletonCornerRadius = Float((logoImageView?.frame.width ?? 80) / 2)
         
@@ -87,7 +86,6 @@ class TeamDetailsViewController: UIViewController {
         tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
 
-        // Enable SkeletonView on the table
         tableView.isSkeletonable = true
     }
 }
@@ -104,13 +102,10 @@ extension TeamDetailsViewController: UITableViewDelegate, SkeletonTableViewDataS
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // Return 1 while skeleton is showing so the table has a section to render into.
-        // Once real data arrives, return the actual section count.
-        return max(presenter.numberOfSections, 1)
+               return max(presenter.numberOfSections, 1)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Guard against accessing sections before data has loaded (skeleton phase)
         guard presenter.numberOfSections > 0, section < presenter.numberOfSections else { return 0 }
         return presenter.numberOfRows(in: section)
     }

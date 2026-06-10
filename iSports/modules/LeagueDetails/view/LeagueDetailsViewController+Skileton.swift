@@ -8,7 +8,6 @@
 import SkeletonView
 import UIKit
 
-// MARK: - UICollectionViewDataSource & Delegate
 extension LeagueDetailsViewController: UICollectionViewDelegate,
     SkeletonCollectionViewDataSource
 {

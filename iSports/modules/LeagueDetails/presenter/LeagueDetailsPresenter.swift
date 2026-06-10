@@ -1,6 +1,5 @@
 import Foundation
 
-// MARK: - Sport Category Helper
 private enum SportCategory {
     case teamBased
     case playerBased
@@ -15,7 +14,6 @@ private enum SportCategory {
     }
 }
 
-// MARK: - Presenter Protocol
 protocol LeagueDetailsPresenterProtocol: AnyObject {
     var league: LeagueModel { get set }
     var sportName: String { get set }
@@ -27,15 +25,12 @@ protocol LeagueDetailsPresenterProtocol: AnyObject {
     func didSelectEvent(event: Event)
 }
 
-// MARK: - LeagueDetailsPresenter
 class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
 
-    // MARK: - Protocol Properties
     var league: LeagueModel
     var sportName:  String
     var appRouter:  AppRouter?
 
-    // MARK: - Private
     private weak var view:     LeagueDetailsViewProtocol?
     private let      network:  NetworkService
     private var      isFavorite: Bool = false
@@ -44,7 +39,6 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
     private var latestEvents:   [Event] = []
     private var teams:          [Team]  = []
 
-    // MARK: - Init
     init(view:       LeagueDetailsViewProtocol,
          appRouter:  AppRouter?,
          league:     LeagueModel,
@@ -59,7 +53,6 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
        isFavorite = checkIsFavorite()
     }
 
-    // MARK: - LeagueDetailsPresenterProtocol
     func viewDidLoad() {
         view?.showLoading()
         view?.setLeagueName(league.leagueName!, sportName: sportName)
@@ -98,7 +91,6 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
         appRouter?.navigateToMatchDetails(event: event)
     }
 
-    // MARK: - Private – Networking
     private func fetchLeagueData() {
         let group = DispatchGroup()
         var fetchedEvents: [Event] = []

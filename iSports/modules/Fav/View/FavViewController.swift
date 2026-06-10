@@ -1,9 +1,5 @@
 //
 //  FavViewController.swift
-//  MAD46_Sports
-//
-//  Created by JETSMobileLabMini3 on 02/05/2026.
-//
 
 import UIKit
 
@@ -20,7 +16,6 @@ class FavViewController: UIViewController, FavView {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // MARK: - Styled Navigation Bar
         navigationItem.title = ""
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -94,7 +89,6 @@ class FavViewController: UIViewController, FavView {
     }
     
     func confirmDeletion(at indexPath: IndexPath) {
-        // Creating the Alert Controller
         let alert = UIAlertController(
             title: "Remove from Favorites",
             message: "Are you sure you want to remove this league from your favorites?",

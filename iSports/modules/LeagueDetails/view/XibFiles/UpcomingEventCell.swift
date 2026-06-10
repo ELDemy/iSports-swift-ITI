@@ -34,7 +34,6 @@ class UpcomingEventCell: UICollectionViewCell {
     }
     
     private func setupImageViews() {
-        // Make team images circular
         for imageView in [homeTeamImageView, awayTeamImageView] {
             guard let iv = imageView else { continue }
             iv.backgroundColor = UIColor(named: "CardBackground")?.withAlphaComponent(0.4) ?? UIColor.systemGray6

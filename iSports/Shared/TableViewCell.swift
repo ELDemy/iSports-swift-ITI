@@ -1,8 +1,5 @@
 //
 //  TableViewCell.swift
-//  MAD46_Sports
-//
-//  Created by TaqieAllah on 30/04/2026.
 //
 
 import UIKit
@@ -71,7 +68,6 @@ class TableViewCell: UITableViewCell {
         let margins = UIEdgeInsets(top: 6, left: 16, bottom: 4, right: 16)
         contentView.frame = contentView.frame.inset(by: margins)
         
-        // Card shadow
         contentView.layer.cornerRadius = 14
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.2

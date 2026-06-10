@@ -6,7 +6,6 @@
 //
 import UIKit
 
-// MARK: - SectionHeaderView
 class SectionHeaderView: UICollectionReusableView {
     static let reuseIdentifier = "SectionHeaderView"
 

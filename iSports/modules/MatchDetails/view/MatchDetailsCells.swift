@@ -1,7 +1,6 @@
 import UIKit
 import SkeletonView
 
-// MARK: - MatchHeaderCell
 class MatchHeaderCell: UITableViewCell {
     static let identifier = "MatchHeaderCell"
     
@@ -125,7 +124,6 @@ class MatchHeaderCell: UITableViewCell {
     }
 }
 
-// MARK: - MatchStatCell
 class MatchStatCell: UITableViewCell {
     static let identifier = "MatchStatCell"
     
@@ -196,7 +194,6 @@ class MatchStatCell: UITableViewCell {
     }
 }
 
-// MARK: - MatchLineupCell
 class MatchLineupCell: UITableViewCell {
     static let identifier = "MatchLineupCell"
     
@@ -265,7 +262,6 @@ class MatchLineupCell: UITableViewCell {
     }
 }
 
-// MARK: - MatchEventTimelineCell
 class MatchEventTimelineCell: UITableViewCell {
     static let identifier = "MatchEventTimelineCell"
     
@@ -369,7 +365,6 @@ class MatchEventTimelineCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        // Remove constraints so we can re-apply them based on isHome
         iconView.removeFromSuperview()
         contentView.addSubview(iconView)
         NSLayoutConstraint.activate([

@@ -3,7 +3,6 @@ import UIKit
 
 extension UIView {
     func applySubtlePrimaryGradient(radius: CGFloat = 14) {
-        // Remove existing gradient if any to avoid duplication during reuse
         self.layer.sublayers?.filter { $0 is CAGradientLayer && $0.name == "SubtlePrimaryGradient" }.forEach { $0.removeFromSuperlayer() }
         
         let gradient = CAGradientLayer()
@@ -13,7 +12,6 @@ extension UIView {
         let primaryColor = UIColor(named: "AppPrimary") ?? .systemGreen
         
         if traitCollection.userInterfaceStyle == .dark {
-            // Faint gradient from very light primary tint to almost transparent
             gradient.colors = [
                 primaryColor.withAlphaComponent(0.12).cgColor,
                 primaryColor.withAlphaComponent(0.02).cgColor

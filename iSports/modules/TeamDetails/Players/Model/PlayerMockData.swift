@@ -3,7 +3,6 @@ import Foundation
 class PlayerMockData {
     static func getAllPlayers() -> [PlayerModel] {
         return [
-            // Goalkeepers
             PlayerModel(playerKey: 1, playerName: "Manuel Neuer", playerNumber: "1", playerCountry: nil, playerType: "Goalkeepers", playerAge: "38", playerImage: "onboarding1", playerLogo: nil, teamName: nil, teamKey: nil, playerMinutes: nil, playerBirthdate: nil, playerIsCaptain: nil,
                        playerMatchPlayed: nil, playerGoals: "6",playerRating: "6",playerBday: "" , stats: [] ),
             PlayerModel(playerKey: 2, playerName: "Sven Ulreich", playerNumber: "26", playerCountry: nil, playerType: "Goalkeepers", playerAge: "35", playerImage: "onboarding2", playerLogo: nil, teamName: nil, teamKey: nil, playerMinutes: nil, playerBirthdate: nil, playerIsCaptain: nil,

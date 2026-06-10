@@ -2,17 +2,14 @@ import Foundation
 
 enum Constants {
     
-    // MARK: - API Configuration
     enum API {
         static let baseURL = "https://apiv2.allsportsapi.com"
     }
     
-    // MARK: - Storyboards
     enum Storyboards {
         static let main = "Main"
     }
     
-    // MARK: - ViewController Identifiers
     enum ViewControllers {
         static let mainTabBarVC = "MainTabBarController"
         static let onBoardingVC = "OnBoardingViewController"

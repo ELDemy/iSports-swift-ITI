@@ -7,7 +7,6 @@
 
 import UIKit
 
-// MARK: - EmptySectionCell
 class EmptySectionCell: UICollectionViewCell {
     static let reuseIdentifier = "EmptySectionCell"
 
@@ -45,7 +44,6 @@ class EmptySectionCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
 
-        // Subtle border
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor =
             UIColor(named: "accentColor")?.withAlphaComponent(0.15).cgColor

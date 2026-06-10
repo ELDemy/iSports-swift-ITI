@@ -30,7 +30,6 @@ struct Event: Decodable {
     let eventFirstPlayerLogo: String?
     let eventSecondPlayerLogo: String?
     
-    // Match Details
     let eventStatus: String?
     let eventStadium: String?
     let eventReferee: String?
@@ -114,7 +113,6 @@ struct EventResponse: Decodable {
     let result: [Event]?
 }
 
-// MARK: - Match Details Structs
 
 struct MatchStatistic: Decodable {
     let type: String?
@@ -147,7 +145,6 @@ struct MatchGoalscorer: Decodable {
         case away_scorer, away_assist
     }
     
-    // Custom decoding to avoid crashes when the API returns an empty array [] instead of ""
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         time = try? container.decodeIfPresent(String.self, forKey: .time)
